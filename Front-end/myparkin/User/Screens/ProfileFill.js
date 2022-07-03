@@ -16,8 +16,9 @@ import {
 import Lottie from "lottie-react-native";
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { useNavigation } from "@react-navigation/native";
+import { TouchableRipple } from "react-native-paper";
 
-export default function Iphone13ProMax61() {
+export default function ProfileFill() {
   const navigation = useNavigation();
   const [date, setDate] = useState(new Date());
 
@@ -133,9 +134,9 @@ export default function Iphone13ProMax61() {
                   }}
                 /> */}
                 </View>
-              <View style={styles.Frame165}>
+              <TouchableRipple style={styles.Frame165} onPress={() => navigation.navigate("SuccessfullyCreated")}>
               <Text style={styles.Txt211}>Continue</Text>
-            </View>
+            </TouchableRipple>
             </SafeAreaView>
             
           </View>

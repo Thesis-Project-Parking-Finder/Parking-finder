@@ -10,6 +10,7 @@ import ProfileFill from './Screens/ProfileFill.js'
 import Welcome from './Screens/Welcome';
 import MarkerDetail from './Screens/MarkerDetail'
 import SearchFilter from './Screens/SearchFilter'
+import SuccessfullyCreated from './Screens/SuccessfullyCreated';
 
 
 import  Map  from "./Screens/map/Map";
@@ -20,6 +21,9 @@ const Stack = createNativeStackNavigator();
 const StackNavigation = () =>{
 return (
 <Stack.Navigator screenOptions={{headerShown: false}}>
+
+
+       
        <Stack.Screen name="Welcome" component={Welcome} />
        <Stack.Screen name="FirstView" component={FirstView} />
       <Stack.Screen name="SecondView" component={SecondView} />
@@ -28,6 +32,7 @@ return (
       <Stack.Screen name='Login' component={Login} />
       <Stack.Screen name='SignUp' component={SignUp} />  
        <Stack.Screen name='ProfileFill' component={ProfileFill} />
+        <Stack.Screen name='SuccessfullyCreated' component={SuccessfullyCreated} />
       <Stack.Screen name="MarkerDetail" component={MarkerDetail} /> 
        <Stack.Screen name='SearchFilter' component={SearchFilter} /> 
     </Stack.Navigator>
