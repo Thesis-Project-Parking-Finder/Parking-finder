@@ -1,4 +1,5 @@
- import React from 'react';
+
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SecondView from './Screens/SecondView';
 import ThirdView from './Screens/ThirdView';
@@ -13,9 +14,10 @@ import SearchFilter from './Screens/SearchFilter'
 import SuccessfullyCreated from './Screens/SuccessfullyCreated';
 
 
-import  Map  from "./Screens/map/Map";
+import Map from "./Screens/map/Map";
 
 const Stack = createNativeStackNavigator();
+
 
 
 const StackNavigation = () =>{
@@ -33,6 +35,7 @@ return (
       <Stack.Screen name='SignUp' component={SignUp} />  
        <Stack.Screen name='ProfileFill' component={ProfileFill} />
         <Stack.Screen name='SuccessfullyCreated' component={SuccessfullyCreated} />
+
       <Stack.Screen name="MarkerDetail" component={MarkerDetail} /> 
        <Stack.Screen name='SearchFilter' component={SearchFilter} /> 
     </Stack.Navigator>

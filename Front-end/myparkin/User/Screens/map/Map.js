@@ -1,6 +1,9 @@
 import * as React from "react";
 import MapView from "react-native-maps";
 import { Marker, Callout, Circle } from "react-native-maps";
+import { getDistance, getPreciseDistance } from "geolib";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+
 import {
   StyleSheet,
   Text,
@@ -17,13 +20,15 @@ import { useState, useEffect } from "react";
 import MarkersInformation from "./MarkersInformation";
 import * as Location from "expo-location";
 
-function Map() {
+function Map({ navigation }) {
   const [latitude, setlatitude] = useState(null);
   const [longitude, setlongitude] = useState(null);
+  const [distance, setdistance] = useState(0);
+
   const [parkingname, setparkingname] = useState("");
   const [parkingImage, setparkingImage] = useState("");
-  const [price, setprice] = useState("");
-  const [description, setDescription] = useState("");
+  // const [price, setprice] = useState("");
+  const [adress, setadress] = useState("");
   const [oneparking, setoneParking] = useState([]);
   const [showParking, setshowParking] = useState(false);
   const [mapHieght, setmapHeight] = useState("88%");
@@ -36,13 +41,15 @@ function Map() {
 
     setoneParking(oneParking);
     setparkingname(oneparking[0].parkingName);
-    setprice(oneparking[0].price);
-    setDescription(oneparking[0].description);
-    console.log();
+
+    setadress(oneparking[0].adress);
     setparkingImage(oneparking[0].image);
-    console.log(parkingImage);
     setshowParking(true);
-    setmapHeight("58%");
+    setmapHeight("50%");
+  };
+  let cancel = () => {
+    setshowParking(false);
+    setmapHeight("88%");
   };
 
   useEffect(() => {
@@ -78,14 +85,12 @@ function Map() {
       >
         <Marker
           title="test title"
-          description="test description"
           coordinate={{
             latitude: latitude || 58.80278,
             longitude: longitude || 10.17972,
           }}
           pinColor="blue"
         >
-          {console.log(latitude, longitude)}
           <Callout>
             <Text>Your position</Text>
           </Callout>
@@ -111,7 +116,7 @@ function Map() {
               }}
             >
               <Callout>
-                <Text>{element.description}</Text>
+                <Text>{element.adress}</Text>
               </Callout>
             </Marker>
           );
@@ -125,13 +130,27 @@ function Map() {
               uri: parkingImage,
             }}
           ></Image>
-          <Text style={styles.cardtitle}>parking name : {parkingname}</Text>
-          <Text style={styles.cardDescription}>
-            Parking description :{description}
-          </Text>
+          <Text style={styles.cardtitle}> {parkingname}</Text>
+          <Text style={styles.cardDescription}>{adress}</Text>
 
           <View style={styles.btncontainter}>
-            <Button title="Book a place" style={styles.button}></Button>
+            <Button
+              title="Cancel"
+              style={styles.button}
+              onPress={() => {
+                cancel();
+              }}
+            ></Button>
+            <Button
+              title="Details"
+              style={styles.button}
+              onPress={() =>
+                navigation.navigate("ParkingDetail", {
+                  parkingName: parkingname,
+                  parkingImage: parkingImage,
+                })
+              }
+            ></Button>
           </View>
         </View>
       )}
@@ -186,8 +205,11 @@ const styles = StyleSheet.create({
     height: "88%",
   },
   btncontainter: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
     position: "absolute",
-    bottom: 0,
+    bottom: 5,
     width: "100%",
   },
   textContent: {
@@ -297,6 +319,7 @@ const styles = StyleSheet.create({
   button: {
     bottom: 0,
     height: "20%",
+    borderRadius: 30,
 
     backgroundColor: "red",
   },
@@ -313,9 +336,9 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     shadowOpacity: 0.3,
     shadowOffset: { x: 2, y: -2 },
-    bottom: 20,
+
     left: -10,
-    height: "30%",
+    height: "37%",
     width: "100%",
     overflow: "hidden",
   },

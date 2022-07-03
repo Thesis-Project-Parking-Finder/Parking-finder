@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, Image, Text, View, ImageBackground } from "react-native";
 
-export default function ParkingDetail() {
+export default function ParkingDetail(props) {
+  console.log(props);
   return (
     <View style={styles.container}>
       <View style={styles.innercontainer}>
@@ -10,7 +11,7 @@ export default function ParkingDetail() {
           <Image
             style={styles.image}
             source={{
-              uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/tchxcl2433j-63%3A29?alt=media&token=3b4b277d-7cfd-445a-bb57-f19c0c82dd38",
+              uri: props.route.params.parkingImage,
             }}
           />
         </View>
