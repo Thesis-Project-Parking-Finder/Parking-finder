@@ -4,9 +4,12 @@ import ProfileFill from "./Screens/ProfileFill.js";
 import MarkerDetail from "./Screens/MarkerDetail";
 import SearchFilter from "./Screens/SearchFilter";
 import HestoryParking from "./Screens/hertoryParking.js";
+
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+
 import Parkingspot from "./Screens/Parkingspot";
+
 import ParkingDetail from "./Screens/ParkingDetail/ParkingDetail";
 
 import Map from "./Screens/map/Map.js";
@@ -16,6 +19,7 @@ import MyParkings from "./Screens/MyParkings.js";
 
 import EditProfile from "./Screens/EditProfile.js";
 import SelectVec from "./Screens/SelectVec";
+
 import test from "./Screens/test.js";
 import FillCarInformation from "./Screens/FillCarInformation.js";
 
@@ -23,6 +27,7 @@ const Stack = createNativeStackNavigator();
 
 const StackNav = () => {
   return (
+
     <Provider store={store}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Map" component={Map} />
@@ -44,6 +49,8 @@ const StackNav = () => {
         <Stack.Screen name="EditProfile" component={EditProfile} />
       </Stack.Navigator>
     </Provider>
+
+  
   );
 };
 

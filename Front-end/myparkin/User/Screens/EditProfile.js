@@ -1,4 +1,7 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
+import Lottie from "lottie-react-native";
 import {
   StyleSheet,
   Image,
@@ -6,12 +9,55 @@ import {
   Text,
   View,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   ScrollView,
   ImageBackground,
 } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+import { auth } from "../../firebase.config";
+import { updateProfile, updateEmail } from "firebase/auth";
 
 export default function EditProfile() {
+  const navigation = useNavigation();
+
+  const [userName, setUserName] = useState(auth.currentUser.displayName);
+  const [email, setEmail] = useState(auth.currentUser.email);
+
+  const handleFullName = (text) => {
+    setUserName(text);
+  };
+
+  const handleEmail = (text) => {
+    setEmail(text);
+  };
+
+  // console.log(email);
+  // console.log(auth);
+  // console.log(auth.currentUser);
+
+  const handleUpdate = () => {
+    updateProfile(auth.currentUser, {
+      displayName: userName,
+    })
+      .then(() => {
+        // console.log("success");
+      })
+      .catch((error) => {
+        alert("error profile");
+        // console.log("error");
+        // ...
+      });
+    console.log(email, "before");
+
+    updateEmail(auth.currentUser, email)
+      .then(() => {
+        console.log(email, "after");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <KeyboardAvoidingView>
       <ScrollView
@@ -23,28 +69,44 @@ export default function EditProfile() {
         }}
       >
         <View style={styles.Iphone13ProMax55}>
-          <TouchableOpacity style={styles.Rectangle4}>
+          <TouchableOpacity onPress={handleUpdate} style={styles.Rectangle4}>
             <Text style={styles.Txt276}>Update</Text>
           </TouchableOpacity>
 
-          <TextInput style={styles.Rectangle7} placeholder="NumberPhone" />
+          <Text style={styles.Txt439}>E-mail</Text>
 
-          <Text style={styles.Txt915}>+92 324 4449931</Text>
+          <TextInput
+            style={styles.Rectangle9}
+            placeholder="Email"
+            value={email}
+            onChangeText={handleEmail}
+          />
 
-          <Text style={styles.Txt439}>anabiajatoi448@gmail.com</Text>
+          <TextInput
+            style={styles.Rectangle6}
+            placeholder="FullName"
+            value={userName}
+            onChangeText={handleFullName}
+          />
 
-          <TextInput style={styles.Rectangle9} placeholder="Email" />
+          <Text style={styles.Txt3410}>User Name</Text>
 
-          <TextInput style={styles.Rectangle6} placeholder="FullName" />
+          <TouchableWithoutFeedback onPress={() => navigation.navigate("Map")}>
+            <Lottie
+              source={require("./assets/arrow2.json")}
+              autoPlay
+              loop
+              style={styles.FrameLottie}
+            />
+          </TouchableWithoutFeedback>
 
-          <Text style={styles.Txt3410}>Anabia</Text>
-
-          <Image
+          {/* <Image
             style={styles.Frame6}
             source={{
               uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/zqwihq6a3b-79%3A1457?alt=media&token=2f0a9469-bfef-47d6-b494-471f6cdb9df1",
             }}
-          />
+
+          /> */}
           <Text style={styles.Txt267}>Edit Profile</Text>
         </View>
       </ScrollView>
@@ -68,6 +130,16 @@ const styles = StyleSheet.create({
     height: 904,
     width: 419,
   },
+
+  FrameLottie: {
+    width: "20%",
+    height: "20%",
+    top: "10%",
+    marginLeft: "0%",
+    Left: 0,
+    right: 0,
+  },
+
   Txt276: {
     position: "absolute",
     top: "30%",
@@ -85,7 +157,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "72%",
     left: 41,
-    backgroundColor: "rgba(188,0,99,1)",
+    backgroundColor: "rgba(9, 66, 139, 1)",
+    // backgroundColor: "rgba(188,0,99,1)",
     width: "85%",
     height: 53,
     borderRadius: 50,
@@ -169,7 +242,7 @@ const styles = StyleSheet.create({
   Txt439: {
     position: "absolute",
     top: "38%",
-    left: 101,
+    left: 140,
     fontSize: 15,
 
     fontWeight: "600",
@@ -258,12 +331,12 @@ const styles = StyleSheet.create({
   Txt3410: {
     position: "absolute",
     top: "24%",
-    left: 182,
+    left: 140,
     fontSize: 15,
 
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
-    width: "20%",
+    width: "50%",
     height: "15%",
   },
   Rectangle14: {

@@ -28,14 +28,14 @@ const test = () => {
   const booking = () => {
     setDoc(doc(db, "bookin", "book"), obj);
   };
-  //   function handleChange(text, eventName) {
-  //     setObj((prev) => {
-  //       return {
-  //         ...prev,
-  //         [eventName]: text,
-  //       };
-  //     });
-  //   }
+  // function handleChange(text, eventName) {
+  //   setObj((prev) => {
+  //     return {
+  //       ...prev,
+  //       [eventName]: text,
+  //     };
+  //   });
+  // }
   return (
     <View style={styles.container}>
       {console.log(obj1, "jjjj")}
