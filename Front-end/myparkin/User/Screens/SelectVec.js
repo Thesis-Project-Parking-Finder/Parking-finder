@@ -19,7 +19,7 @@ import { useState, useEffect } from "react";
 export default function ({ route, navigation }) {
   const data = useSelector((state) => state.bookplace.value);
   const dispatch = useDispatch();
-  const [bookingReview, setbookingReview] = useState({});
+  const [bookingReview, setbookingReview] = useState(data);
   const [carType, setcarType] = useState({
     Truck: "Truck",
     Medium_size: "Medium Size",
@@ -27,9 +27,9 @@ export default function ({ route, navigation }) {
     Bike: "Bike",
   });
 
-  useEffect(() => {
-    setbookingReview(route.params);
-  }, []);
+  // useEffect(() => {
+  //   console.log(data, "global state in selectVec");
+  // }, []);
 
   return (
     <View style={styles.Iphone13ProMax30}>
@@ -45,7 +45,12 @@ export default function ({ route, navigation }) {
             </View>
 
             <BouncyCheckbox
-              onPress={() => console.log(carType.Truck)}
+              onPress={() => {
+                setbookingReview((prevState) => ({
+                  ...prevState,
+                  CarType: carType.Truck,
+                }));
+              }}
               style={styles.Group70}
               fillColor="rgba(16, 181, 241, 0.8)"
             />
@@ -66,7 +71,12 @@ export default function ({ route, navigation }) {
             </View>
             {/* <View style={styles.Group70}></View> */}
             <BouncyCheckbox
-              onPress={() => console.log(carType.Medium_size)}
+              onPress={() => {
+                setbookingReview((prevState) => ({
+                  ...prevState,
+                  CarType: carType.Medium_size,
+                }));
+              }}
               style={styles.Group70}
               fillColor="rgba(16, 181, 241, 0.8)"
             />
@@ -86,7 +96,12 @@ export default function ({ route, navigation }) {
               <Text style={styles.Txt447}>Suv</Text>
             </View>
             <BouncyCheckbox
-              onPress={() => console.log(carType.Suv)}
+              onPress={() => {
+                setbookingReview((prevState) => ({
+                  ...prevState,
+                  CarType: carType.Suv,
+                }));
+              }}
               style={styles.Group70}
               fillColor="rgba(16, 181, 241, 0.8)"
             />
@@ -108,19 +123,10 @@ export default function ({ route, navigation }) {
 
             <BouncyCheckbox
               onPress={() => {
-                dispatch(
-                  ParkingNameAndAdress({
-                    CarType: carType.Bike,
-                    ParkingName: "",
-                    Adress: "",
-                    Floor: "",
-                    ParkingSpot: "",
-                    Date: "",
-                    Duration: "",
-                    Hours: 0,
-                  })
-                );
-                console.log(data);
+                setbookingReview((prevState) => ({
+                  ...prevState,
+                  CarType: carType.Bike,
+                }));
               }}
               style={styles.Group70}
               fillColor="rgba(16, 181, 241, 0.8)"
@@ -146,7 +152,13 @@ export default function ({ route, navigation }) {
             navigation.goBack();
           }}
         ></Button>
-        <Button title="Continue"></Button>
+        <Button
+          title="Continue"
+          onPress={() => {
+            dispatch(ParkingNameAndAdress(bookingReview));
+            navigation.navigate("FillCarInformation");
+          }}
+        ></Button>
       </View>
     </View>
   );
@@ -260,7 +272,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(244,244,244,1)",
     borderWidth: 2,
     borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
+    borderColor: "rgba(58, 107, 204, 1)",
     width: "95%",
     height: 93,
     left: "3%",

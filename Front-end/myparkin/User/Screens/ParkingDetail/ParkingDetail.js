@@ -8,8 +8,29 @@ import {
   Button,
 } from "react-native";
 import Icon from "@expo/vector-icons/build/FontAwesome5";
+import { useDispatch } from "react-redux";
+import { ParkingNameAndAdress } from "../../redux/Features/BookPlace";
 
 export default function ParkingDetail({ route, navigation }) {
+  const [parkingName, setParkingName] = useState(route.params.parkingname);
+  const [adress, setadress] = useState(route.params.adress);
+  const dispatch = useDispatch();
+
+  let updateStateAndNavigate = () => {
+    dispatch(
+      ParkingNameAndAdress({
+        CarType: "",
+        ParkingName: parkingName,
+        Adress: adress,
+        Floor: "",
+        ParkingSpot: "",
+        Date: "",
+        Duration: "",
+      })
+    );
+    navigation.navigate("SelectVec");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.innercontainer}>
@@ -47,7 +68,7 @@ export default function ParkingDetail({ route, navigation }) {
         <Button
           title="book now"
           onPress={() => {
-            navigation.navigate("SelectVec", route.params);
+            updateStateAndNavigate();
           }}
         ></Button>
       </View>

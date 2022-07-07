@@ -14,7 +14,7 @@ class MyCarousel extends Component {
   _renderItem = ({ item, index }) => {
     return (
       <View style={styles.slider}>
-        {console.log(this.props)}
+        {/* {console.log(this.props)} */}
         <Text style={styles.cardTitle}>{item.parkingName}</Text>
         <Image
           source={{

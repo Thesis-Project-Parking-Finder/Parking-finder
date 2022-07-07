@@ -4,5 +4,6 @@ import bookplaceReducer from "./Features/BookPlace";
 export const store = configureStore({
   reducer: {
     bookplace: bookplaceReducer,
+    
   },
 });

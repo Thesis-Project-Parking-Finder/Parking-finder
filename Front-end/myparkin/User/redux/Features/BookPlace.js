@@ -10,16 +10,12 @@ export const BookplaceSlice = createSlice({
       Floor: "",
       ParkingSpot: "",
       Date: "",
-      Duration: "",
-      Hours: 0,
+      Duration: 0,
     },
   },
   reducers: {
     ParkingNameAndAdress: (state, action) => {
-      console.log(action.payload);
-
       state.value = action.payload;
-      console.log(state.value, "eeeeeee");
     },
   },
 });
