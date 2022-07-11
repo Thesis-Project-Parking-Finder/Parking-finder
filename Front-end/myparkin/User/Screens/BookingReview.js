@@ -6,6 +6,8 @@ import {
   View,
   ImageBackground,
   TouchableOpacity,
+  SnapshotViewIOSComponent,
+  Pressable,
 } from "react-native";
 import {
   TouchableRipple,
@@ -18,7 +20,6 @@ import Lottie from "lottie-react-native";
 import Modal from "react-native-modal";
 import { useSelector } from "react-redux";
 
-import { useNavigation } from "@react-navigation/native";
 
 const BookingReview = ({ navigation }) => {
   let data = useSelector((state) => state.bookplace.value);
@@ -30,6 +31,11 @@ const BookingReview = ({ navigation }) => {
   const [checkedCustom2, setCheckedCustom2] = React.useState(false);
   const [show, setShow] = React.useState(false);
 
+  function postBookings() {
+    const newKey = push(child(ref(database), "bookings")).key;
+    setDoc(doc(db, "bookings", `${newKey}`), globalState);
+    navigation.navigate("ticket");
+  }
   return (
     <View style={styles.Group97}>
       {console.log(globalState)}
@@ -174,6 +180,38 @@ const BookingReview = ({ navigation }) => {
         </TouchableRipple>
       </View>
 
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={show}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            
+            <Text style={styles.modalText}>Parki Coin:</Text>
+            <Text style={styles.modalText}>1400</Text>
+            <Text style={styles.modalText}>Parking Fee:</Text>
+            <Text style={styles.modalText}>400</Text>
+            <Text style={styles.modalText}>Total: 1400 - 400</Text>
+            <View style={styles.horizontalL}></View>
+            <Text style={styles.modalText}>= 1000</Text>
+
+
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setShow(!show)}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.button, styles.buttonConfirm]}
+              onPress={postBookings}
+            >
+              <Text style={styles.textStyle}>Confirm</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
       <TouchableRipple style={styles.Frame224} onPress={() => setShow(!show)}>
         <Text style={styles.Txt351}>Continue</Text>
       </TouchableRipple>
@@ -239,6 +277,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     // transform: [ {translateY:-110}]
     top: "70%",
+  },
+  horizontalL: {
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
+    width: 100,
+    alignSelf: "center",
+    // transform: [ {translateY:-110}]
+    top: "0%",
   },
   Wrapper: {
     transform: [{ translateY: 160 }, { translateX: -10 }],
@@ -334,6 +380,7 @@ const styles = StyleSheet.create({
   },
   Txt089: {
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 26,
@@ -342,6 +389,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: "50%",
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "700",
     color: "rgba(0,0,0,1)",
   },
@@ -353,12 +401,14 @@ const styles = StyleSheet.create({
   },
   Txt115: {
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 100,
   },
   Txt483: {
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -382,12 +432,14 @@ const styles = StyleSheet.create({
   },
   Txt688: {
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 54,
   },
   Txt483: {
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -401,12 +453,14 @@ const styles = StyleSheet.create({
   },
   Txt496: {
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 115,
   },
   Txt483: {
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -420,12 +474,14 @@ const styles = StyleSheet.create({
   },
   Txt956: {
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 180,
   },
   Txt483: {
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -439,12 +495,14 @@ const styles = StyleSheet.create({
   },
   Txt875: {
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 197,
   },
   Txt483: {
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -506,7 +564,7 @@ const styles = StyleSheet.create({
     // width: '100%',
     // height:'100%',
     fontSize: 15,
-    transform: [{ translateX: -20 }],
+    transform: [{ translateX: -18 }],
     // marginRight:-4,
     fontWeight: "800",
     color: "rgba(53,53,53,1)",
@@ -550,16 +608,66 @@ const styles = StyleSheet.create({
   },
   Txt115: {
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 100,
   },
   Txt483: {
     fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
     justifyContent: "flex-end",
+  },  
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
   },
+  modalView: {
+    margin: 40,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 55,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+    margin:4,
+    transform: [{translateX:-50}, {translateY:70}]
+  },
+  buttonConfirm: {
+    backgroundColor: Colors.green900,
+    margin:4,
+    transform: [{translateX:50}, {translateY:23}]
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
 });
 export default BookingReview;
