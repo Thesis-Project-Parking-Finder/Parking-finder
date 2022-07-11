@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
   },
   Txt351: {
     fontSize: 16,
-    // fontFamily: "Montserrat, sans-serif",
     fontWeight: "700",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",
@@ -153,7 +152,6 @@ const styles = StyleSheet.create({
   },
   Txt089: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 26,
@@ -162,7 +160,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: "50%",
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
   },
@@ -174,14 +171,12 @@ const styles = StyleSheet.create({
   },
   Txt115: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 100,
   },
   Txt483: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -205,14 +200,12 @@ const styles = StyleSheet.create({
   },
   Txt688: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 54,
   },
   Txt483: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -226,14 +219,12 @@ const styles = StyleSheet.create({
   },
   Txt496: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 115,
   },
   Txt483: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -247,14 +238,12 @@ const styles = StyleSheet.create({
   },
   Txt956: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 180,
   },
   Txt483: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -268,14 +257,12 @@ const styles = StyleSheet.create({
   },
   Txt875: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 197,
   },
   Txt483: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -288,14 +275,12 @@ const styles = StyleSheet.create({
   },
   Txt115: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 100,
   },
   Txt483: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",

@@ -1,10 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Image, Text, View, ImageBackground } from "react-native";
+import { Footer } from "./Footer";
+import { auth } from "../../firebase.config";
+import { doc, setDoc, getDocs, collection } from "firebase/firestore";
+import { database, db } from "../../firebase.config";
+import { child, push, ref } from "firebase/database";
 
-export default function HestoryParking() {
-  
+export default function HistoryParking() {
+  const [bookings, setBookings] = useState([]);
+  useEffect(async () => {
+    const querySnapshot = await getDocs(collection(db, "bookings"));
+    // bookingsRef.onSnapshot((querySnapshot) => {
+    const bookings = [];
+    querySnapshot.forEach((doc) => {
+      // console.log(doc.id, " => ", typeof doc.data());
+      // const {
+      const {
+        CarType,
+        ParkingName,
+        Adress,
+        Floor,
+        ParkingSpot,
+        Date,
+        Duration,
+        User_id,
+      } = doc.data();
+      bookings.push({
+        id: doc.id,
+        CarType,
+        ParkingName,
+        Adress,
+        Floor,
+        ParkingSpot,
+        Date,
+        Duration,
+        User_id,
+      });
+      setBookings(bookings.filter((e) => e.User_id === auth.currentUser.uid));
+    });
+  }, []);
   return (
     <View style={styles.Iphone13ProMax49}>
+      {console.log(bookings)}
       <View style={styles.Group163}>
         <View style={styles.Group865}>
           <Image
@@ -13,9 +50,7 @@ export default function HestoryParking() {
               uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pabo7awh17-79%3A924?alt=media&token=481678b1-9e11-4345-9aa8-02128fd80e32",
             }}
           />
-          <Text onPress={logOut} style={styles.Txt537}>
-            My Parking
-          </Text>
+          <Text style={styles.Txt537}>My Parking</Text>
           <Image
             style={styles.Group113}
             source={{
@@ -34,63 +69,29 @@ export default function HestoryParking() {
             <Text style={styles.Txt400}>Canceled</Text>
           </View>
         </View>
-        <View style={styles.Group313}>
-          <Text style={styles.Txt180}>Allington Paddock</Text>
-          <View style={styles.Group586}>
-            <View style={styles.Group472}>
-              <Image
-                style={styles.Rectangle63}
-                source={{
-                  uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pabo7awh17-79%3A945?alt=media&token=a4e3c2bd-ec68-4e45-a937-9250391aca1a",
-                }}
-              />
-              <View style={styles.Group222}>
-                <Text style={styles.Txt976}>7518 Washington Alley</Text>
-                <View style={styles.Group1075}>
-                  <View style={styles.Group0107}>
-                    <Text style={styles.Txt684}>/ 2 hours</Text>
-                    <View style={styles.Group116}>
-                      <Text style={styles.Txt694}>Completed</Text>
-                    </View>
+        {bookings.map((e) => {
+          return (
+            <View style={styles.Group130}>
+              <Text style={styles.Txt5109}>{e.ParkingName}</Text>
+              <View style={styles.Group268}>
+                <View style={styles.Group472}>
+                  <Image
+                    style={styles.Rectangle63}
+                    source={{
+                      uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pabo7awh17-79%3A946?alt=media&token=9356e8b1-72c0-4297-bbf3-5bbf6199ba23",
+                    }}
+                  />
+                  <View style={styles.Group222}>
+                    <Text style={styles.Txt208}>{e.Adress}</Text>
                   </View>
-                  <Text style={styles.Txt196}>/ 2 hours</Text>
+                </View>
+                <View style={styles.Group230}>
+                  <Text style={styles.Txt857}>View Ticket</Text>
                 </View>
               </View>
             </View>
-            <View style={styles.Group230}>
-              <Text style={styles.Txt857}>View Ticket</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.Group130}>
-          <Text style={styles.Txt5109}>Appleton Warren</Text>
-          <View style={styles.Group268}>
-            <View style={styles.Group472}>
-              <Image
-                style={styles.Rectangle63}
-                source={{
-                  uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pabo7awh17-79%3A946?alt=media&token=9356e8b1-72c0-4297-bbf3-5bbf6199ba23",
-                }}
-              />
-              <View style={styles.Group222}>
-                <Text style={styles.Txt208}>8499 Red Could Coust</Text>
-                <View style={styles.Group396}>
-                  <View style={styles.Group0107}>
-                    <Text style={styles.Txt684}>/ 2 hours</Text>
-                    <View style={styles.Group116}>
-                      <Text style={styles.Txt694}>Completed</Text>
-                    </View>
-                  </View>
-                  <Text style={styles.Txt196}>/ 2 hours</Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles.Group230}>
-              <Text style={styles.Txt857}>View Ticket</Text>
-            </View>
-          </View>
-        </View>
-        
+          );
+        })}
       </View>
       <Image
         style={styles.Group}
@@ -98,6 +99,7 @@ export default function HestoryParking() {
           uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pabo7awh17-79%3A925?alt=media&token=d9904088-aa07-4ead-90f0-b629fc4bd982",
         }}
       />
+      <Footer />
     </View>
   );
 }
@@ -530,8 +532,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     justifyContent: "center",
   },
-
- 
 
   Group: {
     position: "absolute",

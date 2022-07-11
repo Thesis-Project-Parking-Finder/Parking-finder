@@ -20,6 +20,7 @@ export default function ParkingDetail({ route, navigation }) {
   let updateStateAndNavigate = () => {
     dispatch(
       ParkingNameAndAdress({
+        User_id:"",
         CarType: "",
         ParkingName: parkingName,
         Adress: adress,
@@ -27,6 +28,7 @@ export default function ParkingDetail({ route, navigation }) {
         ParkingSpot: "",
         Date: "",
         Duration: "",
+        status:"Ongoing"
       })
     );
     navigation.navigate("SelectVec");

@@ -33,6 +33,8 @@ const StackNav = () => {
   return (
     <Provider store={store}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="HestoryParking" component={HistoryParking} />
+
         <Stack.Screen name="Map" component={Map} />
         {/* <Stack.Screen name="test" component={test} /> */}
         <Stack.Screen name="ProfileFill" component={ProfileFill} />
@@ -48,7 +50,6 @@ const StackNav = () => {
           name="FillCarInformation"
           component={FillCarInformation}
         />
-        <Stack.Screen name="HestoryParking" component={HistoryParking} />
         <Stack.Screen name="Parkingspot" component={Parkingspot} />
         <Stack.Screen name="MarkerDetail" component={MarkerDetail} />
         <Stack.Screen name="SearchFilter" component={SearchFilter} />

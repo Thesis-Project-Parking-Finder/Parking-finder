@@ -4,14 +4,14 @@ export const BookplaceSlice = createSlice({
   initialState: {
     value: {
       CarType: "",
-      ParkingName: "mohamed",
+      ParkingName: "",
       Adress: "",
       Floor: "",
       ParkingSpot: "",
       Date: "",
       Duration: 0,
       User_id: "",
-      ParkiCoins: 1000,
+      status: "Ongoing",
     },
   },
   reducers: {
