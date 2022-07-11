@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: "rgba(9, 66, 139, 1)",
     bottom: "0.2%",
-    left: "10%",
+    left: "1.7%",
   },
   imgCont: {
     position: "absolute",
@@ -259,10 +259,12 @@ const styles = StyleSheet.create({
   },
   Txt351: {
     fontSize: 16,
-    fontWeight: "700",
+    fontWeight: "500",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",
     justifyContent: "center",
+    // backgroundColor: "red",
+    width: 90,
   },
 
   enTnd: {
@@ -503,7 +505,7 @@ const styles = StyleSheet.create({
   Txt829: {
     // width: '100%',
     // height:'100%',
-    fontSize: 20,
+    fontSize: 15,
     transform: [{ translateX: -20 }],
     // marginRight:-4,
     fontWeight: "800",

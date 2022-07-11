@@ -83,6 +83,14 @@ export default function HistoryParking() {
                   />
                   <View style={styles.Group222}>
                     <Text style={styles.Txt208}>{e.Adress}</Text>
+                    <View style={styles.Group396}>
+                      <View style={styles.Group0107}>
+                        <View style={styles.Group116}>
+                          <Text style={styles.Txt694}>Completed</Text>
+                        </View>
+                      </View>
+                      <Text style={styles.Txt196}>/{e.Duration} hours</Text>
+                    </View>
                   </View>
                 </View>
                 <View style={styles.Group230}>
@@ -169,15 +177,15 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 2,
     borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
+    borderColor: "rgba(9, 66, 139, 1)",
     width: 111,
     height: 37,
   },
-  Txt400: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(188,0,99,1)",
-  },
+  // Txt400: {
+  //   fontSize: 16,
+  //   fontWeight: "600",
+  //   color: "rgba(9, 66, 139, 1)",
+  // },
 
   Group4102: {
     paddingTop: 5,
@@ -186,17 +194,16 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     marginRight: 18,
     borderRadius: 50,
-    backgroundColor: "rgba(188,0,99,1)",
     borderWidth: 2,
     borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
+    borderColor: "rgba(9, 66, 139, 1)",
     width: 111,
     height: 37,
   },
   Txt879: {
     fontSize: 16,
     fontWeight: "600",
-    color: "rgba(255, 255, 255, 1)",
+    color: "rgba(9, 66, 139, 1)",
   },
 
   Group273: {
@@ -207,14 +214,14 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 2,
     borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
+    borderColor: "rgba(9, 66, 139, 1)",
     width: 111,
     height: 37,
   },
   Txt400: {
     fontSize: 16,
     fontWeight: "600",
-    color: "rgba(188,0,99,1)",
+    color: "rgba(9, 66, 139, 1)",
   },
 
   Group313: {
@@ -294,14 +301,15 @@ const styles = StyleSheet.create({
     borderColor: "rgba(1,219,62,1)",
     width: 87,
     height: 28.67,
+    // left:17
   },
-  Txt694: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "rgba(1,219,62,1)",
-    width: 80,
-    height: 19,
-  },
+  // Txt694: {
+  //   fontSize: 14,
+  //   fontWeight: "600",
+  //   color: "rgba(9, 66, 139, 1)",
+  //   width: 80,
+  //   height: 19,
+  // },
 
   Txt196: {
     fontSize: 8,
@@ -319,14 +327,14 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 2,
     borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
+    borderColor: "rgba(9, 66, 139, 1)",
     width: 285,
     height: 37,
   },
   Txt857: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(188,0,99,1)",
+    // fontWeight: "600",
+    color: "rgba(9, 66, 139, 1)",
     textAlign: "center",
     justifyContent: "center",
   },
@@ -397,25 +405,25 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginRight: 9,
   },
-  Group116: {
-    paddingTop: 2,
-    paddingBottom: 3.67,
-    paddingLeft: 6,
-    paddingRight: 0,
-    borderRadius: 8,
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "rgba(1,219,62,1)",
-    width: 87,
-    height: 28.67,
-  },
-  Txt694: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "rgba(1,219,62,1)",
-    width: 80,
-    height: 19,
-  },
+  // Group116: {
+  //   paddingTop: 2,
+  //   paddingBottom: 3.67,
+  //   paddingLeft: 6,
+  //   paddingRight: 0,
+  //   borderRadius: 8,
+  //   borderWidth: 2,
+  //   borderStyle: "solid",
+  //   borderColor: "rgba(1,219,62,1)",
+  //   width: 87,
+  //   height: 28.67,
+  // },
+  // Txt694: {
+  //   fontSize: 14,
+  //   fontWeight: "600",
+  //   color: "rgba(1,219,62,1)",
+  //   width: 80,
+  //   height: 19,
+  // },
 
   Txt196: {
     fontSize: 8,
@@ -425,25 +433,25 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  Group230: {
-    paddingTop: 5,
-    paddingBottom: 4,
-    paddingLeft: 98,
-    paddingRight: 98,
-    borderRadius: 50,
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
-    width: 285,
-    height: 37,
-  },
-  Txt857: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(188,0,99,1)",
-    textAlign: "center",
-    justifyContent: "center",
-  },
+  // Group230: {
+  //   paddingTop: 5,
+  //   paddingBottom: 4,
+  //   paddingLeft: 98,
+  //   paddingRight: 98,
+  //   borderRadius: 50,
+  //   borderWidth: 2,
+  //   borderStyle: "solid",
+  //   borderColor: "rgba(188,0,99,1)",
+  //   width: 285,
+  //   height: 37,
+  // },
+  // Txt857: {
+  //   fontSize: 16,
+  //   fontWeight: "600",
+  //   color: "rgba(188,0,99,1)",
+  //   textAlign: "center",
+  //   justifyContent: "center",
+  // },
 
   Group126: {
     position: "relative",
@@ -505,18 +513,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginRight: 9,
   },
-  Group116: {
-    paddingTop: 2,
-    paddingBottom: 3.67,
-    paddingLeft: 6,
-    paddingRight: 0,
-    borderRadius: 8,
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "rgba(1,219,62,1)",
-    width: 87,
-    height: 28.67,
-  },
+  // Group116: {
+  //   paddingTop: 2,
+  //   paddingBottom: 3.67,
+  //   paddingLeft: 6,
+  //   paddingRight: 0,
+  //   borderRadius: 8,
+  //   borderWidth: 2,
+  //   borderStyle: "solid",
+  //   borderColor: "rgba(1,219,62,1)",
+  //   width: 87,
+  //   height: 28.67,
+  // },
   Txt694: {
     fontSize: 14,
     fontWeight: "600",
