@@ -28,7 +28,7 @@ export default function Login() {
   const signIn = () => {
     signInWithEmailAndPassword(auth, obj.email, obj.password)
       .then((userCredential) => {
-        // console.log(auth)
+        console.log(auth);
         // const user = userCredential.user;
         navigation.navigate("Map");
       })

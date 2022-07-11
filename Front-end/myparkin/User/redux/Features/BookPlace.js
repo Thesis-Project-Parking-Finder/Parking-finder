@@ -11,7 +11,11 @@ export const BookplaceSlice = createSlice({
       Date: "",
       Duration: 0,
       User_id: "",
+<<<<<<< HEAD
       status: "Ongoing",
+=======
+      ParkiCoins: 3000,
+>>>>>>> f3411a96796abb717dd69e7b0f82fe2f25508432
     },
   },
   reducers: {

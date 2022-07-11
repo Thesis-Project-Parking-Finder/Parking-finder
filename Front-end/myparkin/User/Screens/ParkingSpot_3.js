@@ -26,7 +26,7 @@ export default function ParkingSpot_1() {
       if (element.name === e._dispatchInstances.memoizedProps.children) {
         setglobalState((prevstate) => ({
           ...prevstate,
-          ParkingSpot: `1st floor (${element.name})`,
+          ParkingSpot: `3rd floor (${element.name})`,
         }));
         element.type = !element.type;
         setShow(element.type);

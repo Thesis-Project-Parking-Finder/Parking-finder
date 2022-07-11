@@ -147,6 +147,7 @@ export default function ProfileFill() {
                 style={styles.Group160}
                 onPress={showDatepicker}
               >
+
                 <TextInput
                   style={styles.Txt448}
                   placeholder="CIN"

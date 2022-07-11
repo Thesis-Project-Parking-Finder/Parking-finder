@@ -18,11 +18,10 @@ import { getDatabase, ref, child, get } from "firebase/database";
 export default function Profile({ route }) {
   const data = useSelector((state) => state.bookplace.value);
   const [userObject, setUserObject] = useState({});
-
   useEffect(() => {
     const dbRef = ref(getDatabase());
-
     get(child(dbRef, `users/${route.params.userId}`)).then((snapshot) => {
+      console.log(snapshot);
       const user = snapshot.val();
       setUserObject(user);
     });
@@ -41,8 +40,9 @@ export default function Profile({ route }) {
   };
   return (
     <View style={styles.Iphone13ProMax54}>
-      {console.log(userObject)}
+      {/* {console.log(userObject, "aeaeaeae")} */}
       <View style={styles.Group282}>
+        {/* {console.log(route)} */}
         <ScrollView>
           <View style={styles.Group448}>
             <Text style={styles.Txt853}>{route.params.email}</Text>
@@ -58,11 +58,11 @@ export default function Profile({ route }) {
                 {/* <View style={styles.Group96}></View> */}
               </View>
               <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("EditProfile", {
-                    fullName: userObject.fullName,
-                  })
-                }
+                // onPress={() =>
+                //   navigation.navigate("EditProfile", {
+                //     fullName: userObject.fullName,
+                //   })
+                // }
                 style={styles.Group136}
               >
                 <Image
@@ -143,7 +143,7 @@ export default function Profile({ route }) {
                 />
               </View>
             </View>
-            <Text style={styles.Txt458}>{userObject.fullName}</Text>
+            {/* <Text style={styles.Txt458}>{userObject.fullName}</Text> */}
 
             <BouncyCheckbox
               style={styles.Vector5}
