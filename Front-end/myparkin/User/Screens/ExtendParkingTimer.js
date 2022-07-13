@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    marginTop: "10%",
+    marginTop: "5%",
     backgroundColor: "#F5FCFF",
     // top: "-100%",
   },
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     height: "100%",
     // marginTop: "-60%",
     zIndex: -10,
-    top:'-15%'
+    top:'-20%'
   },
   card: {
     margin: 4,
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
     // top:-10,
 
     // backgroundColor: "#ECF3F6",
-    top: "-3%",
+    top: "-9%",
   },
   Paragraph: {
     fontSize: 14,
@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: '80%',
     height: '0%',
-    top:'-14%'
+    top:'-21%'
   },
   Frame256: {
     display: "flex",
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
     // paddingLeft:'0%',
     // marginRight:'10%',
 
-    top:'-1%'
+    top:'-10%'
   },
   Group252: {
     paddingTop: 22,
@@ -441,6 +441,17 @@ const styles = StyleSheet.create({
     borderColor: "rgba(188,0,99,1)",
     width: 17,
     height: 17,
+  },
+  Frame178:{
+    position: "absolute",
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingLeft: 128,
+    paddingRight: 128,
+    borderRadius: 50,
+    backgroundColor: "rgba(9, 66, 139, 1)",
+    bottom: "0.2%",
+    left: "10%",
   },
   Txt191: {
     fontSize: 16,

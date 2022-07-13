@@ -34,8 +34,8 @@ const StackNav = () => {
   return (
     <Provider store={store}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Map" component={Map} />
-        <Stack.Screen name="test" component={test} />
+        {/* <Stack.Screen name="Map" component={Map} /> */}
+        {/* <Stack.Screen name="test" component={test} />
         <Stack.Screen name="ProfileFill" component={ProfileFill} />
         <Stack.Screen
           name="SuccessfullyCreated"
@@ -59,7 +59,7 @@ const StackNav = () => {
         <Stack.Screen name="ParkingSpot_2" component={ParkingSpot_2} />
         <Stack.Screen name="ParkingSpot_3" component={ParkingSpot_3} />
         <Stack.Screen name="BookingReview" component={BookingReview} />
-        <Stack.Screen name="ticket" component={Ticket} />
+        <Stack.Screen name="ticket" component={Ticket} /> */}
         <Stack.Screen name="ParkingTimer" component={ParkingTimer} /> 
         <Stack.Screen name="ExtendTime" component={ExtendParkingTimer} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
