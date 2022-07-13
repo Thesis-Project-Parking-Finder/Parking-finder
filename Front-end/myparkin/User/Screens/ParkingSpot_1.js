@@ -11,9 +11,9 @@ import { useSelector } from "react-redux";
 import { ParkingNameAndAdress } from "../redux/Features/BookPlace";
 import {
   collection,
+  doc,
   getDoc,
   getDocs,
-  doc,
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase.config";
@@ -25,25 +25,42 @@ export default function ParkingSpot_1() {
   const [show, setShow] = useState(false);
   const [globalState, setglobalState] = useState(data);
   const [show_Hide, setShowHide] = useState(false);
-  const [spot, setspot] = useState([]);
+  const [spot, setSpot] = useState([]);
 
   const [items, setItems] = React.useState(firstFloor);
-  useEffect(() => {
-    // const docRef = doc(db, "spot", "NsUROkT7DgjHuoyX66r2");
-    // const docSnap = getDoc(docRef);
+  // useEffect(() => {
+  // const docRef = doc(db, "spot", "NsUROkT7DgjHuoyX66r2");
+  // const docSnap = getDoc(docRef);
 
-    // console.log("Document data:", docSnap.data());
-    getDoc(doc(db, "spot", "NsUROkT7DgjHuoyX66r2")).then((docSnap) => {
-      if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-        setspot(docSnap.data()["1st Floor"]);
-      } else {
-        console.log("No such document!");
-      }
-    });
+  // console.log("Document data:", docSnap.data());
+  // getDoc(doc(db, "spot", "NsUROkT7DgjHuoyX66r2")).then((docSnap) => {
+  //   if (docSnap.exists()) {
+  //     console.log("Document data:", docSnap.data());
+  //     setspot(docSnap.data()["1st Floor"]);
+  //   } else {
+  //     console.log("No such document!");
+  //   }
+  // });
+  // }, []);
+  useEffect(() => {
+    (async () => {
+      const querySnapshot = await getDocs(collection(db, "firstFloor"));
+      const spot = [];
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.data(), "jdhdhdhdh");
+        const { image, name, type } = doc.data();
+        spot.push({
+          spotId: doc.id,
+          image,
+          name,
+          type,
+        });
+      });
+      setSpot(spot);
+    })();
   }, []);
   function updateType(p) {
-    const docRef = doc(db, "spot", "NsUROkT7DgjHuoyX66r2");
+    const docRef = doc(db, "firstFloor", p.spotId);
     updateDoc(docRef, { type: !p.type });
   }
 
@@ -53,9 +70,13 @@ export default function ParkingSpot_1() {
         setglobalState((prevstate) => ({
           ...prevstate,
           ParkingSpot: `1st floor (${element.name})`,
+          spotId: element.spotId,
+          // collSpot: "firstFloor",
         }));
         element.type = !element.type;
         setShow(element.type);
+        // const docRef = doc(db, "spot", "NsUROkT7DgjHuoyX66r2");
+        // updateDoc(docRef[i], { type: !element.type });
       } else {
         element.type = false;
       }
@@ -67,7 +88,7 @@ export default function ParkingSpot_1() {
 
   return (
     <View style={styles.Frame236}>
-      {console.log(spot[0], "adadadad")}
+      {/* {console.log(spot, "adadadad")} */}
       <View style={styles.Frame237}>
         <View style={styles.Frame235}>
           <View style={styles.Group236}>
@@ -121,7 +142,6 @@ export default function ParkingSpot_1() {
                         item.name === "A12"
                       ) {
                         console.log(item.name);
-
                         return (
                           <View
                             style={[
@@ -166,7 +186,9 @@ export default function ParkingSpot_1() {
                             ]}
                           >
                             <View style={styles.verticleLine}></View>
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                            // onPress={(item) => updateType(item)}
+                            >
                               {!item.type ? (
                                 <Text
                                   style={styles.itemName}
@@ -245,6 +267,10 @@ const styles = StyleSheet.create({
   gridView1: {
     // marginTop: 10,
     flex: 1,
+  },
+  park: {
+    height: "10%",
+    bottom: "100%",
   },
   car: {
     alignItems: "center",
