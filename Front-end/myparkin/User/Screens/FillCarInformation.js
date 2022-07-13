@@ -138,7 +138,7 @@ const FillCarInformation = ({ navigation }) => {
       <View style={styles.arrivalbtn}>
       <TouchableRipple
                   style={styles.Group220}
-                  onPress={showDatepicker}>
+                  onPress={showTimepicker}>
                   <Text style={styles.Txt122}>Starting</Text>
                 </TouchableRipple>
       </View>
@@ -180,13 +180,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F5FCFF",
+    marginTop:'-4%'
   },
   Frame218: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    top:'-45%'
+    top:'-40%'
   },
   Frame: {
     width: 36,
@@ -322,7 +323,7 @@ const styles = StyleSheet.create({
     height: "20%",
     width: "60%",
     left:'20%',
-    top:'-9%'
+    top:'-8%'
   },
   Frame178: {
     display: "flex",

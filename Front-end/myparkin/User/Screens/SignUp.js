@@ -31,13 +31,21 @@ export default function SignUp() {
         obj.password
       )
         .then((userCredential) => {
+
+          // Signed in
           alert("signUp ok");
 
-          navigation.navigate("ProfileFill");
+          // userCredential.user.sendEmailVerification();
+
+          // setIsSignedIn;
+          // ...
         })
         .catch((error) => {
+          // setDisplayName;
           const errorCode = error.code;
           const errorMessage = error.message;
+          // ..
+
           alert(error.message);
         });
     } else {

@@ -118,6 +118,12 @@ export default function Login() {
                 <TouchableOpacity style={styles.Group151} onPress={signIn}>
                   <Text style={styles.Txt917}>Sign in</Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.Group149}
+                  onPress={() => navigation.navigate("ForgetPassword")}
+                >
+                  <Text style={styles.Txt809}>Forget the password ?</Text>
+                </TouchableOpacity>
               </View>
               <View style={styles.Frame1587}>
                 <View style={styles.Group150}>
