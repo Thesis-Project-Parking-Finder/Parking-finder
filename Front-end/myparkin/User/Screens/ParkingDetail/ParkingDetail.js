@@ -20,6 +20,9 @@ export default function ParkingDetail({ route, navigation }) {
   const [adress, setadress] = useState(route.params.adress);
   const [Price, setPrice] = useState(route.params.price);
   const [uid, setuid] = useState(auth.currentUser.uid);
+
+  const [image, setImage] = useState(route.params.parkingImage);
+
   const [userObj, setUserObject] = useState({});
   const dispatch = useDispatch();
   useEffect(() => {
@@ -44,6 +47,9 @@ export default function ParkingDetail({ route, navigation }) {
         ParkingSpot: "",
         Date: "",
         Duration: "",
+        status: "Ongoing",
+        image: image,
+
         arrivalTime: 0,
         exitTime: 0,
       })
@@ -53,7 +59,9 @@ export default function ParkingDetail({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* {console.log(uid)} */}
+
+      {console.log(route.params)}
+
       <View style={styles.innercontainer}>
         <View style={styles.Frame218}>
         <TouchableRipple onPress={() => {navigation.goBack()}}>

@@ -1,14 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import Lottie from "lottie-react-native";
 import { TouchableRipple } from "react-native-paper";
+import { doc, updateDoc } from "firebase/firestore";
+import { auth, db } from "../../firebase.config";
+import { useDispatch, useSelector } from "react-redux";
+import { ParkingNameAndAdress } from "../redux/Features/BookPlace";
+import { onAuthStateChanged } from "firebase/auth";
+import Icon from "@expo/vector-icons/build/FontAwesome5";
+import moment from "moment";
 
-export default function ParkingTimer() {
+export default function ParkingTimer({ route }) {
   const [isPlaying, setIsPlaying] = React.useState(true);
+  const [as, setAs] = useState(0);
   const navigation = useNavigation();
+  const [toggleTimer, settoggleTimer] = useState(false);
+  // const [durationSec, setdurationSec] = useState(null)
+
+  var currentTime = moment().format();
+  function update() {
+    const docRef = doc(db, "bookings", route.params.objBook.id);
+    updateDoc(docRef, { status: "Completed" });
+  }
+
+  const Arrival = new Date(route.params.objBook.arrivalTime);
+  const Current = new Date(currentTime);
+
+  const diff = -Arrival.getTime() + Current.getTime();
+  let a = 600;
+  let msec = diff;
+  const hh = Math.floor(msec / 1000 / 60 / 60);
+  msec -= hh * 1000 * 60 * 60;
+  const mm = Math.floor(msec / 1000 / 60);
+  msec -= mm * 1000 * 60;
+  const ss = Math.floor(msec / 1000);
+  msec -= ss * 1000;
+
+  const TimeLef = () => {
+    if (diff >= 0) {
+      const Substraction = hh * 3600 + mm * 60 + ss;
+      return route.params.objBook.Duration * 3600 - Substraction;
+    }
+  };
 
   const children = ({ remainingTime }) => {
     const hours = Math.floor(remainingTime / 3600);
@@ -19,6 +55,7 @@ export default function ParkingTimer() {
   };
   return (
     <SafeAreaView>
+      {/* {console.log(hh * 3600 + mm * 60 + ss, "eeeeeeeeeeeee")} */}
       <View style={styles.Frame218}>
         <TouchableWithoutFeedback onPress={() => navigation.navigate("Map")}>
           <Lottie
@@ -30,45 +67,64 @@ export default function ParkingTimer() {
         </TouchableWithoutFeedback>
         <Text style={styles.Txt3107}>Parking Timer</Text>
       </View>
-      <View style={styles.container}>
-        <CountdownCircleTimer
-          isPlaying
-          duration={10800}
-          colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
-          colorsTime={[7200, 6300, 3600, 0]}
-        >
-          {({ remainingTime, color }) => (
-            <Text style={{ color, fontSize: 40 }}>
-              {children({ remainingTime })}
-            </Text>
-          )}
-        </CountdownCircleTimer>
-      </View>
+      {diff > 0 ? (
+        <View style={styles.container}>
+          <CountdownCircleTimer
+            onComplete={() => update()}
+            initialRemainingTime={TimeLef()}
+            isPlaying
+            on
+            duration={3600}
+            colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
+            colorsTime={[7200, 6300, 3600, 0]}
+          >
+            {({ remainingTime, color }) => (
+              <Text style={{ color, fontSize: 40 }}>
+                {children({ remainingTime })}
+              </Text>
+            )}
+          </CountdownCircleTimer>
+        </View>
+      ) : (
+        <View style={styles.yourtime}>
+          <Text style={styles.yourtimeText}>
+            Your reservation starts at{" "}
+            {route.params.objBook.arrivalTime.slice(16, -18)}
+          </Text>
+          <Icon name="clock" size={100} style={styles.icon}></Icon>
+        </View>
+      )}
       <View style={styles.Frame249}>
         <View style={styles.Group248}>
           <View style={styles.Group241}>
             <Text style={styles.Txt528}>Parking Area</Text>
-            <Text style={styles.Txt7310}>Parking Lot of Son Manolia</Text>
+            <Text style={styles.Txt7310}>
+              {route.params.objBook.ParkingName}
+            </Text>
           </View>
           <View style={styles.Group241}>
             <Text style={styles.Txt766}>Address</Text>
-            <Text style={styles.Txt635}>9569, trantow Courts</Text>
+            <Text style={styles.Txt635}>{route.params.objBook.Adress}</Text>
           </View>
           <View style={styles.Group241}>
             <Text style={styles.Txt936}>Vehicle</Text>
-            <Text style={styles.Txt635}>Toyota Land Cru (AFD 6397)</Text>
+            <Text style={styles.Txt635}>{route.params.objBook.CarType}</Text>
           </View>
           <View style={styles.Group241}>
             <Text style={styles.Txt830}>Parking Spot</Text>
-            <Text style={styles.Txt635}>1st Floor (A05)</Text>
+            <Text style={styles.Txt635}>
+              {route.params.objBook.ParkingSpot}
+            </Text>
           </View>
           <View style={styles.Group241}>
             <Text style={styles.Txt505}>Date</Text>
-            <Text style={styles.Txt635}>May 11, 2023</Text>
+            <Text style={styles.Txt635}>{route.params.objBook.Date}</Text>
           </View>
           <View style={styles.Group241}>
             <Text style={styles.Txt398}>Duration</Text>
-            <Text style={styles.Txt635}>4 hours</Text>
+            <Text style={styles.Txt635}>
+              {route.params.objBook.Duration} Hours
+            </Text>
           </View>
           <View style={styles.Group247}>
             <Text style={styles.Txt766}>Hours</Text>
@@ -107,6 +163,19 @@ const styles = StyleSheet.create({
     color: "#104685",
     width: 282,
   },
+  yourtime: {
+    position: "absolute",
+    top: "18%",
+    left: "13%",
+    height: "25%",
+    width: "100%",
+    borderBottomColor: "black",
+    // backgroundColor: "orange",
+  },
+  yourtimeText: {
+    fontSize: 20,
+    // color: "blue",
+  },
   container: {
     flex: 1,
     justifyContent: "center",
@@ -131,6 +200,11 @@ const styles = StyleSheet.create({
     height: "100%",
     top: "35%",
   },
+  icon: {
+    position: "absolute",
+    left: "25%",
+    top: "23%",
+  },
   Group248: {
     display: "flex",
     flexDirection: "column",
@@ -147,6 +221,9 @@ const styles = StyleSheet.create({
     marginRight: 26,
   },
   Txt7310: {
+    position: "absolute",
+
+    left: "40%",
     fontSize: 16,
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
@@ -163,6 +240,7 @@ const styles = StyleSheet.create({
     color: "rgba(161,161,161,1)",
     marginRight: 100,
   },
+
   Txt635: {
     fontSize: 16,
     fontWeight: "600",
@@ -184,6 +262,8 @@ const styles = StyleSheet.create({
   },
   Txt635: {
     fontSize: 16,
+    position: "absolute",
+    left: "40%",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -265,27 +345,29 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   Frame224: {
+    position: "absolute",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "flex-end",
-    // paddingTop: 15,
     paddingBottom: 15,
-    // paddingLeft: 50,
-    // paddingRight: 50,
     borderRadius: 50,
     backgroundColor: "rgba(9, 66, 139, 1)",
-    top: "-105%",
     width: "70%",
     height: "7%",
-    transform: [{ translateX: 60 }, { translateY: 185 }],
+    bottom: "10%",
+    left: "15%",
   },
   Txt351: {
     fontSize: 16,
+
+    bottom: 0,
+
+
     fontWeight: "700",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",
     justifyContent: "center",
+
     top: "-1%",
   },
 });

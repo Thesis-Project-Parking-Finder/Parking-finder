@@ -14,7 +14,9 @@ import {
 import Lottie from "lottie-react-native";
 import Modal from "react-native-modal";
 import { useSelector } from "react-redux";
-
+import { child, push, ref } from "firebase/database";
+import { doc, setDoc } from "firebase/firestore";
+import { database, db } from "../../firebase.config";
 
 const BookingReview = ({ navigation }) => {
   let data = useSelector((state) => state.bookplace.value);
@@ -31,6 +33,8 @@ const BookingReview = ({ navigation }) => {
     setDoc(doc(db, "bookings", `${newKey}`), globalState);
     navigation.navigate("ticket");
   }
+  // function facture()
+  var facture = 1400 - totalcoins;
   return (
     <View style={styles.Group97}>
       {console.log(globalState)}
@@ -175,21 +179,16 @@ const BookingReview = ({ navigation }) => {
         </TouchableRipple>
       </View>
 
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={show}>
+      <Modal animationType="slide" transparent={true} visible={show}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            
             <Text style={styles.modalText}>Parki Coin:</Text>
             <Text style={styles.modalText}>1400</Text>
             <Text style={styles.modalText}>Parking Fee:</Text>
-            <Text style={styles.modalText}>400</Text>
-            <Text style={styles.modalText}>Total: 1400 - 400</Text>
+            <Text style={styles.modalText}>{totalcoins}</Text>
+            <Text style={styles.modalText}>Total: 1400 - {totalcoins}</Text>
             <View style={styles.horizontalL}></View>
-            <Text style={styles.modalText}>= 1000</Text>
-
+            <Text style={styles.modalText}>= {facture}</Text>
 
             <Pressable
               style={[styles.button, styles.buttonClose]}
@@ -257,7 +256,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: "rgba(9, 66, 139, 1)",
     bottom: "0.2%",
-    left: "10%",
+    left: "1.7%",
   },
   horizontalLine: {
     borderBottomColor: "black",
@@ -286,10 +285,12 @@ const styles = StyleSheet.create({
   },
   Txt351: {
     fontSize: 16,
-    fontWeight: "700",
+    fontWeight: "500",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",
     justifyContent: "center",
+    // backgroundColor: "red",
+    width: 90,
   },
 
   enTnd: {
@@ -474,7 +475,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+    marginTop: 22,
   },
   modalView: {
     margin: 40,
@@ -485,38 +486,38 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
   },
   button: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
   },
   buttonClose: {
     backgroundColor: "#2196F3",
-    margin:4,
-    transform: [{translateX:-50}, {translateY:70}]
+    margin: 4,
+    transform: [{ translateX: -50 }, { translateY: 70 }],
   },
   buttonConfirm: {
     backgroundColor: Colors.green900,
-    margin:4,
-    transform: [{translateX:50}, {translateY:23}]
+    margin: 4,
+    transform: [{ translateX: 50 }, { translateY: 23 }],
   },
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
 });
 export default BookingReview;

@@ -7,14 +7,7 @@ import {
   Pressable,
   Text,
 } from "react-native";
-import {
-  doc,
-  setDoc,
-  getDocs,
-  collection,
-  Firestore,
-  QuerySnapshot,
-} from "firebase/firestore";
+import { doc, setDoc, getDocs, collection } from "firebase/firestore";
 import { database, db } from "../../firebase.config";
 import { child, push, ref } from "firebase/database";
 import { firebase } from "../../firebase.config";
@@ -36,7 +29,7 @@ const test = () => {
     // bookingsRef.onSnapshot((querySnapshot) => {
     const bookings = [];
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", typeof doc.data());
+      // console.log(doc.id, " => ", typeof doc.data());
       // const {
       const {
         CarType,

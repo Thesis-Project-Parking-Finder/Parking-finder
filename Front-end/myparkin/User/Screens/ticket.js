@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
   Txt961: {
     fontSize: 29,
     // lef: "30%",
+
     fontWeight: "600",
     lineHeight: 34,
     color: "rgba(0,0,0,1)",
@@ -186,7 +187,6 @@ const styles = StyleSheet.create({
     paddingRight: 0,
     // backgroundColor: "orange",
   },
-
   Group: {
     width: 219.15,
     height: 219.08,
@@ -227,7 +227,6 @@ const styles = StyleSheet.create({
   },
   Txt327: {
     fontSize: 18,
-
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
   },
