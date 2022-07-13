@@ -145,7 +145,7 @@ export default function Profile({ route }) {
             <Text style={styles.Txt458}>{userObject.fullName}</Text>
             <BouncyCheckbox
               style={styles.Vector5}
-              fillColor="rgba(16, 181, 241, 0.8)"
+              fillColor='rgba(16, 181, 241, 0.8)'
             />
           </View>
         </ScrollView>
