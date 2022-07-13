@@ -13,6 +13,7 @@ import { ParkingNameAndAdress } from "../redux/Features/BookPlace";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import Icon from "@expo/vector-icons/build/FontAwesome5";
 import { set } from "firebase/database";
+import { startAfter } from "firebase/firestore";
 const FillCarInformation = ({ navigation }) => {
   let dispatch = useDispatch();
   const data = useSelector((state) => state.bookplace.value);
@@ -25,14 +26,20 @@ const FillCarInformation = ({ navigation }) => {
   const [show, setShow] = useState(false);
   const [carName, setcarName] = useState("");
   const [Hours, setHours] = useState(0);
+  const [start, setstart] = useState(0);
+  const [end, setend] = useState(0);
+  const [arr, setarr] = useState("");
+  const [exi, setexi] = useState("");
 
   useEffect(() => {
     setglobalState((prevstate) => ({
       ...prevstate,
       Date: datee,
       Duration: Hours,
+      arrivalTime: arr,
+      exitTime: exi,
     }));
-  }, [Hours, datee]);
+  }, [Hours, datee, start, end]);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
@@ -73,6 +80,8 @@ const FillCarInformation = ({ navigation }) => {
 
   const onChangeT = (event, selectedDate) => {
     const currentDate = selectedDate;
+    console.log(String(currentDate), "trtrtrt");
+    setarr(String(currentDate));
 
     setarrivalTime(String(currentDate).slice(16, 21));
   };
@@ -87,11 +96,14 @@ const FillCarInformation = ({ navigation }) => {
 
   const onChangeExit = (event, selectedDate) => {
     const currentDate = selectedDate;
+    setexi(String(currentDate));
     setexitTime(String(currentDate).slice(16, 21));
     let exit = String(currentDate).slice(16, 21);
     exit = Number(exit.slice(0, 2));
     let arrival = Number(arrivalTime.slice(0, 2));
     let duration = exit - arrival;
+    setstart(arrival);
+    setend(exit);
     setHours(duration);
   };
   const showModeExit = (currentMode) => {
@@ -130,7 +142,7 @@ const FillCarInformation = ({ navigation }) => {
             showTimepickerExit();
           }}
         ></Button>
-        {console.log(globalState, "getting updated")}
+        {/* {console.log(globalState, "getting updated")} */}
       </View>
 
       {/* <TextInput style={styles.input} /> */}

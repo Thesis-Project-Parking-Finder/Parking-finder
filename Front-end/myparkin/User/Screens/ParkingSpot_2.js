@@ -9,7 +9,6 @@ import { TouchableRipple } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { ParkingNameAndAdress } from "../redux/Features/BookPlace";
-
 export default function ParkingSpot_1() {
   const navigation = useNavigation();
   let dispatch = useDispatch();
@@ -26,7 +25,7 @@ export default function ParkingSpot_1() {
       if (element.name === e._dispatchInstances.memoizedProps.children) {
         setglobalState((prevstate) => ({
           ...prevstate,
-          ParkingSpot: `1st floor (${element.name})`,
+          ParkingSpot: `2nd floor (${element.name})`,
         }));
         element.type = !element.type;
         setShow(element.type);

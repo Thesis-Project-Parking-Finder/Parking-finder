@@ -10,16 +10,21 @@ import {
 import Icon from "@expo/vector-icons/build/FontAwesome5";
 import { useDispatch } from "react-redux";
 import { ParkingNameAndAdress } from "../../redux/Features/BookPlace";
+import { auth } from "../../../firebase.config";
 
 export default function ParkingDetail({ route, navigation }) {
   const [parkingName, setParkingName] = useState(route.params.parkingname);
   const [adress, setadress] = useState(route.params.adress);
   const [Price, setPrice] = useState(route.params.price);
+  const [uid, setuid] = useState(auth.currentUser.uid);
+  const [image, setImage] = useState(route.params.parkingImage);
   const dispatch = useDispatch();
 
   let updateStateAndNavigate = () => {
     dispatch(
       ParkingNameAndAdress({
+        User_id: uid,
+        ParkiCoins: 3000,
         CarType: "",
         ParkingName: parkingName,
         Adress: adress,
@@ -27,6 +32,10 @@ export default function ParkingDetail({ route, navigation }) {
         ParkingSpot: "",
         Date: "",
         Duration: "",
+        status: "Ongoing",
+        image: image,
+        arrivalTime: 0,
+        exitTime: 0,
       })
     );
     navigation.navigate("SelectVec");
@@ -34,6 +43,7 @@ export default function ParkingDetail({ route, navigation }) {
 
   return (
     <View style={styles.container}>
+      {console.log(route.params)}
       <View style={styles.innercontainer}>
         <Text style={styles.Txt342}>Parking Details</Text>
         <View style={styles.imagecontainer}>
