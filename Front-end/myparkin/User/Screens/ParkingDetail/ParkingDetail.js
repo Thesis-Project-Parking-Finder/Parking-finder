@@ -8,19 +8,36 @@ import {
 import { useDispatch } from "react-redux";
 import { ParkingNameAndAdress } from "../../redux/Features/BookPlace";
 import { auth } from "../../../firebase.config";
+
+import { getDatabase, ref, child, get } from "firebase/database";
+
 import Lottie from "lottie-react-native";
 import { TouchableRipple } from "react-native-paper";
+
 
 export default function ParkingDetail({ route, navigation }) {
   const [parkingName, setParkingName] = useState(route.params.parkingname);
   const [adress, setadress] = useState(route.params.adress);
   const [Price, setPrice] = useState(route.params.price);
   const [uid, setuid] = useState(auth.currentUser.uid);
+
+  const [image, setImage] = useState(route.params.parkingImage);
+
+  const [userObj, setUserObject] = useState({});
   const dispatch = useDispatch();
+  useEffect(() => {
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `users/${uid}`)).then((snapshot) => {
+      console.log(snapshot);
+      const user = snapshot.val();
+      setUserObject(user);
+    });
+  }, []);
 
   let updateStateAndNavigate = () => {
     dispatch(
       ParkingNameAndAdress({
+        User_fullName: userObj.fullName,
         User_id: uid,
         ParkiCoins: 3000,
         CarType: "",
@@ -30,6 +47,11 @@ export default function ParkingDetail({ route, navigation }) {
         ParkingSpot: "",
         Date: "",
         Duration: "",
+        status: "Ongoing",
+        image: image,
+
+        arrivalTime: 0,
+        exitTime: 0,
       })
     );
     navigation.navigate("SelectVec");
@@ -37,7 +59,9 @@ export default function ParkingDetail({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* {console.log(uid)} */}
+
+      {console.log(route.params)}
+
       <View style={styles.innercontainer}>
         <View style={styles.Frame218}>
         <TouchableRipple onPress={() => {navigation.goBack()}}>

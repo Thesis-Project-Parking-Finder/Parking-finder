@@ -50,7 +50,6 @@ export default StyleSheet.create({
   },
   Txt164: {
     fontSize: 48,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     lineHeight: 54,
     color: "rgba(0,0,0,1)",
@@ -78,7 +77,6 @@ export default StyleSheet.create({
   },
   Txt484: {
     fontSize: 15,
-    fontFamily: "Montserrat, sans-serif",
     fontWeight: "500",
     color: "rgba(169,169,169,1)",
     textAlign: "center",
@@ -108,7 +106,6 @@ export default StyleSheet.create({
   },
   Txt735: {
     fontSize: 15,
-    fontFamily: "Montserrat, sans-serif",
     fontWeight: "500",
     color: "rgba(169,169,169,1)",
     textAlign: "center",
@@ -151,7 +148,6 @@ export default StyleSheet.create({
   },
   Txt272: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(188,0,99,1)",
     textAlign: "center",
@@ -171,7 +167,6 @@ export default StyleSheet.create({
   },
   Txt247: {
     fontSize: 16,
-    // fontFamily: "Montserrat, sans-serif",
     fontWeight: "700",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",
@@ -194,7 +189,6 @@ export default StyleSheet.create({
   },
   Txt439: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(169,169,169,1)",
     textAlign: "center",
@@ -265,7 +259,6 @@ export default StyleSheet.create({
   },
   Txt246: {
     fontSize: 16,
-    // fontFamily: "Montserrat, sans-serif",
     fontWeight: "400",
     color: "rgba(156,148,148,1)",
     textAlign: "center",
@@ -274,7 +267,6 @@ export default StyleSheet.create({
   },
   Txt143: {
     fontSize: 16,
-    // fontFamily: "Montserrat, sans-serif",
     fontWeight: "700",
     color: "rgba(188,0,99,1)",
     textAlign: "center",

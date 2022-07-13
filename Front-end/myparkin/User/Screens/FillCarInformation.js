@@ -16,7 +16,6 @@ import Lottie from "lottie-react-native";
 import { TouchableRipple } from "react-native-paper";
 import Icon from "@expo/vector-icons/build/FontAwesome5";
 import { set } from "firebase/database";
-
 const FillCarInformation = ({ navigation }) => {
   let dispatch = useDispatch();
   const data = useSelector((state) => state.bookplace.value);
@@ -24,19 +23,30 @@ const FillCarInformation = ({ navigation }) => {
   const [datee, setDatee] = useState("Date");
   const [globalState, setglobalState] = useState(data);
   const [exitTime, setexitTime] = useState("Exit time");
-  const [arrivalTime, setarrivalTime] = useState("Arrival Time");
+
+  const [arrivalTime, setarrivalTime] = useState("arrival Time");
+  const [start, setstart] = useState(0);
+  const [end, setend] = useState(0);
+
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
-  const [carName, setcarName] = useState("");
+
   const [Hours, setHours] = useState(0);
+  const [start, setstart] = useState(0);
+  const [end, setend] = useState(0);
+  const [arr, setarr] = useState("");
+  const [exi, setexi] = useState("");
 
   useEffect(() => {
     setglobalState((prevstate) => ({
       ...prevstate,
       Date: datee,
       Duration: Hours,
+      arrivalTime: arr,
+      exitTime: exi,
+
     }));
-  }, [Hours, datee]);
+  }, [Hours, datee, start, end]);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
@@ -77,6 +87,8 @@ const FillCarInformation = ({ navigation }) => {
 
   const onChangeT = (event, selectedDate) => {
     const currentDate = selectedDate;
+    console.log(String(currentDate), "trtrtrt");
+    setarr(String(currentDate));
 
     setarrivalTime(String(currentDate).slice(16, 21));
   };
@@ -91,11 +103,14 @@ const FillCarInformation = ({ navigation }) => {
 
   const onChangeExit = (event, selectedDate) => {
     const currentDate = selectedDate;
+    setexi(String(currentDate));
     setexitTime(String(currentDate).slice(16, 21));
     let exit = String(currentDate).slice(16, 21);
     exit = Number(exit.slice(0, 2));
     let arrival = Number(arrivalTime.slice(0, 2));
     let duration = exit - arrival;
+    setstart(arrival);
+    setend(exit);
     setHours(duration);
   };
   const showModeExit = (currentMode) => {
@@ -145,14 +160,13 @@ const FillCarInformation = ({ navigation }) => {
       <Image style={styles.DepartureIcon} source={{uri: 'https://img.icons8.com/dusk/452/time-machine.png'}} />
       <Text style={styles.departuretime}>{exitTime}</Text>
       <View style={styles.depbtn}>
-           <TouchableRipple
-                  style={styles.Group220}
-                  onPress={() => {
-                    showTimepickerExit();
-                  }}>
-                  <Text style={styles.Txt122}>Ending</Text>
-                </TouchableRipple>
-        {console.log(globalState, "getting updated")}
+        <Button
+          title="Ending "
+          onPress={() => {
+            showTimepickerExit();
+          }}
+        ></Button>
+        {/* {console.log(globalState, "getting updated")} */}
       </View>
       <View style={styles.btncontainter}>
         <TouchableRipple style={styles.Frame178} onPress={() => {dispatch(ParkingNameAndAdress(globalState));
@@ -300,7 +314,19 @@ const styles = StyleSheet.create({
     left: "25%",
     fontWeight: "bold",
     fontSize: 20,
+  },
+  Txt687: {
+    fontSize: 48,
+    fontWeight: "600",
+    lineHeight: 56,
+    color: "rgba(3, 52, 83, 1)",
+    width: 391,
+    marginBottom: 36,
+    paddingLeft: "35%",
+    marginTop: "-10%",
+    //  paddingTop:"10%"
     color:'#0260D1'
+
   },
   arrivaltime: {
     position: "absolute",
