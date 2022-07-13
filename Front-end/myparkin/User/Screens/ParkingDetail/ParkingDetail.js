@@ -59,13 +59,13 @@ export default function ParkingDetail({ route, navigation }) {
           />
         </View>
         <View style={styles.details}>
-          <Image style={styles.adress} source={{uri: 'https://img.icons8.com/nolan/344/contacts.png'}}  />
+          <Image style={styles.adress} source={require('../images/contacts.png')}  />
           <Text style={styles.Txt1064}>{route.params.adress}</Text>
-          <Image style={styles.phone} source={{uri:'https://img.icons8.com/nolan/344/phone.png'}} />
+          <Image style={styles.phone} source={require('../images/tel.png')} />
           <Text style={styles.Txt999}> +216 {route.params.number}</Text>
           <Text style={styles.textmoney}> {route.params.price} Dt/hour</Text>
-          <Image style={styles.money} source={{uri: 'https://img.icons8.com/nolan/344/banknotes.png'}} />
-          <Image style={styles.distance} source={{uri:'https://img.icons8.com/nolan/344/hover-car.png'}} />
+          <Image style={styles.money} source={require('../images/billets.png')} />
+          <Image style={styles.distance} source={require('../images/hover-car.png')} />
           <Text style={styles.distance1}>{route.params.distance / 1000} Km away from you </Text>
         </View>
       </View>
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     backgroundColor: "#F5FCFF",
+    marginTop:'-4%'
   },
   Frame218: {
     display: "flex",
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
     height: "20%",
     width: "60%",
     left:'20%',
-    top:'4%'
+    top:'6.5%'
   },
   distance: {
     bottom: 50,

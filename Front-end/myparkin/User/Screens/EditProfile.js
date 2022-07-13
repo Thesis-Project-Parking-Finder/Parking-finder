@@ -76,7 +76,7 @@ export default function EditProfile({ route }) {
       >
         <View style={styles.Iphone13ProMax55}>
         <View style={styles.Frame218}>
-        <TouchableRipple onPress={() => navigation.navigate("ParkingSpot_1")}>
+        <TouchableRipple onPress={() => navigation.navigate("Profile")}>
           <Lottie
             source={require("./assets/arrow2.json")}
             autoPlay
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     paddingLeft: 29,
     paddingRight: 29,
     borderRadius: 50,
-    backgroundColor: "rgba(255, 255, 255, 1)",
+    backgroundColor: "#F5FCFF",
     height: 904,
     width: 419,
   },
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "rgba(169,169,169,1)",
     width: "100%",
-    height: "100%",
+    height: 56,
     marginLeft: "8%",
     marginRight: "7%",
   },
