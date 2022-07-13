@@ -40,7 +40,7 @@ export default function Profile({ route }) {
   };
   return (
     <View style={styles.Iphone13ProMax54}>
-      {/* {console.log(userObject, "aeaeaeae")} */}
+      {console.log(userObject, "aeaeaeae")}
       <View style={styles.Group282}>
         {/* {console.log(route)} */}
         <ScrollView>
@@ -143,8 +143,7 @@ export default function Profile({ route }) {
                 />
               </View>
             </View>
-            {/* <Text style={styles.Txt458}>{userObject.fullName}</Text> */}
-
+            <Text style={styles.Txt458}>{userObject.fullName}</Text>
             <BouncyCheckbox
               style={styles.Vector5}
               fillColor="rgba(16, 181, 241, 0.8)"

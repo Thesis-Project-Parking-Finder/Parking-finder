@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Image, Text, View, TouchableOpacity } from "react-native";
 import Lottie from "lottie-react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
@@ -9,6 +9,14 @@ import { TouchableRipple } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { ParkingNameAndAdress } from "../redux/Features/BookPlace";
+import {
+  collection,
+  getDoc,
+  getDocs,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
+import { db } from "../../firebase.config";
 
 export default function ParkingSpot_1() {
   let dispatch = useDispatch();
@@ -17,11 +25,30 @@ export default function ParkingSpot_1() {
   const [show, setShow] = useState(false);
   const [globalState, setglobalState] = useState(data);
   const [show_Hide, setShowHide] = useState(false);
+  const [spot, setspot] = useState([]);
 
   const [items, setItems] = React.useState(firstFloor);
+  useEffect(() => {
+    // const docRef = doc(db, "spot", "NsUROkT7DgjHuoyX66r2");
+    // const docSnap = getDoc(docRef);
+
+    // console.log("Document data:", docSnap.data());
+    getDoc(doc(db, "spot", "NsUROkT7DgjHuoyX66r2")).then((docSnap) => {
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        setspot(docSnap.data()["1st Floor"]);
+      } else {
+        console.log("No such document!");
+      }
+    });
+  }, []);
+  function updateType(p) {
+    const docRef = doc(db, "spot", "NsUROkT7DgjHuoyX66r2");
+    updateDoc(docRef, { type: !p.type });
+  }
 
   const boxColored = (e) => {
-    items.map((element, i) => {
+    spot.map((element, i) => {
       if (element.name === e._dispatchInstances.memoizedProps.children) {
         setglobalState((prevstate) => ({
           ...prevstate,
@@ -40,7 +67,7 @@ export default function ParkingSpot_1() {
 
   return (
     <View style={styles.Frame236}>
-      {console.log(globalState, "adadadad")}
+      {console.log(spot[0], "adadadad")}
       <View style={styles.Frame237}>
         <View style={styles.Frame235}>
           <View style={styles.Group236}>
@@ -83,7 +110,7 @@ export default function ParkingSpot_1() {
               <View style={{ transform: [{ translateY: 25 }] }}>
                 <FlatGrid
                   itemDimension={130}
-                  data={items}
+                  data={spot}
                   style={styles.gridView}
                   spacing={15}
                   renderItem={({ item, index }) => {
@@ -151,17 +178,6 @@ export default function ParkingSpot_1() {
                                 <Text style={styles.itemName}>{item.name}</Text>
                               )}
                             </TouchableOpacity>
-                            {/* {show && index === box ? 
-         
-          <View>
-            <Image source={{uri: item.image}} style={{width: '100%', height: '100%'}} />
-          </View>
-          
-        :
-        <View></View>  
-      
-      } */}
-
                             <View style={styles.horizontalLine}></View>
                           </View>
                         );

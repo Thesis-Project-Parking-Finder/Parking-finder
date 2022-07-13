@@ -1,4 +1,3 @@
-
 import React from "react";
 import { StyleSheet, Image, Text, View, ImageBackground } from "react-native";
 export default function Frame2551() {
@@ -133,7 +132,6 @@ const styles = StyleSheet.create({
   },
   Txt961: {
     fontSize: 29,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     lineHeight: 34,
     color: "rgba(0,0,0,1)",
@@ -218,7 +216,6 @@ const styles = StyleSheet.create({
   },
   Txt872: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     lineHeight: 19,
     color: "rgba(161,161,161,1)",
@@ -263,13 +260,11 @@ const styles = StyleSheet.create({
   },
   Txt327: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
   },
   Txt876: {
     fontSize: 15,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
   },
@@ -280,13 +275,11 @@ const styles = StyleSheet.create({
   },
   Txt327: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
   },
   Txt876: {
     fontSize: 15,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
   },
@@ -303,13 +296,11 @@ const styles = StyleSheet.create({
   },
   Txt876: {
     fontSize: 15,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
   },
   Txt327: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
   },
@@ -320,13 +311,11 @@ const styles = StyleSheet.create({
   },
   Txt876: {
     fontSize: 15,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
   },
   Txt327: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
   },
@@ -343,13 +332,11 @@ const styles = StyleSheet.create({
   },
   Txt876: {
     fontSize: 15,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
   },
   Txt327: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
   },
@@ -360,13 +347,11 @@ const styles = StyleSheet.create({
   },
   Txt876: {
     fontSize: 15,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
   },
   Txt327: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
   },
@@ -382,13 +367,11 @@ const styles = StyleSheet.create({
   },
   Txt876: {
     fontSize: 15,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
   },
   Txt327: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
   },
@@ -399,13 +382,11 @@ const styles = StyleSheet.create({
   },
   Txt876: {
     fontSize: 15,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
   },
   Txt327: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
   },
@@ -422,7 +403,6 @@ const styles = StyleSheet.create({
   },
   Txt667: {
     fontSize: 16,
-    fontFamily: "Montserrat, sans-serif",
     fontWeight: "700",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",

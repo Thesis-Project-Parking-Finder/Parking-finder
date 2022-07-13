@@ -5,43 +5,62 @@ import { auth } from "../../firebase.config";
 import { doc, setDoc, getDocs, collection } from "firebase/firestore";
 import { database, db } from "../../firebase.config";
 import { child, push, ref } from "firebase/database";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
-export default function HistoryParking() {
+export default function HistoryParking({ navigation }) {
   const [bookings, setBookings] = useState([]);
-  useEffect(async () => {
-    const querySnapshot = await getDocs(collection(db, "bookings"));
-    // bookingsRef.onSnapshot((querySnapshot) => {
-    const bookings = [];
-    querySnapshot.forEach((doc) => {
-      // console.log(doc.id, " => ", typeof doc.data());
-      // const {
-      const {
-        CarType,
-        ParkingName,
-        Adress,
-        Floor,
-        ParkingSpot,
-        Date,
-        Duration,
-        User_id,
-      } = doc.data();
-      bookings.push({
-        id: doc.id,
-        CarType,
-        ParkingName,
-        Adress,
-        Floor,
-        ParkingSpot,
-        Date,
-        Duration,
-        User_id,
+  const [FilterStatus, setFilterStatus] = useState("Ongoing");
+  var currentTime = new Date();
+  var hour = currentTime.getHours();
+  var min = currentTime.getMinutes();
+  var sec = currentTime.getSeconds();
+  useEffect(() => {
+    (async () => {
+      const querySnapshot = await getDocs(collection(db, "bookings"));
+      const bookings = [];
+      querySnapshot.forEach((doc) => {
+        // const {
+        const {
+          CarType,
+          ParkingName,
+          Adress,
+          Floor,
+          ParkingSpot,
+          Date,
+          Duration,
+          User_id,
+          image,
+          status,
+          arrivalTime,
+          exitTime,
+        } = doc.data();
+        bookings.push({
+          id: doc.id,
+          CarType,
+          ParkingName,
+          Adress,
+          Floor,
+          ParkingSpot,
+          Date,
+          Duration,
+          User_id,
+          image,
+          status,
+          arrivalTime,
+          exitTime,
+        });
+        setBookings(
+          bookings.filter(
+            (e) =>
+              e.User_id === auth.currentUser.uid && e.status === FilterStatus
+          )
+        );
       });
-      setBookings(bookings.filter((e) => e.User_id === auth.currentUser.uid));
-    });
-  }, []);
+    })();
+  }, [FilterStatus]);
   return (
     <View style={styles.Iphone13ProMax49}>
-      {console.log(bookings)}
+      {/* {console.log(currentTimestamp, "datadatadata")} */}
       <View style={styles.Group163}>
         <View style={styles.Group865}>
           <Image
@@ -60,25 +79,38 @@ export default function HistoryParking() {
         </View>
         <View style={styles.Group043}>
           <View style={styles.Group718}>
-            <Text style={styles.Txt400}>Ongoing</Text>
+            <Text
+              onPress={() => setFilterStatus("Ongoing")}
+              style={styles.Txt400}
+            >
+              Ongoing
+            </Text>
           </View>
-          <View style={styles.Group4102}>
-            <Text style={styles.Txt879}>Completed</Text>
-          </View>
+          <TouchableOpacity style={styles.Group4102}>
+            <Text
+              onPress={() => setFilterStatus("Completed")}
+              style={styles.Txt879}
+            >
+              Completed
+            </Text>
+          </TouchableOpacity>
           <View style={styles.Group273}>
-            <Text style={styles.Txt400}>Canceled</Text>
+            <Text onPress={() => alert(hour + ":" + min)} style={styles.Txt400}>
+              Canceled
+            </Text>
           </View>
         </View>
         {bookings.map((e) => {
           return (
             <View style={styles.Group130}>
+              {console.log(e, "eee")}
               <Text style={styles.Txt5109}>{e.ParkingName}</Text>
               <View style={styles.Group268}>
                 <View style={styles.Group472}>
                   <Image
                     style={styles.Rectangle63}
                     source={{
-                      uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pabo7awh17-79%3A946?alt=media&token=9356e8b1-72c0-4297-bbf3-5bbf6199ba23",
+                      uri: `${e.image}`,
                     }}
                   />
                   <View style={styles.Group222}>
@@ -86,7 +118,7 @@ export default function HistoryParking() {
                     <View style={styles.Group396}>
                       <View style={styles.Group0107}>
                         <View style={styles.Group116}>
-                          <Text style={styles.Txt694}>Completed</Text>
+                          <Text style={styles.Txt694}>{e.status}</Text>
                         </View>
                       </View>
                       <Text style={styles.Txt196}>/{e.Duration} hours</Text>
@@ -94,7 +126,14 @@ export default function HistoryParking() {
                   </View>
                 </View>
                 <View style={styles.Group230}>
-                  <Text style={styles.Txt857}>View Ticket</Text>
+                  <Text
+                    onPress={() =>
+                      navigation.navigate("ParkingTimer", { objBook: e })
+                    }
+                    style={styles.Txt857}
+                  >
+                    View Ticket
+                  </Text>
                 </View>
               </View>
             </View>
@@ -199,6 +238,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(9, 66, 139, 1)",
     width: 111,
     height: 37,
+    // backgroundColor: "red",
   },
   Txt879: {
     fontSize: 16,
