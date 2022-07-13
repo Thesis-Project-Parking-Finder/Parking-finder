@@ -138,7 +138,7 @@ const FillCarInformation = ({ navigation }) => {
       <View style={styles.arrivalbtn}>
       <TouchableRipple
                   style={styles.Group220}
-                  onPress={showDatepicker}>
+                  onPress={showTimepicker}>
                   <Text style={styles.Txt122}>Starting</Text>
                 </TouchableRipple>
       </View>
