@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Image,
   Text,
-  View,
-  ImageBackground,
-  Button,
+  View
 } from "react-native";
-import Icon from "@expo/vector-icons/build/FontAwesome5";
 import { useDispatch } from "react-redux";
 import { ParkingNameAndAdress } from "../../redux/Features/BookPlace";
 import { auth } from "../../../firebase.config";
+
 import { getDatabase, ref, child, get } from "firebase/database";
+
+import Lottie from "lottie-react-native";
+import { TouchableRipple } from "react-native-paper";
+
 
 export default function ParkingDetail({ route, navigation }) {
   const [parkingName, setParkingName] = useState(route.params.parkingname);
@@ -51,10 +53,19 @@ export default function ParkingDetail({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      {console.log(uid)}
-      {console.log(userObj)}
+      {/* {console.log(uid)} */}
       <View style={styles.innercontainer}>
-        <Text style={styles.Txt342}>Parking Details</Text>
+        <View style={styles.Frame218}>
+        <TouchableRipple onPress={() => {navigation.goBack()}}>
+          <Lottie
+            source={require("../assets/arrow2.json")}
+            autoPlay
+            loop
+            style={styles.Frame}
+          />
+        </TouchableRipple>
+        <Text style={styles.Txt3107}>Parking Detail</Text>
+      </View>
         <View style={styles.imagecontainer}>
           <Image
             style={styles.image}
@@ -64,33 +75,20 @@ export default function ParkingDetail({ route, navigation }) {
           />
         </View>
         <View style={styles.details}>
-          <Icon name="address-book" size={20} style={styles.adress}></Icon>
+          <Image style={styles.adress} source={{uri: 'https://img.icons8.com/nolan/344/contacts.png'}}  />
           <Text style={styles.Txt1064}>{route.params.adress}</Text>
-          <Icon name="phone" size={20} style={styles.phone}></Icon>
+          <Image style={styles.phone} source={{uri:'https://img.icons8.com/nolan/344/phone.png'}} />
           <Text style={styles.Txt999}> +216 {route.params.number}</Text>
           <Text style={styles.textmoney}> {route.params.price} Dt/hour</Text>
-          <Icon name="dollar-sign" size={20} style={styles.money}></Icon>
-          <Icon name="car" size={20} style={styles.distance}></Icon>
-          <Text style={styles.distance1}>
-            {route.params.distance / 1000} Km away from you
-          </Text>
+          <Image style={styles.money} source={{uri: 'https://img.icons8.com/nolan/344/banknotes.png'}} />
+          <Image style={styles.distance} source={{uri:'https://img.icons8.com/nolan/344/hover-car.png'}} />
+          <Text style={styles.distance1}>{route.params.distance / 1000} Km away from you </Text>
         </View>
       </View>
       <View style={styles.btncontainter}>
-        <Button
-          title="go back"
-          style={styles.btn}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        ></Button>
-
-        <Button
-          title="book now"
-          onPress={() => {
-            updateStateAndNavigate();
-          }}
-        ></Button>
+        <TouchableRipple style={styles.Frame178} onPress={() => {updateStateAndNavigate()}}>
+        <Text style={styles.Txt191}>Book Now</Text>
+        </TouchableRipple>
       </View>
     </View>
   );
@@ -103,145 +101,106 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     top: 30,
-
     width: "100%",
     height: "100%",
-    // backgroundColor: "pink",
+    backgroundColor: "#F5FCFF",
   },
-  btn: {
-    height: 100,
-  },
-  btncontainter: {
+  Frame218: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-evenly",
-    position: "absolute",
-    bottom: 50,
-    height: "6%",
-    width: "100%",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    top: "-5%",
+  },
+  Frame: {
+    width: 36,
+    height: 38,
+    marginRight: 19,
+  },
+  Txt3107: {
+    fontSize: 29,
+    fontWeight: "600",
+    lineHeight: 34,
+    color: "#104685",
+    width: 282,
+  },
+  btncontainter: {
+    bottom: 10,
+    height: "20%",
+    width: "60%",
+    left:'20%',
+    top:'4%'
   },
   distance: {
-    position: "absolute",
-    bottom: 20,
+    bottom: 50,
     left: 10,
+    width: "10%",
+    height: "15%",
+    left:'-2%',
+    top:'-40%'
+ 
   },
 
   adress: {
-    position: "relative",
-    left: 10,
-    top: 5,
+    width:'10%',
+    height:'15%',
+    left: '-3%',
+    top: '-9%',
   },
   phone: {
-    position: "relative",
-    top: 32,
-    left: 10,
+    width:'10%',
+    height:'15%',
+    top:'-1%',
+    left:'-2%'
   },
   textmoney: {
     position: "relative",
     bottom: 30,
-    left: 40,
+    left: '20%',
+    top:'-40%',
+    fontWeight:'500'
+
   },
   details: {
-    // backgroundColor: "pink",
     position: "relative",
-    top: "43%",
+    top: "48%",
     height: "40%",
     width: "100%",
-    // backgroundColor: "orange",
   },
   distance1: {
     position: "absolute",
     bottom: 20,
-    left: 40,
+    left: '20%',
+    fontWeight:'500',
+    fontSize: 15,
+    top:'64%'
+
   },
   imagecontainer: {
     position: "absolute",
     top: 60,
     width: "100%",
     height: "30%",
-
     aspectRatio: 1,
-    // backgroundColor: "red",
   },
   image: {
     height: "100%",
     width: "100%",
-
     resizeMode: "cover",
+    top:'7%'
   },
-
   innercontainer: {
     width: "90%",
     height: "90%",
     // backgroundColor: "grey",
     left: 20,
-  },
-
-  Group887: {
-    position: "absolute",
-    bottom: 10,
-    none: "0px",
-    paddingTop: 21,
-    paddingBottom: 50,
-    paddingLeft: 148,
-    paddingRight: 147,
-    borderRadius: 23,
-    backgroundColor: "rgba(244,244,244,1)",
-    width: "100%",
-    height: "30%",
-  },
-  Txt1074: {
-    position: "absolute",
-    left: 120,
-    fontSize: 16,
-    top: "40%",
-
-    fontWeight: "700",
-    color: "rgba(255, 255, 255, 1)",
-    textAlign: "center",
-    justifyContent: "center",
-    width: 41,
-    height: 17,
-  },
-
-  Txt6106: {
-    position: "absolute",
-    fontSize: 14,
-    bottom: 60,
-    left: 120,
-    fontWeight: "500",
-    color: "rgba(161,161,161,1)",
-    textAlign: "center",
-    justifyContent: "center",
-    width: 120,
-    height: 22,
-  },
-  Txt1077: {
-    position: "absolute",
-    bottom: 80,
-    left: 140,
-    fontSize: 24,
-    fontWeight: "600",
-    color: "rgba(188,0,99,1)",
-    textAlign: "center",
-    justifyContent: "center",
-    width: 200,
-    height: 39,
-  },
-
-  Group63: {
-    position: "absolute",
-    top: 285,
-    left: 10,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "pink",
+    top:'10%'
   },
   Txt1064: {
     position: "absolute",
-    top: 0,
-    left: 40,
-    fontSize: 18,
+    top: '-6%',
+    left: '20%',
+    fontSize: 15,
     fontWeight: "500",
     color: "rgba(0,0,0,1)",
     width: "80%",
@@ -249,23 +208,21 @@ const styles = StyleSheet.create({
   },
   Txt999: {
     position: "relative",
-    top: 10,
-    left: 40,
+    top: '-14%',
+    left: '20%',
     fontSize: 15,
     fontWeight: "600",
-
     color: "rgba(0,0,0,1)",
     width: "100%",
     height: "50%",
   },
   money: {
-    position: "relative",
-    bottom: 50,
+    bottom: 20,
     left: 10,
-
-    color: "rgba(0,0,0,1)",
-    width: "100%",
-    height: "50%",
+    width: "10%",
+    height: "15%",
+    left:'-2%',
+    top:'-50%'
   },
   price: {
     position: "relative",
@@ -273,227 +230,28 @@ const styles = StyleSheet.create({
     left: 40,
     fontSize: 15,
     fontWeight: "600",
-
     color: "rgba(0,0,0,1)",
     width: "100%",
     height: "50%",
   },
-  Group546: {
+  Frame178: {
     display: "flex",
-    flexDirection: "column",
-    position: "absolute",
-    top: 173,
-    none: "0px",
-    width: 372,
-    height: 228,
-  },
-  Txt718: {
-    fontSize: 20,
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    width: 105,
-    height: 32,
-    marginBottom: 3,
-  },
-  //   containerdes: {
-  //     position: "absolute",
-  //     left: 10,
-  //     top: 430,
-  //     height: "30%",
-  //     width: "100%",
-  //   },
-  Group631: {
-    position: "absolute",
-    top: 296,
-    left: 327,
-    paddingTop: 7,
-    paddingBottom: 26.37,
-    paddingLeft: 5,
-    paddingRight: 4,
-    backgroundColor: "white",
-    /* url(https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/tchxcl2433j-63%3A37?alt=media&token=7acf04f2-6eb4-4746-9a33-1567be34a299) */
-    width: 21,
-    height: 33.37,
-  },
-  Line7: {
-    borderWidth: 1.5,
-    borderStyle: "solid",
-    borderColor: "rgba(255,",
-    width: 11.53,
-    height: 1.5,
-  },
-
-  Group68: {
-    position: "absolute",
-    top: 381,
-    left: 286,
-    paddingTop: 5,
-    paddingBottom: 4.66,
-    paddingLeft: 23,
-    paddingRight: 21,
+    flexDirection: "row",
+    justifyContent: "center",
+    // alignItems: "flex-end",
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingLeft: -100,
+    paddingRight: 100,
     borderRadius: 50,
-    backgroundColor: "rgba(255, 255, 255, 1)",
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
-    width: 85,
-    height: 39.66,
+    backgroundColor: "#106EE0",
+    top:'-2%',
   },
-  Txt728: {
+  Txt191: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(188,0,99,1)",
-    width: 37,
-    height: 26,
-  },
-
-  Group435: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    position: "absolute",
-    top: 381,
-    none: "0px",
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 17,
-    paddingRight: 28,
-    borderRadius: 50,
-    backgroundColor: "rgba(255, 255, 255, 1)",
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
-    width: 111,
-    height: 40,
-  },
-  Vector: {
-    width: 13,
-    height: 20.37,
-    marginRight: 11,
-  },
-  Txt2510: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(188,0,99,1)",
-    width: 38,
-    height: 26,
-  },
-
-  Group6311: {
-    display: "flex",
-    flexDirection: "row",
-    position: "absolute",
-    bottom: "20%",
-    none: "0px",
-    paddingTop: 6,
-    paddingBottom: 4,
-    paddingLeft: 14,
-    paddingRight: 10,
-    borderRadius: 50,
-    backgroundColor: "rgba(255, 255, 255, 1)",
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
-    width: "80%",
-    height: "6%",
-  },
-  Group64: {
-    width: 14,
-    height: 15.01,
-    marginRight: 10,
-  },
-  Txt560: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(188,0,99,1)",
-    width: "100%",
-    height: 26,
-  },
-
-  Group018: {
-    display: "flex",
-    flexDirection: "column",
-    position: "absolute",
-    top: 0,
-    none: "0px",
-    width: 368,
-    height: 864,
-  },
-  Group6312: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 29,
-  },
-  Frame: {
-    width: 26,
-    height: 19.3,
-    marginRight: 19,
-  },
-  Txt342: {
-    position: "absolute",
-    top: 0,
-    fontSize: 29,
-    fontWeight: "600",
-    lineHeight: 34,
-    color: "rgba(0,0,0,1)",
-    width: 282,
-    height: 37,
-  },
-
-  Rectangle41: {
-    width: 368,
-    height: 188.67,
-    marginBottom: 554,
-  },
-  Group952: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  Group634: {
-    marginRight: 20,
-    borderRadius: 50,
-    backgroundColor: "rgba(217,217,217,0.3)",
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
-    width: 174.37,
-    height: 54.67,
-  },
-
-  Group641: {
-    borderRadius: 50,
-    backgroundColor: "rgba(188,0,99,1)",
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
-    width: 174.37,
-    height: 54.67,
-  },
-
-  Txt594: {
-    position: "absolute",
-    top: 120,
-    left: 68,
-    fontSize: 15,
-    fontWeight: "600",
-    color: "rgba(188,0,99,1)",
-    width: 48,
-    height: 25,
-  },
-  Txt215: {
-    position: "absolute",
-    bottom: 0,
-    left: 10,
-    paddingTop: 12,
-    paddingBottom: 11,
-    paddingLeft: 148,
-    paddingRight: 146,
-    marginBottom: 8,
-    borderRadius: 50,
-    backgroundColor: "rgba(188,0,99,1)",
-    width: "100%",
-    height: "30%",
-    textAlign: "center",
+    width:'100%',
+    fontWeight: "700",
+    color: "white",
+    left:'380%'
   },
 });

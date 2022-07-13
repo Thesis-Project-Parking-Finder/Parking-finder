@@ -22,11 +22,12 @@ import { Footer } from "../Footer";
 import { useState, useEffect } from "react";
 import MarkersInformation from "./MarkersInformation";
 import * as Location from "expo-location";
+import { TouchableRipple } from "react-native-paper";
 
 function Map({ navigation }) {
   let mapRef = createRef();
 
-  const [latitude, setlatitude] = useState(null);
+  const [latitude, setlatitude] = useState(0);
   const [longitude, setlongitude] = useState(null);
   const [distance, setdistance] = useState(0);
   const [nearestOne, setnearestOne] = useState(null);
@@ -133,6 +134,7 @@ function Map({ navigation }) {
             longitude: longitude || 10.17972,
           }}
           radius={1000}
+          lineDashPattern={[1]}
         />
         {MarkersInformation.map((element, index) => {
           return (
@@ -169,17 +171,13 @@ function Map({ navigation }) {
           <Text style={styles.cardDescription}>{adress}</Text>
 
           <View style={styles.btncontainter}>
-            <Button
-              title="Cancel"
-              style={styles.button}
-              onPress={() => {
+          <TouchableRipple style={styles.button2} onPress={() => {
                 cancel();
-              }}
-            ></Button>
-            <Button
-              title="Details"
-              style={styles.button}
-              onPress={() =>
+              }}>
+            <Text
+              style={styles.TxtB}>Cancel</Text>
+            </TouchableRipple>
+            <TouchableRipple style={styles.button} onPress={() =>
                 navigation.navigate("ParkingDetail", {
                   parkingname: parkingname,
                   parkingImage: parkingImage,
@@ -188,8 +186,9 @@ function Map({ navigation }) {
                   number: number,
                   distance: distance,
                 })
-              }
-            ></Button>
+              }>
+            <Text style={styles.TxtB}>Details</Text>
+            </TouchableRipple>
           </View>
         </View>
       )}
@@ -349,16 +348,44 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
   },
   button: {
-    bottom: 0,
-    height: "20%",
-    borderRadius: 30,
+    // bottom: 0,
+    // height: "20%",
+    // borderRadius: 20,
+    position: "absolute",
+    paddingTop: 10,
+    paddingBottom: 15,
+    paddingLeft: 24,
+    paddingRight: 24,
+    borderRadius: 50,
+    backgroundColor: "#106EE0",
+    bottom: "0.2%",
+    left: "60%",
+  },
+
+  TxtB:{
+    color:'white',
+    fontWeight:'700',
+  },
+
+  button2: {
+    // bottom: 0,
+    // height: "20%",
+    // borderRadius: 20,
+    position: "absolute",
+    paddingTop: 10,
+    paddingBottom: 15,
+    paddingLeft: 24,
+    paddingRight: 24,
+    borderRadius: 50,
+    backgroundColor: "#106EE0",
+    bottom: "0.2%",
+    left: "20%",
   },
 
   card: {
     position: "relative",
     // backgroundColor: "orange",
     elevation: 2,
-
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     marginHorizontal: 10,
@@ -366,11 +393,11 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     shadowOpacity: 0.3,
     shadowOffset: { x: 2, y: -2 },
-
     left: -10,
     height: "37%",
     width: "100%",
     overflow: "hidden",
+    backgroundColor:'#EDFAFA'
   },
   cardImage: {
     width: "100%",
@@ -379,9 +406,11 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   cardtitle: {
-    fontSize: 12,
+    margin:4,
+    fontSize: 20,
     // marginTop: 5,
     fontWeight: "bold",
+    color:'#0260D1'
   },
   Group41010: {
     position: "absolute",
@@ -393,7 +422,8 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
   },
   cardDescription: {
-    fontSize: 12,
+    marginLeft:10,
+    fontSize: 15,
     color: "#444",
   },
 });
