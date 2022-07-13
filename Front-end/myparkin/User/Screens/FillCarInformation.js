@@ -24,7 +24,7 @@ const FillCarInformation = ({ navigation }) => {
   const [globalState, setglobalState] = useState(data);
   const [exitTime, setexitTime] = useState("Exit time");
 
-  const [arrivalTime, setarrivalTime] = useState("arrival Time");
+  const [arrivalTime, setarrivalTime] = useState("Arrival Time");
 
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
@@ -149,21 +149,28 @@ const FillCarInformation = ({ navigation }) => {
       <Image style={styles.arrivalIcon} source={{uri: 'https://img.icons8.com/dusk/452/clock--v1.png'}} />
       <Text style={styles.arrivaltime}>{arrivalTime}</Text>
       <View style={styles.arrivalbtn}>
-      <TouchableRipple
-                  style={styles.Group220}
-                  onPress={showTimepicker}>
-                  <Text style={styles.Txt122}>Starting</Text>
-                </TouchableRipple>
+        <TouchableRipple
+                    style={styles.Group220}
+                    onPress={showTimepicker}>
+                    <Text style={styles.Txt122}>Starting</Text>
+                  </TouchableRipple>
       </View>
       <Image style={styles.DepartureIcon} source={{uri: 'https://img.icons8.com/dusk/452/time-machine.png'}} />
       <Text style={styles.departuretime}>{exitTime}</Text>
       <View style={styles.depbtn}>
-        <Button
+        {/* <Button
           title="Ending "
           onPress={() => {
             showTimepickerExit();
           }}
-        ></Button>
+        ></Button> */}
+          <TouchableRipple
+                    style={styles.Group220}
+                    onPress={() => {
+                      showTimepickerExit()}}>
+                    <Text style={styles.Txt122}>Starting</Text>
+                  </TouchableRipple>
+
         {/* {console.log(globalState, "getting updated")} */}
       </View>
       <View style={styles.btncontainter}>
@@ -312,6 +319,7 @@ const styles = StyleSheet.create({
     left: "25%",
     fontWeight: "bold",
     fontSize: 20,
+    color:'#0260D1'
   },
   Txt687: {
     fontSize: 48,
