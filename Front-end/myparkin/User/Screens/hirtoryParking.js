@@ -33,6 +33,7 @@ export default function HistoryParking({ navigation }) {
           status,
           arrivalTime,
           exitTime,
+          spotId,
         } = doc.data();
         bookings.push({
           id: doc.id,
@@ -48,6 +49,7 @@ export default function HistoryParking({ navigation }) {
           status,
           arrivalTime,
           exitTime,
+          spotId,
         });
         setBookings(
           bookings.filter(
