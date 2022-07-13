@@ -165,7 +165,6 @@ const styles = StyleSheet.create({
   },
   Txt3107: {
     fontSize: 29,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     lineHeight: 34,
     color: "#104685",
@@ -224,7 +223,6 @@ const styles = StyleSheet.create({
   },
   Txt528: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 26,
@@ -234,7 +232,6 @@ const styles = StyleSheet.create({
 
     left: "40%",
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
   },
@@ -246,10 +243,17 @@ const styles = StyleSheet.create({
   },
   Txt766: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 100,
+  },
+
+  Txt635: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "rgba(0,0,0,1)",
+    textAlign: "right",
+    justifyContent: "flex-end",
   },
 
   Group241: {
@@ -259,7 +263,6 @@ const styles = StyleSheet.create({
   },
   Txt936: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 54,
@@ -281,10 +284,16 @@ const styles = StyleSheet.create({
   },
   Txt830: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 115,
+  },
+  Txt635: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "rgba(0,0,0,1)",
+    textAlign: "right",
+    justifyContent: "flex-end",
   },
 
   Group241: {
@@ -294,10 +303,16 @@ const styles = StyleSheet.create({
   },
   Txt505: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 180,
+  },
+  Txt635: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "rgba(0,0,0,1)",
+    textAlign: "right",
+    justifyContent: "flex-end",
   },
 
   Group241: {
@@ -307,10 +322,16 @@ const styles = StyleSheet.create({
   },
   Txt398: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 197,
+  },
+  Txt635: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "rgba(0,0,0,1)",
+    textAlign: "right",
+    justifyContent: "flex-end",
   },
 
   Group247: {
@@ -319,12 +340,17 @@ const styles = StyleSheet.create({
   },
   Txt766: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 100,
   },
-
+  Txt635: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "rgba(0,0,0,1)",
+    textAlign: "right",
+    justifyContent: "flex-end",
+  },
   Frame224: {
     position: "absolute",
     display: "flex",
@@ -340,10 +366,15 @@ const styles = StyleSheet.create({
   },
   Txt351: {
     fontSize: 16,
+
     bottom: 0,
+
+
     fontWeight: "700",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",
     justifyContent: "center",
+
+    top: "-1%",
   },
 });

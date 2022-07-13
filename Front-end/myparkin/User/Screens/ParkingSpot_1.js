@@ -373,7 +373,6 @@ const styles = StyleSheet.create({
   },
   Txt3107: {
     fontSize: 29,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     lineHeight: 34,
     color: "rgba(0,0,0,1)",
@@ -405,7 +404,6 @@ const styles = StyleSheet.create({
   },
   Txt122: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(255, 255, 255, 1)",
   },
@@ -440,7 +438,6 @@ const styles = StyleSheet.create({
   },
   Txt3710: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(9, 66, 139, 1)",
   },
@@ -475,7 +472,6 @@ const styles = StyleSheet.create({
   },
   Txt351: {
     fontSize: 16,
-    // fontFamily: "Montserrat, sans-serif",
     fontWeight: "700",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",
@@ -523,5 +519,25 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
+  },
+  Group220: {
+    paddingTop: 5,
+    paddingBottom: 4,
+    paddingLeft: 18,
+    paddingRight: 21,
+    marginRight: 19,
+    borderRadius: 50,
+    backgroundColor: "rgba(9, 66, 139, 1)",
+    borderWidth: 2,
+    borderStyle: "solid",
+    borderColor: "rgba(9, 66, 139, 1)",
+    width: 111,
+    height: 37,
+  },
+  Txt122: {
+    fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
+    fontWeight: "600",
+    color: "rgba(255, 255, 255, 1)",
   },
 });
