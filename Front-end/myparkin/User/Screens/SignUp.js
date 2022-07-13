@@ -191,7 +191,6 @@ const styles = StyleSheet.create({
   },
   Txt687: {
     fontSize: 48,
-    //  fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     lineHeight: 56,
     color: "rgba(3, 52, 83, 1)",
@@ -235,7 +234,6 @@ const styles = StyleSheet.create({
   },
   Txt448: {
     fontSize: 15,
-    //  fontFamily: "Montserrat, sans-serif",
     fontWeight: "500",
     color: "rgba(169,169,169,1)",
     //  textAlign: "center",
@@ -270,7 +268,6 @@ const styles = StyleSheet.create({
   },
   Txt1077: {
     fontSize: 15,
-    //  fontFamily: "Montserrat, sans-serif",
     fontWeight: "500",
     color: "rgba(169,169,169,1)",
     //  textAlign: "center",
@@ -329,7 +326,6 @@ const styles = StyleSheet.create({
   },
   Txt744: {
     fontSize: 16,
-    //  fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(3, 52, 83, 1)",
     textAlign: "center",
@@ -356,7 +352,6 @@ const styles = StyleSheet.create({
   },
   Txt917: {
     fontSize: 16,
-    //  fontFamily: "Montserrat, sans-serif",
     fontWeight: "700",
     color: "white",
     textAlign: "center",
@@ -365,7 +360,6 @@ const styles = StyleSheet.create({
 
   Txt744: {
     fontSize: 16,
-    //  fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(3, 52, 83, 1)",
     textAlign: "center",
@@ -378,7 +372,6 @@ const styles = StyleSheet.create({
   },
   Txt881: {
     fontSize: 16,
-    //  fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(169,169,169,1)",
     textAlign: "center",
@@ -396,7 +389,6 @@ const styles = StyleSheet.create({
   },
   Txt697: {
     fontSize: 16,
-    //  fontFamily: "Montserrat, sans-serif",
     fontWeight: "400",
     color: "rgba(156,148,148,1)",
     textAlign: "center",
@@ -407,7 +399,6 @@ const styles = StyleSheet.create({
   },
   Txt644: {
     fontSize: 16,
-    //  fontFamily: "Montserrat, sans-serif",
     fontWeight: "700",
     color: "rgba(5,97,174,1)",
     textAlign: "center",

@@ -24,10 +24,14 @@ const FillCarInformation = ({ navigation }) => {
   const [datee, setDatee] = useState("Date");
   const [globalState, setglobalState] = useState(data);
   const [exitTime, setexitTime] = useState("Exit time");
-  const [arrivalTime, setarrivalTime] = useState("Arrival Time");
+
+  const [arrivalTime, setarrivalTime] = useState("arrival Time");
+  const [start, setstart] = useState(0);
+  const [end, setend] = useState(0);
+
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
-  const [carName, setcarName] = useState("");
+
   const [Hours, setHours] = useState(0);
 
   useEffect(() => {
@@ -35,8 +39,10 @@ const FillCarInformation = ({ navigation }) => {
       ...prevstate,
       Date: datee,
       Duration: Hours,
+      arrivalTime: start,
+      exitTime: end,
     }));
-  }, [Hours, datee]);
+  }, [Hours, datee, start, end]);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
@@ -77,7 +83,6 @@ const FillCarInformation = ({ navigation }) => {
 
   const onChangeT = (event, selectedDate) => {
     const currentDate = selectedDate;
-
     setarrivalTime(String(currentDate).slice(16, 21));
   };
 
@@ -96,6 +101,9 @@ const FillCarInformation = ({ navigation }) => {
     exit = Number(exit.slice(0, 2));
     let arrival = Number(arrivalTime.slice(0, 2));
     let duration = exit - arrival;
+    setstart(arrival);
+    setend(exit);
+
     setHours(duration);
   };
   const showModeExit = (currentMode) => {
@@ -299,7 +307,19 @@ const styles = StyleSheet.create({
     left: "25%",
     fontWeight: "bold",
     fontSize: 20,
+  },
+  Txt687: {
+    fontSize: 48,
+    fontWeight: "600",
+    lineHeight: 56,
+    color: "rgba(3, 52, 83, 1)",
+    width: 391,
+    marginBottom: 36,
+    paddingLeft: "35%",
+    marginTop: "-10%",
+    //  paddingTop:"10%"
     color:'#0260D1'
+
   },
   arrivaltime: {
     position: "absolute",

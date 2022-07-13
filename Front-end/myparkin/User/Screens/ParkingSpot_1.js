@@ -331,7 +331,6 @@ const styles = StyleSheet.create({
   },
   Txt3107: {
     fontSize: 29,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     lineHeight: 34,
     color: "rgba(0,0,0,1)",
@@ -363,7 +362,6 @@ const styles = StyleSheet.create({
   },
   Txt122: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(255, 255, 255, 1)",
   },
@@ -398,7 +396,6 @@ const styles = StyleSheet.create({
   },
   Txt3710: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(9, 66, 139, 1)",
   },
@@ -433,7 +430,6 @@ const styles = StyleSheet.create({
   },
   Txt351: {
     fontSize: 16,
-    // fontFamily: "Montserrat, sans-serif",
     fontWeight: "700",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",

@@ -208,7 +208,12 @@ const BookingReview = ({ navigation }) => {
       </Modal>
 
       <TouchableRipple style={styles.Frame224} onPress={() => setShow(!show)}>
-        <Text style={styles.Txt351}>Continue</Text>
+        <Text
+          style={styles.Txt351}
+          onPress={() => navigation.navigate("ticket")}
+        >
+          Continue
+        </Text>
       </TouchableRipple>
     </View>
   );
@@ -365,12 +370,14 @@ const styles = StyleSheet.create({
     color: "rgba(161,161,161,1)",
     marginRight: 115,
   },
-  Txt956: {
+  Txt483: {
     fontSize: 16,
-    fontWeight: "500",
-    color: "rgba(161,161,161,1)",
-    marginRight: 180,
+    fontWeight: "600",
+    color: "rgba(0,0,0,1)",
+    textAlign: "right",
+    justifyContent: "flex-end",
   },
+
   Group991: {
     display: "flex",
     flexDirection: "row",
@@ -429,6 +436,10 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   Txt829: {
+    // width: '100%',
+    // height:'100%',
+    fontSize: 20,
+    // marginRight:-4,
     fontSize: 15,
     transform: [{ translateX: -18 }],
     fontWeight: "800",
