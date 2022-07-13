@@ -25,8 +25,6 @@ const FillCarInformation = ({ navigation }) => {
   const [exitTime, setexitTime] = useState("Exit time");
 
   const [arrivalTime, setarrivalTime] = useState("arrival Time");
-  const [start, setstart] = useState(0);
-  const [end, setend] = useState(0);
 
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);

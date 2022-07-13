@@ -31,7 +31,7 @@ export default function SignUp() {
         obj.password
       )
         .then((userCredential) => {
-
+          navigation.navigate('ProfileFill')
           // Signed in
           alert("signUp ok");
 
