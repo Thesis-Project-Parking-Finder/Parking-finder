@@ -35,7 +35,7 @@ const StackNavigation = () => {
 
       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
 
-      <Stack.Screen name="ProfileFill" component={ProfileFill} />
+      {/* <Stack.Screen name="ProfileFill" component={ProfileFill} /> */}
 
       <Stack.Screen
         name="SuccessfullyCreated"

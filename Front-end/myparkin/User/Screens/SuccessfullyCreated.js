@@ -18,7 +18,7 @@ export default function SuccessfullyCreated() {
           <Text style={styles.Txt482}>Congratulations!</Text>
           <Text style={styles.Txt939}>Your account is created</Text>
         </View>
-        <TouchableRipple style={styles.Group237} onPress={() => navigation.navigate("Login")}>
+        <TouchableRipple style={styles.Group237} onPress={() => navigation.navigate("Map")}>
           <Text style={styles.Txt812}>Go to Homepage</Text>
         </TouchableRipple>
       </View>

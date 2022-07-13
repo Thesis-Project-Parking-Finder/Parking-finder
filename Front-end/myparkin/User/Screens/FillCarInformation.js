@@ -25,8 +25,6 @@ const FillCarInformation = ({ navigation }) => {
   const [exitTime, setexitTime] = useState("Exit time");
 
   const [arrivalTime, setarrivalTime] = useState("arrival Time");
-  const [start, setstart] = useState(0);
-  const [end, setend] = useState(0);
 
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
@@ -153,7 +151,7 @@ const FillCarInformation = ({ navigation }) => {
       <View style={styles.arrivalbtn}>
       <TouchableRipple
                   style={styles.Group220}
-                  onPress={showDatepicker}>
+                  onPress={showTimepicker}>
                   <Text style={styles.Txt122}>Starting</Text>
                 </TouchableRipple>
       </View>
@@ -194,13 +192,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F5FCFF",
+    marginTop:'-4%'
   },
   Frame218: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    top:'-45%'
+    top:'-40%'
   },
   Frame: {
     width: 36,
@@ -348,7 +347,7 @@ const styles = StyleSheet.create({
     height: "20%",
     width: "60%",
     left:'20%',
-    top:'-9%'
+    top:'-8%'
   },
   Frame178: {
     display: "flex",
