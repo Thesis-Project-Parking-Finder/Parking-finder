@@ -435,20 +435,6 @@ const styles = StyleSheet.create({
     width: 17,
     height: 17,
   },
-
-  Frame178: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    // alignItems: "flex-end",
-    paddingTop: 15,
-    paddingBottom: 15,
-    // paddingLeft: -100,
-    // paddingRight: 100,
-    borderRadius: 50,
-    backgroundColor: "rgba(9, 66, 139, 1)",
-    top:'-2%',
-  },
   Txt191: {
     fontSize: 16,
     fontWeight: "700",

@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
   },
   Txt897: {
     fontSize: 36,
-    // fontFamily: "IBM Plex Mono, monospace",
     fontWeight: "400",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",
