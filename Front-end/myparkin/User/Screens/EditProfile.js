@@ -41,15 +41,18 @@ export default function EditProfile({ route }) {
     updateProfile(auth.currentUser, {
       displayName: userName,
     })
-      .then(() => {})
+
+      .then(() => {
+        console.log("success");
+      })
       .catch((error) => {
-        alert("error profile");
+        console.log("error");
+
       });
-    console.log(email, "before");
 
     updateEmail(auth.currentUser, email)
       .then(() => {
-        console.log(email, "after");
+        console.log("Updated successfully!");
       })
       .catch((error) => {
         console.log(error);

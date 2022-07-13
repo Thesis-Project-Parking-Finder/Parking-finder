@@ -16,6 +16,7 @@ import MyParkings from "./Screens/MyParkings.js";
 import BookingReview from "./Screens/BookingReview.js";
 import EditProfile from "./Screens/EditProfile.js";
 import SelectVec from "./Screens/SelectVec";
+
 import test from "./Screens/test.js";
 import FillCarInformation from "./Screens/FillCarInformation.js";
 import ParkingSpot_1 from "./Screens/ParkingSpot_1.js";
@@ -25,6 +26,7 @@ import ParkingTimer from "./Screens/ParkingTimer";
 import SuccessfullyCreated from "./Screens/SuccessfullyCreated.js";
 import ExtendParkingTimer from "./Screens/ExtendParkingTimer.js";
 import Ticket from "./Screens/ticket.js";
+
 
 const Stack = createNativeStackNavigator();
 
