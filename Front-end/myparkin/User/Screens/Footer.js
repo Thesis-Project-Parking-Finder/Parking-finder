@@ -3,6 +3,7 @@ import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase.config";
+import HistoryParking from "./hirtoryParking";
 export const Footer = () => {
   const navigation = useNavigation();
   const [userId, setUserId] = useState("");
@@ -33,7 +34,7 @@ export const Footer = () => {
             <View style={styles.Line7} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate("MyParkings")}
+            onPress={() => navigation.navigate("HistoryParking")}
             style={styles.Group1085}
           >
             <Image

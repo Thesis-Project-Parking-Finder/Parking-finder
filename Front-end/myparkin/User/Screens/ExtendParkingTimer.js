@@ -162,7 +162,6 @@ const styles = StyleSheet.create({
   },
   Txt3107: {
     fontSize: 29,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     lineHeight: 34,
     color: "#104685",
@@ -170,7 +169,6 @@ const styles = StyleSheet.create({
   },
   Txt3108: {
     fontSize: 20,
-    // fontFamily: "Jost, sans-serif",
     top: "-5%",
     fontWeight: "600",
     lineHeight: 34,
@@ -185,7 +183,6 @@ const styles = StyleSheet.create({
   },
   Txt3109: {
     fontSize: 20,
-    // fontFamily: "Jost, sans-serif",
     // top: "0%",
     fontWeight: "600",
     // lineHeight: 34,
@@ -355,7 +352,6 @@ const styles = StyleSheet.create({
   },
   Txt416: {
     fontSize: 40,
-    fontFamily: "Inter, sans-serif",
     fontWeight: "400",
     color: "rgba(0,0,0,1)",
     width: '80%',
@@ -374,7 +370,6 @@ const styles = StyleSheet.create({
   },
   Txt829: {
     fontSize: 46,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "800",
     color: "rgba(53,53,53,1)",
   },
@@ -415,7 +410,6 @@ const styles = StyleSheet.create({
   },
   Txt884: {
     fontSize: 4,
-    fontFamily: "Inter, sans-serif",
     fontWeight: "400",
     color: "rgba(0,0,0,1)",
     width: 13,
@@ -428,7 +422,6 @@ const styles = StyleSheet.create({
   },
   Txt829: {
     fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(53,53,53,1)",
   },

@@ -21,7 +21,7 @@ export default function Profile({ route }) {
   useEffect(() => {
     const dbRef = ref(getDatabase());
     get(child(dbRef, `users/${route.params.userId}`)).then((snapshot) => {
-      console.log(snapshot);
+      // console.log(snapshot);
       const user = snapshot.val();
       setUserObject(user);
     });
@@ -40,9 +40,8 @@ export default function Profile({ route }) {
   };
   return (
     <View style={styles.Iphone13ProMax54}>
-      {/* {console.log(userObject, "aeaeaeae")} */}
+      {console.log(userObject, "aeaeaeae")}
       <View style={styles.Group282}>
-        {/* {console.log(route)} */}
         <ScrollView>
           <View style={styles.Group448}>
             <Text style={styles.Txt853}>{route.params.email}</Text>
@@ -143,8 +142,7 @@ export default function Profile({ route }) {
                 />
               </View>
             </View>
-            {/* <Text style={styles.Txt458}>{userObject.fullName}</Text> */}
-
+            <Text style={styles.Txt458}>{userObject.fullName}</Text>
             <BouncyCheckbox
               style={styles.Vector5}
               fillColor="rgba(16, 181, 241, 0.8)"
