@@ -11,17 +11,28 @@ import Icon from "@expo/vector-icons/build/FontAwesome5";
 import { useDispatch } from "react-redux";
 import { ParkingNameAndAdress } from "../../redux/Features/BookPlace";
 import { auth } from "../../../firebase.config";
+import { getDatabase, ref, child, get } from "firebase/database";
 
 export default function ParkingDetail({ route, navigation }) {
   const [parkingName, setParkingName] = useState(route.params.parkingname);
   const [adress, setadress] = useState(route.params.adress);
   const [Price, setPrice] = useState(route.params.price);
   const [uid, setuid] = useState(auth.currentUser.uid);
+  const [userObj, setUserObject] = useState({});
   const dispatch = useDispatch();
+  useEffect(() => {
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `users/${uid}`)).then((snapshot) => {
+      console.log(snapshot);
+      const user = snapshot.val();
+      setUserObject(user);
+    });
+  }, []);
 
   let updateStateAndNavigate = () => {
     dispatch(
       ParkingNameAndAdress({
+        User_fullName: userObj.fullName,
         User_id: uid,
         ParkiCoins: 3000,
         CarType: "",
@@ -31,6 +42,8 @@ export default function ParkingDetail({ route, navigation }) {
         ParkingSpot: "",
         Date: "",
         Duration: "",
+        arrivalTime: 0,
+        exitTime: 0,
       })
     );
     navigation.navigate("SelectVec");
@@ -39,6 +52,7 @@ export default function ParkingDetail({ route, navigation }) {
   return (
     <View style={styles.container}>
       {console.log(uid)}
+      {console.log(userObj)}
       <View style={styles.innercontainer}>
         <Text style={styles.Txt342}>Parking Details</Text>
         <View style={styles.imagecontainer}>
@@ -182,7 +196,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     top: "40%",
 
-    // fontFamily: "Montserrat, sans-serif",
     fontWeight: "700",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",
@@ -196,7 +209,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     bottom: 60,
     left: 120,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     textAlign: "center",
@@ -209,7 +221,6 @@ const styles = StyleSheet.create({
     bottom: 80,
     left: 140,
     fontSize: 24,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(188,0,99,1)",
     textAlign: "center",
@@ -231,7 +242,6 @@ const styles = StyleSheet.create({
     top: 0,
     left: 40,
     fontSize: 18,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(0,0,0,1)",
     width: "80%",
@@ -242,7 +252,6 @@ const styles = StyleSheet.create({
     top: 10,
     left: 40,
     fontSize: 15,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
 
     color: "rgba(0,0,0,1)",
@@ -263,7 +272,6 @@ const styles = StyleSheet.create({
     top: 0,
     left: 40,
     fontSize: 15,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
 
     color: "rgba(0,0,0,1)",
@@ -281,7 +289,6 @@ const styles = StyleSheet.create({
   },
   Txt718: {
     fontSize: 20,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     width: 105,
@@ -334,7 +341,6 @@ const styles = StyleSheet.create({
   },
   Txt728: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(188,0,99,1)",
     width: 37,
@@ -367,7 +373,6 @@ const styles = StyleSheet.create({
   },
   Txt2510: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(188,0,99,1)",
     width: 38,
@@ -399,7 +404,6 @@ const styles = StyleSheet.create({
   },
   Txt560: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(188,0,99,1)",
     width: "100%",
@@ -430,7 +434,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     fontSize: 29,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     lineHeight: 34,
     color: "rgba(0,0,0,1)",
@@ -473,7 +476,6 @@ const styles = StyleSheet.create({
     top: 120,
     left: 68,
     fontSize: 15,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(188,0,99,1)",
     width: 48,

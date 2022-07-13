@@ -1,92 +1,52 @@
-
-import React from "react";
+import { child, get, getDatabase, ref } from "firebase/database";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Image, Text, View, ImageBackground } from "react-native";
+import { useSelector } from "react-redux";
+import { auth } from "../../firebase.config";
 export default function Frame2551() {
+  let data = useSelector((state) => state.bookplace.value);
+  const [globalState, setglobalState] = useState(data);
+
   return (
-    <View style={styles.Frame2551}>
-      <View style={styles.Iphone13ProMax38}>
-        <View style={styles.Frame268}>
-          <View style={styles.Frame255}>
-            <Image
-              style={styles.Frame}
-              source={{
-                uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/i1d1lcejo0o-75%3A44?alt=media&token=a2438126-0d2e-415c-ae4d-98334607b2de",
-              }}
-            />
-            <Text style={styles.Txt961}>Parking Ticket</Text>
-            <View style={styles.Group87}>
-              <View style={styles.Group18}>
-                <View style={styles.Ellipse22} />
-                <View style={styles.Ellipse24} />
-              </View>
+    <View style={styles.Frame268}>
+      {console.log(globalState)}
+      <View style={styles.Frame255}>
+        <Text style={styles.Txt961}>Parking Ticket</Text>
+      </View>
+      <View style={styles.Group95}>
+        <View style={styles.Frame2661}>
+          <View style={styles.Frame256}>
+            <View style={styles.Group255}>
+              <Image
+                style={styles.Group}
+                source={{
+                  uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/i1d1lcejo0o-75%3A108?alt=media&token=364549f2-6e4d-4d70-a18c-16cd8778d5df",
+                }}
+              />
             </View>
           </View>
-          <View style={styles.Group95}>
-            <View style={styles.Frame2661}>
-              <View style={styles.Frame256}>
-                <View style={styles.Group255}>
-                  <Text style={styles.Txt872}>
-                    Scan this on the scanner machine when you are in the parking
-                    lot
-                  </Text>
-                  <Image
-                    style={styles.Group}
-                    source={{
-                      uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/i1d1lcejo0o-75%3A108?alt=media&token=364549f2-6e4d-4d70-a18c-16cd8778d5df",
-                    }}
-                  />
-                </View>
-              </View>
-              <View style={styles.Frame266}>
-                <View style={styles.Group258}>
-                  <View style={styles.Group339}>
-                    <View style={styles.Group257}>
-                      <Text style={styles.Txt327}>Name</Text>
-                      <Text style={styles.Txt876}>Andrew Ainsley</Text>
-                    </View>
-                    <View style={styles.Group258}>
-                      <Text style={styles.Txt327}>Vehicle</Text>
-                      <Text style={styles.Txt876}>Toyota (AFD 6397)</Text>
-                    </View>
-                  </View>
-                  <View style={styles.Group454}>
-                    <View style={styles.Group260}>
-                      <Text style={styles.Txt876}>San Manolia</Text>
-                      <Text style={styles.Txt327}>Parking Area</Text>
-                    </View>
-                    <View style={styles.Group259}>
-                      <Text style={styles.Txt876}>1st Floor (A05)</Text>
-                      <Text style={styles.Txt327}>Parking Spot</Text>
-                    </View>
-                  </View>
-                  <View style={styles.Group2910}>
-                    <View style={styles.Group261}>
-                      <Text style={styles.Txt876}>4 hours</Text>
-                      <Text style={styles.Txt327}>Duration</Text>
-                    </View>
-                    <View style={styles.Group262}>
-                      <Text style={styles.Txt876}>May 11, 2023</Text>
-                      <Text style={styles.Txt327}>Date</Text>
-                    </View>
-                  </View>
-                  <View style={styles.Group215}>
-                    <View style={styles.Group264}>
-                      <Text style={styles.Txt876}>09 Am - 13 PM</Text>
-                      <Text style={styles.Txt327}>Hours</Text>
-                    </View>
-                    <View style={styles.Group263}>
-                      <Text style={styles.Txt876}>+92 3244449931</Text>
-                      <Text style={styles.Txt327}>Phone</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
+          <View style={styles.Frame266}>
+            <View style={styles.key}>
+              <Text style={styles.Txt327}>Name</Text>
+              <Text style={styles.Txt327}>Vehicle type</Text>
+              <Text style={styles.Txt327}>Date</Text>
+              <Text style={styles.Txt327}>Parking Area</Text>
+              <Text style={styles.Txt327}>Parking Spot</Text>
+              <Text style={styles.Txt327}>Duration</Text>
             </View>
-          </View>
-          <View style={styles.Group267}>
-            <Text style={styles.Txt667}>Navigate to Parking Lot</Text>
+            <View style={styles.value}>
+              <Text style={styles.Txt876}>{globalState.User_fullName}</Text>
+              <Text style={styles.Txt876}>{globalState.CarType}</Text>
+              <Text style={styles.Txt876}>{globalState.Date}</Text>
+              <Text style={styles.Txt876}>{globalState.ParkingName}</Text>
+              <Text style={styles.Txt876}>{globalState.ParkingSpot}</Text>
+              <Text style={styles.Txt876}>{globalState.Duration} H </Text>
+            </View>
           </View>
         </View>
+      </View>
+      <View style={styles.Group267}>
+        <Text style={styles.Txt667}>Navigate to Parking Lot</Text>
       </View>
     </View>
   );
@@ -100,6 +60,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     width: 428,
     height: 926,
+    backgroundColor: "blue",
   },
   Iphone13ProMax38: {
     display: "flex",
@@ -111,20 +72,23 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 35,
     borderRadius: 50,
-    backgroundColor: "rgba(255, 255, 255, 1)",
+    backgroundColor: "orange",
   },
   Frame268: {
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    justifyContent: "center",
+    alignContent: "center",
+    position: "absolute",
+    top: "5%",
+    width: "100%",
   },
   Frame255: {
+    left: "5%",
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    marginBottom: 53,
+    // backgroundColor: "blue",
   },
   Frame: {
     width: 26,
@@ -133,7 +97,7 @@ const styles = StyleSheet.create({
   },
   Txt961: {
     fontSize: 29,
-    fontFamily: "Jost, sans-serif",
+    // lef: "30%",
     fontWeight: "600",
     lineHeight: 34,
     color: "rgba(0,0,0,1)",
@@ -148,7 +112,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     borderWidth: 2.5,
     borderStyle: "solid",
-    borderColor: "rgba(0,0,0,1)",
+    borderColor: "orange",
     width: 28,
     height: 28,
   },
@@ -186,6 +150,7 @@ const styles = StyleSheet.create({
     marginBottom: 53,
     width: 371,
     height: 610.08,
+    // backgroundColor: "blue",
   },
   Frame2661: {
     display: "flex",
@@ -194,6 +159,9 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   Frame256: {
+    // position: "absolute",
+    top: "5%",
+
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
@@ -207,6 +175,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderStyle: "solid",
     borderColor: "rgba(202,202,202,1)",
+    left: "3.5%",
   },
   Group255: {
     display: "flex",
@@ -215,63 +184,41 @@ const styles = StyleSheet.create({
     paddingBottom: 0.08,
     paddingLeft: 0,
     paddingRight: 0,
+    // backgroundColor: "orange",
   },
-  Txt872: {
-    fontSize: 16,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "500",
-    lineHeight: 19,
-    color: "rgba(161,161,161,1)",
-    textAlign: "center",
-    justifyContent: "center",
-    width: 236,
-    marginBottom: 16,
-  },
+
   Group: {
     width: 219.15,
     height: 219.08,
   },
 
   Frame266: {
+    left: "4%",
+    top: "8%",
+    width: 350,
+    height: "50%",
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    // flexWrap: "wrap",
     paddingTop: 21,
     paddingBottom: 21,
     paddingLeft: 25,
     paddingRight: 25,
     borderRadius: 23,
-    backgroundColor: "rgba(255, 255, 255, 1)",
+    // backgroundColor: "blue",
     borderWidth: 2,
     borderStyle: "solid",
     borderColor: "rgba(202,202,202,1)",
   },
-  Group258: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  Group339: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 28,
-  },
-  Group257: {
-    display: "flex",
-    flexDirection: "column",
-    marginRight: 78,
-  },
-  Txt327: {
-    fontSize: 16,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "500",
-    color: "rgba(161,161,161,1)",
-  },
+
   Txt876: {
-    fontSize: 15,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "600",
+    fontSize: 18,
+    // width:150,
+    fontWeight: "500",
     color: "rgba(0,0,0,1)",
+    // backgroundColor:"blue"
   },
 
   Group258: {
@@ -279,150 +226,27 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   Txt327: {
-    fontSize: 16,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "500",
-    color: "rgba(161,161,161,1)",
-  },
-  Txt876: {
-    fontSize: 15,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-  },
+    fontSize: 18,
 
-  Group454: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 24,
-  },
-  Group260: {
-    marginRight: 90,
-    width: 95,
-    height: 45,
-  },
-  Txt876: {
-    fontSize: 15,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-  },
-  Txt327: {
-    fontSize: 16,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "500",
-    color: "rgba(161,161,161,1)",
-  },
-
-  Group259: {
-    width: 107,
-    height: 45,
-  },
-  Txt876: {
-    fontSize: 15,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-  },
-  Txt327: {
-    fontSize: 16,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "500",
-    color: "rgba(161,161,161,1)",
-  },
-
-  Group2910: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 23,
-  },
-  Group261: {
-    marginRight: 121,
-    width: 64,
-    height: 43,
-  },
-  Txt876: {
-    fontSize: 15,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-  },
-  Txt327: {
-    fontSize: 16,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "500",
-    color: "rgba(161,161,161,1)",
-  },
-
-  Group262: {
-    width: 100,
-    height: 43,
-  },
-  Txt876: {
-    fontSize: 15,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-  },
-  Txt327: {
-    fontSize: 16,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "500",
-    color: "rgba(161,161,161,1)",
-  },
-
-  Group215: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  Group264: {
-    marginRight: 83,
-    width: 102,
-    height: 43,
-  },
-  Txt876: {
-    fontSize: 15,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-  },
-  Txt327: {
-    fontSize: 16,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "500",
-    color: "rgba(161,161,161,1)",
-  },
-
-  Group263: {
-    width: 132,
-    height: 43,
-  },
-  Txt876: {
-    fontSize: 15,
-    fontFamily: "Jost, sans-serif",
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-  },
-  Txt327: {
-    fontSize: 16,
-    fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
   },
 
   Group267: {
+    position: "absolute",
+    bottom: 0,
+    left: "8%",
     paddingTop: 16,
     paddingBottom: 14,
     paddingLeft: 69,
     paddingRight: 66,
     borderRadius: 50,
-    backgroundColor: "rgba(188,0,99,1)",
+    backgroundColor: "rgba(58, 107, 204, 1)",
     width: 337,
     height: 53,
   },
   Txt667: {
     fontSize: 16,
-    fontFamily: "Montserrat, sans-serif",
     fontWeight: "700",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",

@@ -21,7 +21,7 @@ export default function Profile({ route }) {
   useEffect(() => {
     const dbRef = ref(getDatabase());
     get(child(dbRef, `users/${route.params.userId}`)).then((snapshot) => {
-      console.log(snapshot);
+      // console.log(snapshot);
       const user = snapshot.val();
       setUserObject(user);
     });
@@ -42,7 +42,6 @@ export default function Profile({ route }) {
     <View style={styles.Iphone13ProMax54}>
       {/* {console.log(userObject, "aeaeaeae")} */}
       <View style={styles.Group282}>
-        {/* {console.log(route)} */}
         <ScrollView>
           <View style={styles.Group448}>
             <Text style={styles.Txt853}>{route.params.email}</Text>

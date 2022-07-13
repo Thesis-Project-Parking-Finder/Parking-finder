@@ -21,9 +21,11 @@ const FillCarInformation = ({ navigation }) => {
   const [globalState, setglobalState] = useState(data);
   const [exitTime, setexitTime] = useState("Exit time");
   const [arrivalTime, setarrivalTime] = useState("arrival Time");
+  const [start, setstart] = useState(0);
+  const [end, setend] = useState(0);
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
-  const [carName, setcarName] = useState("");
+
   const [Hours, setHours] = useState(0);
 
   useEffect(() => {
@@ -31,8 +33,10 @@ const FillCarInformation = ({ navigation }) => {
       ...prevstate,
       Date: datee,
       Duration: Hours,
+      arrivalTime: start,
+      exitTime: end,
     }));
-  }, [Hours, datee]);
+  }, [Hours, datee, start, end]);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
@@ -73,7 +77,6 @@ const FillCarInformation = ({ navigation }) => {
 
   const onChangeT = (event, selectedDate) => {
     const currentDate = selectedDate;
-
     setarrivalTime(String(currentDate).slice(16, 21));
   };
 
@@ -92,6 +95,9 @@ const FillCarInformation = ({ navigation }) => {
     exit = Number(exit.slice(0, 2));
     let arrival = Number(arrivalTime.slice(0, 2));
     let duration = exit - arrival;
+    setstart(arrival);
+    setend(exit);
+
     setHours(duration);
   };
   const showModeExit = (currentMode) => {
@@ -177,7 +183,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 40,
     // height: "50%",
-    //  fontFamily: "Montserrat, sans-serif",
     fontWeight: "700",
     color: "white",
     // backgroundColor: "red",
@@ -264,7 +269,6 @@ const styles = StyleSheet.create({
   },
   Txt687: {
     fontSize: 48,
-    //  fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     lineHeight: 56,
     color: "rgba(3, 52, 83, 1)",

@@ -76,7 +76,10 @@ export default function ParkingTimer() {
           </View>
         </View>
       </View>
-      <TouchableRipple style={styles.Frame224}  onPress={() => navigation.navigate("ExtendTime")}>
+      <TouchableRipple
+        style={styles.Frame224}
+        onPress={() => navigation.navigate("ExtendTime")}
+      >
         <Text style={styles.Txt351}>Extend Parking Timer</Text>
       </TouchableRipple>
     </SafeAreaView>
@@ -99,7 +102,6 @@ const styles = StyleSheet.create({
   },
   Txt3107: {
     fontSize: 29,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     lineHeight: 34,
     color: "#104685",
@@ -140,14 +142,12 @@ const styles = StyleSheet.create({
   },
   Txt528: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 26,
   },
   Txt7310: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
   },
@@ -159,14 +159,12 @@ const styles = StyleSheet.create({
   },
   Txt766: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 100,
   },
   Txt635: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -180,14 +178,12 @@ const styles = StyleSheet.create({
   },
   Txt936: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 54,
   },
   Txt635: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -201,14 +197,12 @@ const styles = StyleSheet.create({
   },
   Txt830: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 115,
   },
   Txt635: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -222,14 +216,12 @@ const styles = StyleSheet.create({
   },
   Txt505: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 180,
   },
   Txt635: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -243,14 +235,12 @@ const styles = StyleSheet.create({
   },
   Txt398: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 197,
   },
   Txt635: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -263,14 +253,12 @@ const styles = StyleSheet.create({
   },
   Txt766: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 100,
   },
   Txt635: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -294,11 +282,10 @@ const styles = StyleSheet.create({
   },
   Txt351: {
     fontSize: 16,
-    // fontFamily: "Montserrat, sans-serif",
     fontWeight: "700",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",
     justifyContent: "center",
-    top:'-1%'
+    top: "-1%",
   },
 });
