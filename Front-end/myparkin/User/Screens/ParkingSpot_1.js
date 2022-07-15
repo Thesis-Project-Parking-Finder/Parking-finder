@@ -72,11 +72,12 @@ export default function ParkingSpot_1() {
   const boxColored = (e) => {
     spot.map((element, i) => {
       if (element.name === e._dispatchInstances.memoizedProps.children) {
+        console.log(element.spotId, "element.spotId");
         setglobalState((prevstate) => ({
           ...prevstate,
           ParkingSpot: `1st floor (${element.name})`,
           spotId: element.spotId,
-          // collSpot: "firstFloor",
+          collSpot: "firstFloor",
         }));
         element.type = !element.type;
         setShow(element.type);
@@ -93,7 +94,7 @@ export default function ParkingSpot_1() {
 
   return (
     <View style={styles.Frame236}>
-      {/* {console.log(spot, "adadadad")} */}
+      {console.log(spot, "adadadad")}
       <View style={styles.Frame237}>
         <View style={styles.Frame235}>
           <View style={styles.Group236}>

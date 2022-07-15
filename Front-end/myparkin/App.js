@@ -15,7 +15,7 @@ export default function App() {
   const [isLogedIn, setIsLogedIn] = useState(false);
   const [check, setcheck] = useState("");
   onAuthStateChanged(auth, (user) => {
-    if (user != null) {
+    if (user != null && auth.currentUser.emailVerified) {
       const uid = user.email;
       setIsLogedIn(true);
       setcheck(uid);
@@ -27,7 +27,6 @@ export default function App() {
       {isLogedIn ? (
         <>
           <StackNav />
-          {/* <Footer /> */}
         </>
       ) : (
         <StackNavigation />
