@@ -13,7 +13,10 @@ import {
 } from "react-native";
 import Lottie from "lottie-react-native";
 import { auth } from "../../firebase.config";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 
 export default function SignUp() {
   const navigation = useNavigation();
@@ -31,9 +34,9 @@ export default function SignUp() {
         obj.password
       )
         .then((userCredential) => {
-          alert("signUp ok");
+          sendEmailVerification(auth.currentUser);
 
-          navigation.navigate("ProfileFill");
+          navigation.navigate("SuccessfullyCreated");
         })
         .catch((error) => {
           const errorCode = error.code;

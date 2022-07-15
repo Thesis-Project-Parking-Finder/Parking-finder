@@ -27,7 +27,11 @@ export default function ParkingTimer({ route }) {
   function update() {
     const docRef = doc(db, "bookings", route.params.objBook.id);
     updateDoc(docRef, { status: "Completed" });
-    const spotRef = doc(db, "firstFloor", route.params.objBook.spotId);
+    const spotRef = doc(
+      db,
+      route.params.objBook.collSpot,
+      route.params.objBook.spotId
+    );
     updateDoc(spotRef, { type: false });
   }
 

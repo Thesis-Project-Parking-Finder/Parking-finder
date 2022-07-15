@@ -34,6 +34,7 @@ export default function HistoryParking({ navigation }) {
           arrivalTime,
           exitTime,
           spotId,
+          collSpot,
         } = doc.data();
         bookings.push({
           id: doc.id,
@@ -50,6 +51,7 @@ export default function HistoryParking({ navigation }) {
           arrivalTime,
           exitTime,
           spotId,
+          collSpot,
         });
         setBookings(
           bookings.filter(
@@ -62,7 +64,8 @@ export default function HistoryParking({ navigation }) {
   }, [FilterStatus]);
   return (
     <View style={styles.Iphone13ProMax49}>
-      {/* {console.log(currentTimestamp, "datadatadata")} */}
+      {console.log(auth.currentUser.emailVerified, "datadatadata")}
+
       <View style={styles.Group163}>
         <View style={styles.Group865}>
           <Image

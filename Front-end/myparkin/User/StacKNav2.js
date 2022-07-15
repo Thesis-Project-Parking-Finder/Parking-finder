@@ -33,14 +33,10 @@ const StackNav = () => {
     <Provider store={store}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* <Stack.Screen name="test" component={test} /> */}
-        {/* <Stack.Screen name="ParkingSpot_1" component={ParkingSpot_1} /> */}
-        <Stack.Screen name="HestoryParking" component={HistoryParking} />
+        
+        {/* <Stack.Screen name="ProfileFill" component={ProfileFill} /> */}
+      
         <Stack.Screen name="Map" component={Map} />
-        <Stack.Screen name="ProfileFill" component={ProfileFill} />
-        <Stack.Screen
-          name="SuccessfullyCreated"
-          component={SuccessfullyCreated}
-        />
         <Stack.Screen name="MyBookMark" component={MyBookMark} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="SelectVec" component={SelectVec} />
@@ -48,6 +44,7 @@ const StackNav = () => {
           name="FillCarInformation"
           component={FillCarInformation}
         />
+        <Stack.Screen name="HestoryParking" component={HistoryParking} />
         <Stack.Screen name="Parkingspot" component={Parkingspot} />
         <Stack.Screen name="MarkerDetail" component={MarkerDetail} />
         <Stack.Screen name="SearchFilter" component={SearchFilter} />
@@ -61,7 +58,6 @@ const StackNav = () => {
         <Stack.Screen name="ParkingTimer" component={ParkingTimer} />
         <Stack.Screen name="ExtendTime" component={ExtendParkingTimer} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
-        <Stack.Screen name="Login" component={Login} />
       </Stack.Navigator>
     </Provider>
   );
