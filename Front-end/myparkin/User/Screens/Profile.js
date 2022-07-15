@@ -10,37 +10,46 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Footer } from "./Footer";
-import { auth } from "../../firebase.config";
+import { auth, db } from "../../firebase.config";
 import { signOut } from "firebase/auth";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useNavigation } from "@react-navigation/native";
-import { getDatabase, ref, child, get } from "firebase/database";
+import { getDatabase, child, get } from "firebase/database";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+
 export default function Profile({ route }) {
   const data = useSelector((state) => state.bookplace.value);
   const [userObject, setUserObject] = useState({});
   useEffect(() => {
-    const dbRef = ref(getDatabase());
-    get(child(dbRef, `users/${route.params.userId}`)).then((snapshot) => {
-      // console.log(snapshot);
-      const user = snapshot.val();
-      setUserObject(user);
-    });
+    (async () => {
+      const docRef = doc(db, "users", `${auth.currentUser.uid}`);
+      const docSnap = await getDoc(docRef);
+      setUserObject(docSnap.data());
+      console.log("Document data:", docSnap.data());
+    })();
   }, []);
 
   const navigation = useNavigation();
   const logOut = () => {
     signOut(auth)
       .then(() => {
-        alert("out");
         navigation.navigate("Login");
       })
       .catch((err) => {
         alert(err.message);
       });
   };
+  ///////////////////
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+
+  //////////////////////
   return (
     <View style={styles.Iphone13ProMax54}>
-      {console.log(userObject, "aeaeaeae")}
+      {console.log(auth.currentUser, "aeaeaeae")}
       <View style={styles.Group282}>
         <ScrollView>
           <View style={styles.Group448}>
@@ -54,15 +63,10 @@ export default function Profile({ route }) {
                   }}
                 />
                 <Text style={styles.Txt4910}>Profile</Text>
-                {/* <View style={styles.Group96}></View> */}
               </View>
               <TouchableOpacity
-                // onPress={() =>
-                //   navigation.navigate("EditProfile", {
-                //     fullName: userObject.fullName,
-                //   })
-                // }
                 style={styles.Group136}
+                onPress={() => navigation.navigate("EditProfile")}
               >
                 <Image
                   style={styles.Group123}
@@ -79,7 +83,9 @@ export default function Profile({ route }) {
                     uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/zvd78bogyl-79%3A1418?alt=media&token=a2c9e15d-e2b8-4843-928c-cc2ccf600d0c",
                   }}
                 />
-                <Text style={styles.Txt1078}>Payment</Text>
+                <Text style={styles.Txt1078}>
+                  Parki Points: {userObject.currencyPoints}
+                </Text>
               </View>
               <View style={styles.Group136}>
                 <Image

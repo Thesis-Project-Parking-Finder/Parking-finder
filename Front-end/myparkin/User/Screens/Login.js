@@ -16,6 +16,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   TextInput,
+  Alert,
 } from "react-native";
 import Lottie from "lottie-react-native";
 
@@ -28,9 +29,13 @@ export default function Login() {
   const signIn = () => {
     signInWithEmailAndPassword(auth, obj.email, obj.password)
       .then((userCredential) => {
-        console.log(auth);
-        // const user = userCredential.user;
-        navigation.navigate("Map");
+        if (auth.currentUser.emailVerified) {
+          console.log(auth);
+          // const user = userCredential.user;
+          navigation.navigate("ProfileFill");
+        } else {
+          Alert.alert("unverified email");
+        }
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -137,7 +142,12 @@ export default function Login() {
                 />
                 <TouchableOpacity style={styles.Group149} onPress={signIn}>
                   <Text style={styles.Txt697}>Don't have any account?</Text>
-                  <Text style={styles.Txt644}>Sign up</Text>
+                  <Text
+                    onPress={() => navigation.navigate("SignUp")}
+                    style={styles.Txt644}
+                  >
+                    Sign up
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
