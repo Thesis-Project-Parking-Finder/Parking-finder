@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Image, Text, View, TouchableOpacity } from "react-native";
 import Lottie from "lottie-react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
@@ -9,6 +9,8 @@ import { TouchableRipple } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { ParkingNameAndAdress } from "../redux/Features/BookPlace";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase.config";
 export default function ParkingSpot_1() {
   let dispatch = useDispatch();
   let data = useSelector((state) => state.bookplace.value);
@@ -20,6 +22,24 @@ export default function ParkingSpot_1() {
   const [show_Hide, setShowHide] = useState(false);
 
   const [items, setItems] = React.useState(thirdFloor);
+  const [spot3, setSpot3] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const querySnapshot = await getDocs(collection(db, "thirdFloor"));
+      const spot = [];
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.data(), "jdhdhdhdh");
+        const { image, name, type } = doc.data();
+        spot.push({
+          spotId: doc.id,
+          image,
+          name,
+          type,
+        });
+      });
+      setSpot3(spot);
+    })();
+  }, []);
 
   const boxColored = (e) => {
     items.map((element, i) => {
@@ -27,6 +47,8 @@ export default function ParkingSpot_1() {
         setglobalState((prevstate) => ({
           ...prevstate,
           ParkingSpot: `3rd floor (${element.name})`,
+          spotId: element.spotId,
+          collSpot: "thirdFloor",
         }));
         element.type = !element.type;
         setShow(element.type);
@@ -82,7 +104,7 @@ export default function ParkingSpot_1() {
               <View style={{ transform: [{ translateY: 25 }] }}>
                 <FlatGrid
                   itemDimension={130}
-                  data={items}
+                  data={spot3}
                   style={styles.gridView}
                   spacing={15}
                   renderItem={({ item, index }) => {
@@ -198,6 +220,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: 200,
     alignSelf: "center",
+    // transform: [ {translateY:-110}]
     top: 23,
   },
   verticleLine: {
@@ -224,9 +247,13 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 50,
     width: 70,
+    // paddingTop:60
     transform: [{ translateX: -140 }, { translateY: 6 }],
+    // backgroundColor: "rgba(4,134,135,0.08)",
+    // borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
+    // zIndex: -15,
   },
   itemContainer: {
     alignItems: "center",
@@ -235,6 +262,7 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 50,
     width: 70,
+    // paddingTop:60
     transform: [{ translateX: -140 }, { translateY: 10 }],
     backgroundColor: "rgba(4,134,135,0.08)",
     borderWidth: 1,
@@ -266,6 +294,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: "100%",
+    backgroundColor: "#F5FCFF",
   },
 
   Frame235: {
@@ -281,13 +310,14 @@ const styles = StyleSheet.create({
     paddingRight: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "white",
+    backgroundColor: "#F5FCFF",
   },
   Frame2372: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
+    // backgroundColor:'red',
     transform: [{ translateY: 40 }],
   },
   Frame220: {
@@ -296,23 +326,26 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start",
     marginBottom: 16,
+    // backgroundColor:'green',
   },
   Frame218: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
+    top:'4%'
   },
   Frame: {
-    width: 36,
+    width: 38,
     height: 38,
-    marginRight: 19,
+    marginRight: 14,
+    left: '-17%'
   },
   Txt3107: {
     fontSize: 29,
     fontWeight: "600",
     lineHeight: 34,
-    color: "rgba(0,0,0,1)",
+    color: "#104685",
     width: 282,
   },
 
@@ -322,8 +355,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 16,
+    // backgroundColor:'orange',
     marginTop: "4%",
-    marginRight: "-4%",
+    top:'7%',
+    left:'1%'
   },
   Group220: {
     paddingTop: 5,
@@ -332,7 +367,7 @@ const styles = StyleSheet.create({
     paddingRight: 21,
     marginRight: 19,
     borderRadius: 50,
-    backgroundColor: "rgba(9, 66, 139, 1)",
+    backgroundColor: "#106EE0",
     borderWidth: 2,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
@@ -379,14 +414,6 @@ const styles = StyleSheet.create({
     color: "rgba(9, 66, 139, 1)",
   },
 
-  Frame2371: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    marginBottom: 16,
-    marginTop: "4%",
-  },
   Frame237: {
     display: "flex",
     flexDirection: "row",
@@ -395,17 +422,15 @@ const styles = StyleSheet.create({
   },
 
   Frame224: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "flex-end",
+    position: "absolute",
     paddingTop: 15,
     paddingBottom: 15,
     paddingLeft: 128,
     paddingRight: 128,
     borderRadius: 50,
-    backgroundColor: "rgba(9, 66, 139, 1)",
-    top: "-40%",
+    backgroundColor: "#106EE0",
+    bottom: "0.2%",
+    left: "9%",
   },
   Txt351: {
     fontSize: 16,
@@ -423,6 +448,8 @@ const styles = StyleSheet.create({
     height: 50,
     width: 70,
     transform: [{ translateX: 250 }, { translateY: 6 }],
+    // backgroundColor: "rgba(4,134,135,0.08)",
+    // borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
   },
@@ -434,6 +461,7 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 50,
     width: 70,
+    // paddingTop:60
     transform: [{ translateX: -140 }, { translateY: 10 }],
     backgroundColor: "#7CF772",
     borderWidth: 1,
@@ -453,5 +481,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
+  },
+  Txt122: {
+    fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
+    fontWeight: "600",
+    color: "rgba(255, 255, 255, 1)",
   },
 });

@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Image, Text, View, TouchableOpacity } from "react-native";
 import Lottie from "lottie-react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
@@ -9,6 +9,8 @@ import { TouchableRipple } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { ParkingNameAndAdress } from "../redux/Features/BookPlace";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase.config";
 export default function ParkingSpot_1() {
   const navigation = useNavigation();
   let dispatch = useDispatch();
@@ -19,13 +21,34 @@ export default function ParkingSpot_1() {
   const [show_Hide, setShowHide] = useState(false);
 
   const [items, setItems] = React.useState(secondFloor);
+  const [spot2, setSpot2] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const querySnapshot = await getDocs(collection(db, "secondeFloor"));
+      const spot = [];
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.data(), "jdhdhdhdh");
+        const { image, name, type } = doc.data();
+        spot.push({
+          spotId: doc.id,
+          image,
+          name,
+          type,
+        });
+      });
+      setSpot2(spot);
+    })();
+  }, []);
 
   const boxColored = (e) => {
-    items.map((element, i) => {
+    spot2.map((element, i) => {
       if (element.name === e._dispatchInstances.memoizedProps.children) {
+        console.log(element.spotId, "element.spotId");
         setglobalState((prevstate) => ({
           ...prevstate,
           ParkingSpot: `2nd floor (${element.name})`,
+          spotId: element.spotId,
+          collSpot: "secondeFloor",
         }));
         element.type = !element.type;
         setShow(element.type);
@@ -40,6 +63,7 @@ export default function ParkingSpot_1() {
 
   return (
     <View style={styles.Frame236}>
+      {console.log(spot2)}
       <View style={styles.Frame237}>
         <View style={styles.Frame235}>
           <View style={styles.Group236}>
@@ -82,7 +106,7 @@ export default function ParkingSpot_1() {
               <View style={{ transform: [{ translateY: 25 }] }}>
                 <FlatGrid
                   itemDimension={130}
-                  data={items}
+                  data={spot2}
                   style={styles.gridView}
                   spacing={15}
                   renderItem={({ item, index }) => {
@@ -93,7 +117,7 @@ export default function ParkingSpot_1() {
                         item.name === "B08" ||
                         item.name === "B12"
                       ) {
-                        console.log(item.name);
+                        // console.log(item.name);
 
                         return (
                           <View
@@ -151,16 +175,6 @@ export default function ParkingSpot_1() {
                                 <Text style={styles.itemName}>{item.name}</Text>
                               )}
                             </TouchableOpacity>
-                            {/* {show && index === box ? 
-         
-          <View>
-            <Image source={{uri: item.image}} style={{width: '100%', height: '100%'}} />
-          </View>
-          
-        :
-        <View></View>  
-      
-      } */}
 
                             <View style={styles.horizontalLine}></View>
                           </View>
@@ -243,6 +257,7 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
+    // zIndex: -15,
   },
   itemContainer: {
     alignItems: "center",
@@ -283,7 +298,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: "100%",
-    // backgroundColor:'yellow'
+    backgroundColor: "#F5FCFF",
   },
 
   Frame235: {
@@ -299,7 +314,7 @@ const styles = StyleSheet.create({
     paddingRight: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "white",
+    backgroundColor: "#F5FCFF",
   },
   Frame2372: {
     display: "flex",
@@ -322,18 +337,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
+    top:'4%'
   },
   Frame: {
     width: 36,
     height: 38,
-    marginRight: 19,
-    // backgroundColor:'pink'
+    marginRight: 14,
+    left: '-17%'
   },
   Txt3107: {
     fontSize: 29,
     fontWeight: "600",
     lineHeight: 34,
-    color: "rgba(0,0,0,1)",
+    color: "#104685",
     width: 282,
   },
 
@@ -345,6 +361,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     // backgroundColor:'orange',
     marginTop: "4%",
+    top:'7%'
   },
   Group220: {
     paddingTop: 5,
@@ -353,7 +370,7 @@ const styles = StyleSheet.create({
     paddingRight: 21,
     marginRight: 19,
     borderRadius: 50,
-    backgroundColor: "rgba(9, 66, 139, 1)",
+    backgroundColor: "#106EE0",
     borderWidth: 2,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
@@ -400,14 +417,6 @@ const styles = StyleSheet.create({
     color: "rgba(9, 66, 139, 1)",
   },
 
-  Frame2371: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    marginBottom: 16,
-    marginTop: "4%",
-  },
   Frame237: {
     display: "flex",
     flexDirection: "row",
@@ -416,17 +425,15 @@ const styles = StyleSheet.create({
   },
 
   Frame224: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "flex-end",
+    position: "absolute",
     paddingTop: 15,
     paddingBottom: 15,
     paddingLeft: 128,
     paddingRight: 128,
     borderRadius: 50,
-    backgroundColor: "rgba(9, 66, 139, 1)",
-    top: "-40%",
+    backgroundColor: "#106EE0",
+    bottom: "0.2%",
+    left: "9%",
   },
   Txt351: {
     fontSize: 16,
@@ -477,5 +484,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
+  },
+  Txt122: {
+    fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
+    fontWeight: "600",
+    color: "rgba(255, 255, 255, 1)",
   },
 });

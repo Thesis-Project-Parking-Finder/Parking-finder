@@ -5,6 +5,7 @@ import {
   Text,
   View,
   Pressable,
+  ImageBackground,
 } from "react-native";
 import {
   TouchableRipple,
@@ -110,7 +111,7 @@ const BookingReview = ({ navigation }) => {
                 style={styles.imageM}
               />
               <View style={styles.Group73}>
-                <Text style={styles.Txt829}>Parking Coin</Text>
+                <Text style={styles.Txt829}>Parky Coin</Text>
               </View>
             </View>
             {/* <View style={styles.Ellipse44} /> */}
@@ -182,35 +183,42 @@ const BookingReview = ({ navigation }) => {
       <Modal animationType="slide" transparent={true} visible={show}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Parki Coin:</Text>
-            <Text style={styles.modalText}>1400</Text>
-            <Text style={styles.modalText}>Parking Fee:</Text>
-            <Text style={styles.modalText}>{totalcoins}</Text>
-            <Text style={styles.modalText}>Total: 1400 - {totalcoins}</Text>
+            <Text style={styles.modalText1}>Parky Coin:</Text>
+            <Text style={styles.modalText2}>1400</Text>
+            <Text style={styles.modalText1}>Parking Fee:</Text>
+            <Text style={styles.modalText3}>{totalcoins}</Text>
+            <Text style={styles.modalText3}>Total: 1400 - {totalcoins}</Text>
             <View style={styles.horizontalL}></View>
-            <Text style={styles.modalText}>= {facture}</Text>
+            <Text style={styles.modalText4}>= {facture}</Text>
 
-            <Pressable
+            {/* <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setShow(!show)}
             >
               <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.button, styles.buttonConfirm]}
-              onPress={postBookings}
-            >
-              <Text style={styles.textStyle}>Confirm</Text>
-            </Pressable>
+            </Pressable> */}
+            <TouchableRipple style={styles.button} onPress={() => {setShow(!show)}}>
+              <Image source={require('./images/X.png')} />
+            </TouchableRipple>
+            <TouchableRipple style={styles.button1} onPress={postBookings}>
+              <Image style={styles.textStyle} source={require('./images/done.png')} />
+            </TouchableRipple>
           </View>
         </View>
       </Modal>
 
-      <TouchableRipple style={styles.Frame224} onPress={() => setShow(!show)}>
+      {/* <TouchableRipple style={styles.Frame224} onPress={() => {checkedCustom2 && setShow(!show)}}>
         <Text
           style={styles.Txt351}
-          onPress={() => navigation.navigate("ticket")}
         >
+          Continue
+        </Text>
+      </TouchableRipple> */}
+      <TouchableRipple style={styles.Frame224} onPress={() => {
+                  checkedCustom2 && setShow(!show)
+                }}>
+        <Text
+          style={styles.Txt351}>
           Continue
         </Text>
       </TouchableRipple>
@@ -245,18 +253,18 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
     paddingRight: 30,
     borderRadius: 23,
-    // backgroundColor: "blue"
+    backgroundColor: "#F5FCFF",
   },
   Frame224: {
     position: "absolute",
     paddingTop: 15,
     paddingBottom: 15,
-    paddingLeft: 128,
-    paddingRight: 128,
+    paddingLeft: 100,
+    paddingRight: 100,
     borderRadius: 50,
-    backgroundColor: "rgba(9, 66, 139, 1)",
+    backgroundColor: "#106EE0",
     bottom: "0.2%",
-    left: "1.7%",
+    left: "14%",
   },
   horizontalLine: {
     borderBottomColor: "black",
@@ -432,6 +440,12 @@ const styles = StyleSheet.create({
     transform: [{ translateX: -30 }],
     top: "-5%",
   },
+  imageP: {
+    width: "10%",
+    height: "10%",
+    transform: [{ translateX: -30 }],
+    top: "-5%",
+  },
   Group73: {
     width: "100%",
     height: "100%",
@@ -493,12 +507,19 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
+    width:'5%',
+    height:'5%',
+    top:'20%',
+    right:'34%'
+    // left:'30'
+
+    
   },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
+  button1: {
+    left:'34%',
+    width:'5%',
+    height:'5%',
+    top:'12%'
   },
   buttonClose: {
     backgroundColor: "#2196F3",
@@ -518,6 +539,30 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+  },
+  modalText1: {
+    marginBottom: 15,
+    textAlign: "center",
+    fontSize:20,
+    color:'#0260D1',
+    fontWeight:'bold'
+  },
+  modalText2: {
+    marginBottom: 15,
+    textAlign: "center",
+    fontWeight:'bold',
+    color: Colors.blue900
+  },
+  modalText3: {
+    marginBottom: 15,
+    textAlign: "center",
+    fontWeight:'bold',
+  },
+  modalText4: {
+    marginBottom: 15,
+    textAlign: "center",
+    fontWeight:'bold',
+    color:Colors.red800
   },
 });
 export default BookingReview;

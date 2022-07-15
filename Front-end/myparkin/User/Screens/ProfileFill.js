@@ -16,20 +16,28 @@ import {
 import Lottie from "lottie-react-native";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { useNavigation } from "@react-navigation/native";
-import { database } from "../../firebase.config";
+import { database, db } from "../../firebase.config";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase.config";
-import { child, ref, set } from "firebase/database";
+import { child, set } from "firebase/database";
 
 import { TouchableRipple } from "react-native-paper";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 
+import { storage } from "../../firebase.config.js";
+import { ref, uploadBytes, getDownloadURL, getStorage } from "firebase/storage";
+import DocumentPicker from "react-native-document-picker";
+import * as ImagePicker from "expo-image-picker";
 export default function ProfileFill() {
   const [obj, setObj] = useState({
     fullName: "",
     userName: "",
     phoneNumber: "",
     CIN: "",
+    currencyPoints: "1000",
   });
+  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState(null);
   const [userId, setUserId] = useState("");
   onAuthStateChanged(auth, (user) => {
     if (user != null) {
@@ -58,16 +66,16 @@ export default function ProfileFill() {
     showMode("date");
   };
 
-  logOut = () => {
-    signOut(auth)
-      .then((res) => {
-        // setIsSignedIn(false);
-        alert("ok");
-      })
-      .catch((err) => {
-        alert(err.message, "eee");
-      });
-  };
+  // logOut = () => {
+  //   signOut(auth)
+  //     .then((res) => {
+  //       // setIsSignedIn(false);
+  //       alert("ok");
+  //     })
+  //     .catch((err) => {
+  //       alert(err.message, "eee");
+  //     });
+  // };
   const fillProfile = () => {
     if (
       obj.fullName === "" ||
@@ -77,9 +85,11 @@ export default function ProfileFill() {
     ) {
       Alert.alert("Must Fill All The Fields ");
     } else {
-      set(ref(database, "users/" + userId), obj);
+      // set(ref(database, "users/" + userId), obj);
+      // const newKey = push(child(ref(database), "users")).key;
+      setDoc(doc(db, "users", `${auth.currentUser.uid}`), obj);
     }
-    navigation.navigate("SuccessfullyCreated");
+    navigation.navigate("Map");
   };
   function handleChange(text, eventName) {
     setObj((prev) => {
@@ -89,6 +99,48 @@ export default function ProfileFill() {
       };
     });
   }
+  //////////////////////////////
+  const handleSubmit = () => {
+    const imageRef = ref(storage, "image");
+    uploadBytes(imageRef, image)
+      .then(() => {
+        getDownloadURL(imageRef)
+          .then((url) => {
+            setUrl(url);
+            const docRef = doc(db, "users", `${auth.currentUser.uid}`);
+            updateDoc(docRef, { status: url });
+          })
+          .catch((error) => {
+            console.log(error.message, "error getting the image url");
+          });
+        setImage(null);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  //////////////////////////
+  const openDocument = async () => {
+    const res = await DocumentPicker.pick({
+      type: [DocumentPicker.types.images],
+    });
+    console.log(res.uri, res.type, res.name, res.size);
+    // try {
+    //   const res = await DocumentPicker.pick({
+    //     type: [DocumentPicker.types.images],
+    //   });
+    //   console.log(res.uri, res.type, res.name, res.size);
+    // } catch (error) {
+    //   if (DocumentPicker.isCancel(error)) {
+    //   } else {
+    //     throw error;
+    //   }
+    // }
+  };
+  ///////////////////////////////
+  // const pickImage=async ()=>{
+  //   let result =
+  // }
   return (
     <KeyboardAvoidingView>
       <ScrollView
@@ -112,9 +164,7 @@ export default function ProfileFill() {
                   style={styles.FrameLottie}
                 />
               </TouchableWithoutFeedback>
-              <Text onPress={logOut} style={styles.Txt269}>
-                Your Profile
-              </Text>
+              <Text style={styles.Txt269}>Your Profile</Text>
             </View>
             <Image
               style={styles.Group158}
@@ -137,17 +187,20 @@ export default function ProfileFill() {
                 />
               </View>
               <View style={styles.Group159}>
+                {/* <TouchableOpacity onPress={openDocument}> */}
                 <TextInput
                   style={styles.Txt448}
                   placeholder="Username"
                   onChangeText={(text) => handleChange(text, "userName")}
                 />
+                {/* // /></TouchableOpacity> */}
+                {/* <Text style={styles.Txt448}>Select Image</Text> */}
+                {/* </TouchableOpacity> */}
               </View>
               <TouchableOpacity
                 style={styles.Group160}
                 onPress={showDatepicker}
               >
-
                 <TextInput
                   style={styles.Txt448}
                   placeholder="CIN"

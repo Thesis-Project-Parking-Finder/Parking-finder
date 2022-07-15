@@ -20,17 +20,25 @@ export default function ParkingTimer({ route }) {
   const [toggleTimer, settoggleTimer] = useState(false);
   // const [durationSec, setdurationSec] = useState(null)
 
+  // useEffect(()=>{
+  //   if()
+  // },[])
   var currentTime = moment().format();
   function update() {
     const docRef = doc(db, "bookings", route.params.objBook.id);
     updateDoc(docRef, { status: "Completed" });
+    const spotRef = doc(
+      db,
+      route.params.objBook.collSpot,
+      route.params.objBook.spotId
+    );
+    updateDoc(spotRef, { type: false });
   }
 
   const Arrival = new Date(route.params.objBook.arrivalTime);
   const Current = new Date(currentTime);
 
   const diff = -Arrival.getTime() + Current.getTime();
-  let a = 600;
   let msec = diff;
   const hh = Math.floor(msec / 1000 / 60 / 60);
   msec -= hh * 1000 * 60 * 60;
@@ -41,6 +49,8 @@ export default function ParkingTimer({ route }) {
 
   const TimeLef = () => {
     if (diff >= 0) {
+      const spotRef = doc(db, "firstFloor", route.params.objBook.spotId);
+      updateDoc(spotRef, { type: true });
       const Substraction = hh * 3600 + mm * 60 + ss;
       return route.params.objBook.Duration * 3600 - Substraction;
     }
@@ -55,7 +65,8 @@ export default function ParkingTimer({ route }) {
   };
   return (
     <SafeAreaView>
-      {/* {console.log(hh * 3600 + mm * 60 + ss, "eeeeeeeeeeeee")} */}
+      {console.log(route.params.objBook.spotId)}
+      {console.log(Arrival)}
       <View style={styles.Frame218}>
         <TouchableWithoutFeedback onPress={() => navigation.navigate("Map")}>
           <Lottie

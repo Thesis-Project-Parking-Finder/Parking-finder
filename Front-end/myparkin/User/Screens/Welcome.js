@@ -11,9 +11,9 @@ import {
 import Lottie from "lottie-react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Welcome(props) {
+export default function Welcome() {
   const navigation = useNavigation();
-  console.log(props);
+  
   return (
     <View>
       <ImageBackground
@@ -31,12 +31,12 @@ export default function Welcome(props) {
               />
               <Text style={styles.Txt897}>Parky</Text>
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate("FirstView",{name: 'sarah'})}>
+            <TouchableOpacity onPress={() => navigation.navigate("FirstView")}>
               <Lottie
                 source={require("./assets/start2.json")}
                 autoPlay
                 loop
-                style={{ width: "100%", height: "100%" }}
+                style={styles.Group12}
               />
             </TouchableOpacity>
           </View>
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
   Image5: {
     width: 288,
     height: 101,
+    
   },
   Txt897: {
     fontSize: 36,
@@ -83,4 +84,10 @@ const styles = StyleSheet.create({
     width: "30%",
     height: "30%",
   },
+  Group12:{ 
+  width: "100%", 
+  height: "100%",
+  left:'-2%',
+  top:'-2%' 
+}
 });
