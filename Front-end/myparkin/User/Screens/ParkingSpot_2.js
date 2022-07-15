@@ -257,6 +257,7 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
+    // zIndex: -15,
   },
   itemContainer: {
     alignItems: "center",
@@ -297,7 +298,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: "100%",
-    // backgroundColor:'yellow'
+    backgroundColor: "#F5FCFF",
   },
 
   Frame235: {
@@ -313,7 +314,7 @@ const styles = StyleSheet.create({
     paddingRight: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "white",
+    backgroundColor: "#F5FCFF",
   },
   Frame2372: {
     display: "flex",
@@ -336,18 +337,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
+    top:'4%'
   },
   Frame: {
     width: 36,
     height: 38,
-    marginRight: 19,
-    // backgroundColor:'pink'
+    marginRight: 14,
+    left: '-17%'
   },
   Txt3107: {
     fontSize: 29,
     fontWeight: "600",
     lineHeight: 34,
-    color: "rgba(0,0,0,1)",
+    color: "#104685",
     width: 282,
   },
 
@@ -359,6 +361,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     // backgroundColor:'orange',
     marginTop: "4%",
+    top:'7%'
   },
   Group220: {
     paddingTop: 5,
@@ -367,7 +370,7 @@ const styles = StyleSheet.create({
     paddingRight: 21,
     marginRight: 19,
     borderRadius: 50,
-    backgroundColor: "rgba(9, 66, 139, 1)",
+    backgroundColor: "#106EE0",
     borderWidth: 2,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
@@ -414,14 +417,6 @@ const styles = StyleSheet.create({
     color: "rgba(9, 66, 139, 1)",
   },
 
-  Frame2371: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    marginBottom: 16,
-    marginTop: "4%",
-  },
   Frame237: {
     display: "flex",
     flexDirection: "row",
@@ -430,17 +425,15 @@ const styles = StyleSheet.create({
   },
 
   Frame224: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "flex-end",
+    position: "absolute",
     paddingTop: 15,
     paddingBottom: 15,
     paddingLeft: 128,
     paddingRight: 128,
     borderRadius: 50,
-    backgroundColor: "rgba(9, 66, 139, 1)",
-    top: "-40%",
+    backgroundColor: "#106EE0",
+    bottom: "0.2%",
+    left: "9%",
   },
   Txt351: {
     fontSize: 16,
@@ -491,5 +484,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
+  },
+  Txt122: {
+    fontSize: 16,
+    // fontFamily: "Jost, sans-serif",
+    fontWeight: "600",
+    color: "rgba(255, 255, 255, 1)",
   },
 });

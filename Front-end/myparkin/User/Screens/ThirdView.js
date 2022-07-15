@@ -11,7 +11,7 @@ export default function ThirdView() {
           <View style={styles.imgcontainer}>
           <Image
           style={styles.Undraw_tourist_map_re_293e1}
-          source={require("./images/Third.png")}
+          source={require("./images/flame-14.png")}
         />
           </View>
           {/* pargagraphe */}
@@ -95,9 +95,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   Undraw_tourist_map_re_293e1: {
-    top: 40,
-    width: "100%",
-    height: "100%",
+    top: '20%',
+    width: "80%",
+    height: "75%",
     resizeMode: "cover",
   },
   Group137:{

@@ -20,7 +20,7 @@ export default function Slide_1(props) {
           <View style={styles.imgcontainer}>
             <Image
               style={styles.Undraw_tourist_map_re_293e1}
-              source={require("./images/First.png")}
+              source={require("./images/find.png")}
             />
           </View>
           <View style={styles.Group137}>
