@@ -1,6 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Image, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  TouchableOpacity,
+  Animated,
+} from "react-native";
 import Lottie from "lottie-react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { firstFloor } from "./FloorSpot";
@@ -26,8 +33,6 @@ export default function ParkingSpot_1() {
   const [globalState, setglobalState] = useState(data);
   const [show_Hide, setShowHide] = useState(false);
   const [spot, setSpot] = useState([]);
-
-  const [items, setItems] = React.useState(firstFloor);
   // useEffect(() => {
   // const docRef = doc(db, "spot", "NsUROkT7DgjHuoyX66r2");
   // const docSnap = getDoc(docRef);
@@ -95,8 +100,8 @@ export default function ParkingSpot_1() {
             <View style={styles.Frame2372}>
               <View style={styles.Frame220}>
                 <View style={styles.Frame218}>
-                  <TouchableWithoutFeedback
-                    onPress={() => navigation.navigate("ParkingDetails")}
+                  <TouchableRipple
+                    onPress={() => navigation.navigate("FillCarInformation")}
                   >
                     <Lottie
                       source={require("./assets/arrow2.json")}
@@ -104,7 +109,7 @@ export default function ParkingSpot_1() {
                       loop
                       style={styles.Frame}
                     />
-                  </TouchableWithoutFeedback>
+                  </TouchableRipple>
                   <Text style={styles.Txt3107}>Pick Parking Spot</Text>
                 </View>
               </View>
@@ -128,113 +133,98 @@ export default function ParkingSpot_1() {
                   <Text style={styles.Txt3710}>3rd Floor</Text>
                 </TouchableRipple>
               </View>
-              <View style={{ transform: [{ translateY: 25 }] }}>
+              <View style={{ transform: [{ translateY: 50 }] }}>
                 <FlatGrid
                   itemDimension={130}
                   data={spot}
                   style={styles.gridView}
                   spacing={15}
                   renderItem={({ item, index }) => {
-                    {
-                      if (
-                        (index % 2 === 1 && item.name === "A04") ||
-                        item.name === "A08" ||
-                        item.name === "A12"
-                      ) {
-                        console.log(item.name);
-                        return (
-                          <View
-                            style={[
-                              item.type ? styles.Box : styles.itemContainer,
-                            ]}
+                    if (index % 2 === 1) {
+                      console.log(item.name);
+                      return (
+                        <View
+                          style={[
+                            item.type ? styles.Box : styles.itemContainer,
+                          ]}
+                        >
+                          <TouchableOpacity>
+                            {!item.type ? (
+                              <Text
+                                style={styles.itemName}
+                                onPress={boxColored}
+                              >{item.name}</Text>) : (
+                              <Text style={styles.itemName}>{item.name}</Text>
+                            )}
+                          </TouchableOpacity>
+                          <View style={styles.horizontalLine}></View>
+                        </View>
+                      );
+                    } else if (index % 2 === 1) {
+                      return (
+                        <View style={styles.car}>
+                          <View style={styles.verticleLine}></View>
+                          <Image
+                            source={{ uri: item.image }}
+                            style={{ width: "100%", height: "100%" }}
+                          />
+                          <View style={styles.horizontalLine}></View>
+                        </View>
+                      );
+                    } else if (index % 2 === 0) {
+                      return (
+                        <View
+                          style={[
+                            item.type ? styles.Box1 : styles.itemContainer1,
+                          ]}
+                        >
+                          <View style={styles.verticleLine}></View>
+                          <TouchableOpacity
+                          // onPress={(item) => updateType(item)}
                           >
-                            <TouchableOpacity>
-                              {!item.type ? (
-                                <Text
-                                  style={styles.itemName}
-                                  onPress={boxColored}
-                                >
-                                  {item.name}
-                                </Text>
-                              ) : (
-                                <Text style={styles.itemName}>{item.name}</Text>
-                              )}
-                            </TouchableOpacity>
-                            <View style={styles.horizontalLine}></View>
-                          </View>
-                        );
-                      } else if (index % 2 === 1) {
-                        return (
-                          <View style={styles.car}>
-                            <View style={styles.verticleLine}></View>
-                            <Image
-                              source={{ uri: item.image }}
-                              style={{ width: "100%", height: "100%" }}
-                            />
-                            <View style={styles.horizontalLine}></View>
-                          </View>
-                        );
-                      } else if (
-                        (index % 2 === 0 && item.name === "A01") ||
-                        item.name === "A05" ||
-                        item.name === "A07"
-                      ) {
-                        return (
-                          <View
-                            style={[
-                              item.type ? styles.Box1 : styles.itemContainer1,
-                            ]}
-                          >
-                            <View style={styles.verticleLine}></View>
-                            <TouchableOpacity
-                            // onPress={(item) => updateType(item)}
-                            >
-                              {!item.type ? (
-                                <Text
-                                  style={styles.itemName}
-                                  onPress={boxColored}
-                                >
-                                  {item.name}
-                                </Text>
-                              ) : (
-                                <Text style={styles.itemName}>{item.name}</Text>
-                              )}
-                            </TouchableOpacity>
-                            <View style={styles.horizontalLine}></View>
-                          </View>
-                        );
-                      } else if (index % 2 === 0) {
-                        return (
-                          <View
-                            style={
-                              styles.KisspngCarDoorHotelLyonExtensibleTableTopView5b4dd88fb6ecf21
-                            }
-                          >
-                            <View style={styles.verticleLine}></View>
-                            <Image
-                              source={{ uri: item.image }}
-                              style={{ width: "100%", height: "100%" }}
-                            />
-                            <View style={styles.horizontalLine}></View>
-                          </View>
-                        );
-                      }
+                            {!item.type ? (
+                              <Text
+                                style={styles.itemName}
+                                onPress={boxColored}
+                              >
+                                {item.name}
+                              </Text>
+                            ) : (
+                              <Text style={styles.itemName}>{item.name}</Text>
+                            )}
+                          </TouchableOpacity>
+                          <View style={styles.horizontalLine}></View>
+                        </View>
+                      );
+                    } else if (index % 2 === 0) {
+                      return (
+                        <View
+                          style={
+                            styles.KisspngCarDoorHotelLyonExtensibleTableTopView5b4dd88fb6ecf21
+                          }
+                        >
+                          <View style={styles.verticleLine}></View>
+                          <Image
+                            source={{ uri: item.image }}
+                            style={{ width: "100%", height: "100%" }}
+                          />
+                          <View style={styles.horizontalLine}></View>
+                        </View>
+                      );
                     }
                   }}
                 />
               </View>
             </View>
-            <View style={styles.Frame224}>
-              <Text
-                style={styles.Txt351}
-                onPress={() => {
+            <TouchableRipple style={styles.Frame224} onPress={() => {
                   navigation.navigate("BookingReview");
                   dispatch(ParkingNameAndAdress(globalState));
-                }}
-              >
-                Continue
-              </Text>
-            </View>
+                }}>
+        <Text
+          style={styles.Txt351}>
+          Continue
+        </Text>
+      </TouchableRipple>
           </View>
         </View>
       </View>
@@ -268,10 +258,6 @@ const styles = StyleSheet.create({
     // marginTop: 10,
     flex: 1,
   },
-  park: {
-    height: "10%",
-    bottom: "100%",
-  },
   car: {
     alignItems: "center",
     justifyContent: "center",
@@ -285,6 +271,7 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
+    // zIndex: -15,
   },
   itemContainer: {
     alignItems: "center",
@@ -325,7 +312,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: "100%",
-    // backgroundColor:'yellow'
+    backgroundColor: "#F5FCFF",
   },
 
   Frame235: {
@@ -341,7 +328,7 @@ const styles = StyleSheet.create({
     paddingRight: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "white",
+    backgroundColor: "#F5FCFF",
   },
   Frame2372: {
     display: "flex",
@@ -364,18 +351,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
+    top:'4%'
   },
   Frame: {
     width: 36,
     height: 38,
-    marginRight: 19,
-    // backgroundColor:'pink'
+    marginRight: 14,
+    left: '-17%'
   },
   Txt3107: {
     fontSize: 29,
     fontWeight: "600",
     lineHeight: 34,
-    color: "rgba(0,0,0,1)",
+    color: "#104685",
     width: 282,
   },
 
@@ -387,6 +375,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     // backgroundColor:'orange',
     marginTop: "4%",
+    top:'7%'
   },
   Group220: {
     paddingTop: 5,
@@ -395,7 +384,7 @@ const styles = StyleSheet.create({
     paddingRight: 21,
     marginRight: 19,
     borderRadius: 50,
-    backgroundColor: "rgba(9, 66, 139, 1)",
+    backgroundColor: "#106EE0",
     borderWidth: 2,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
@@ -442,14 +431,6 @@ const styles = StyleSheet.create({
     color: "rgba(9, 66, 139, 1)",
   },
 
-  Frame2371: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    marginBottom: 16,
-    marginTop: "4%",
-  },
   Frame237: {
     display: "flex",
     flexDirection: "row",
@@ -458,17 +439,15 @@ const styles = StyleSheet.create({
   },
 
   Frame224: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "flex-end",
+    position: "absolute",
     paddingTop: 15,
     paddingBottom: 15,
     paddingLeft: 128,
     paddingRight: 128,
     borderRadius: 50,
-    backgroundColor: "rgba(9, 66, 139, 1)",
-    top: "-40%",
+    backgroundColor: "#106EE0",
+    bottom: "0.2%",
+    left: "9%",
   },
   Txt351: {
     fontSize: 16,
@@ -519,20 +498,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(9, 66, 139, 1)",
-  },
-  Group220: {
-    paddingTop: 5,
-    paddingBottom: 4,
-    paddingLeft: 18,
-    paddingRight: 21,
-    marginRight: 19,
-    borderRadius: 50,
-    backgroundColor: "rgba(9, 66, 139, 1)",
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "rgba(9, 66, 139, 1)",
-    width: 111,
-    height: 37,
   },
   Txt122: {
     fontSize: 16,

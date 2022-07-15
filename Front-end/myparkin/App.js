@@ -33,7 +33,7 @@ export default function App() {
         <StackNavigation />
       )}
 
-      <StatusBar style="dark" />
+      <StatusBar style='dark' />
     </NavigationContainer>
   );
 }

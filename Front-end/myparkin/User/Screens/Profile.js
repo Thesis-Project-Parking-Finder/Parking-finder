@@ -40,19 +40,20 @@ export default function Profile({ route }) {
   };
   return (
     <View style={styles.Iphone13ProMax54}>
-      {console.log(userObject, "aeaeaeae")}
+      {/* {console.log(userObject, "aeaeaeae")} */}
       <View style={styles.Group282}>
         <ScrollView>
           <View style={styles.Group448}>
             <Text style={styles.Txt853}>{route.params.email}</Text>
             <View style={styles.Group698}>
               <View style={styles.Group588}>
-                <Image
+                {/* <Image
                   style={styles.Group122}
                   source={{
                     uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/zvd78bogyl-79%3A1364?alt=media&token=e1e4d44d-78ec-4618-bc52-3c3ee5e09ad2",
                   }}
-                />
+                /> */}
+                
                 <Text style={styles.Txt4910}>Profile</Text>
                 {/* <View style={styles.Group96}></View> */}
               </View>
