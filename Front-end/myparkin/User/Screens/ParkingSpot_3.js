@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Image, Text, View, TouchableOpacity } from "react-native";
 import Lottie from "lottie-react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
@@ -9,6 +9,8 @@ import { TouchableRipple } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { ParkingNameAndAdress } from "../redux/Features/BookPlace";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase.config";
 export default function ParkingSpot_1() {
   let dispatch = useDispatch();
   let data = useSelector((state) => state.bookplace.value);
@@ -20,6 +22,24 @@ export default function ParkingSpot_1() {
   const [show_Hide, setShowHide] = useState(false);
 
   const [items, setItems] = React.useState(thirdFloor);
+  const [spot3, setSpot3] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const querySnapshot = await getDocs(collection(db, "thirdFloor"));
+      const spot = [];
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.data(), "jdhdhdhdh");
+        const { image, name, type } = doc.data();
+        spot.push({
+          spotId: doc.id,
+          image,
+          name,
+          type,
+        });
+      });
+      setSpot3(spot);
+    })();
+  }, []);
 
   const boxColored = (e) => {
     items.map((element, i) => {
@@ -27,6 +47,8 @@ export default function ParkingSpot_1() {
         setglobalState((prevstate) => ({
           ...prevstate,
           ParkingSpot: `3rd floor (${element.name})`,
+          spotId: element.spotId,
+          collSpot: "thirdFloor",
         }));
         element.type = !element.type;
         setShow(element.type);
@@ -82,7 +104,7 @@ export default function ParkingSpot_1() {
               <View style={{ transform: [{ translateY: 25 }] }}>
                 <FlatGrid
                   itemDimension={130}
-                  data={items}
+                  data={spot3}
                   style={styles.gridView}
                   spacing={15}
                   renderItem={({ item, index }) => {

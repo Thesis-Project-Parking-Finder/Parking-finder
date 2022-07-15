@@ -1,6 +1,6 @@
-import React from "react"
-import { StyleSheet, Image, Text, View, ImageBackground } from "react-native"
-import Lottie from 'lottie-react-native';
+import React from "react";
+import { StyleSheet, Image, Text, View, ImageBackground } from "react-native";
+import Lottie from "lottie-react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableRipple } from "react-native-paper";
 
@@ -8,30 +8,39 @@ export default function SuccessfullyCreated() {
   const navigation = useNavigation();
 
   return (
-
-      <View style={styles.Group219}>
-
+    <View style={styles.Group219}>
       <View style={styles.Group218}>
-      <Lottie style={styles.Group217} source={require('./assets/tickdone.json')} autoPlay loop />
+        <Lottie
+          style={styles.Group217}
+          source={require("./assets/tickdone.json")}
+          autoPlay
+          loop
+        />
 
         <View style={styles.Frame217}>
           <Text style={styles.Txt482}>Congratulations!</Text>
-          <Text style={styles.Txt939}>Your account is created</Text>
+          <Text style={styles.Txt939}>check your email for verification!</Text>
+          {/* <Text style={styles.Txt939}>
+            Please check your email for verification!
+          </Text> */}
         </View>
-        <TouchableRipple style={styles.Group237} onPress={() => navigation.navigate("Map")}>
-          <Text style={styles.Txt812}>Go to Homepage</Text>
+        <TouchableRipple
+          style={styles.Group237}
+          onPress={() => navigation.navigate("Login")}
+        >
+          <Text style={styles.Txt812}>Go To Login</Text>
         </TouchableRipple>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-    Rectangle25: {
-        backgroundColor: "rgba(0,0,0,0.6)",
-        width: 436,
-        height: 926,
-      },
+  Rectangle25: {
+    backgroundColor: "rgba(0,0,0,0.6)",
+    width: 436,
+    height: 926,
+  },
 
   Group219: {
     paddingTop: 41,
@@ -42,22 +51,20 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 1)",
     width: "100%",
     height: "100%",
-    
   },
   Group218: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width:'80%',
-    height:'70%',
-    transform: [{ translateX:35 }, {translateY: 20}],
-
+    width: "80%",
+    height: "70%",
+    transform: [{ translateX: 35 }, { translateY: 20 }],
   },
   Group217: {
     width: "70%",
     height: "70%",
     marginBottom: 32,
-    transform: [{ translateX:20 }, {translateY:47}],
+    transform: [{ translateX: 20 }, { translateY: 47 }],
   },
   Frame217: {
     display: "flex",
@@ -77,10 +84,12 @@ const styles = StyleSheet.create({
     // paddingTop:'7%'
   },
   Txt939: {
-    fontSize: 16,
+    fontSize: 18,
+    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(53,53,53,1)",
-    marginTop:'-95%'
+    marginTop: "-95%",
+    width: "70%",
   },
 
   Group237: {
@@ -92,7 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(9,66,139,1)",
     width: "100%",
     height: "10%",
-    marginTop:'-55%'
+    marginTop: "-55%",
   },
   Txt812: {
     fontSize: 14,
@@ -103,4 +112,4 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 20,
   },
-})
+});
