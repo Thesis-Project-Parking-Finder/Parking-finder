@@ -4,17 +4,12 @@ import {
   Image,
   Text,
   View,
-  ImageBackground,
-  TouchableOpacity,
-  SnapshotViewIOSComponent,
   Pressable,
 } from "react-native";
 import {
   TouchableRipple,
   Colors,
-  Checkbox,
-  useTheme,
-  Button,
+  Checkbox
 } from "react-native-paper";
 import Lottie from "lottie-react-native";
 import Modal from "react-native-modal";
@@ -212,7 +207,12 @@ const BookingReview = ({ navigation }) => {
       </Modal>
 
       <TouchableRipple style={styles.Frame224} onPress={() => setShow(!show)}>
-        <Text style={styles.Txt351}>Continue</Text>
+        <Text
+          style={styles.Txt351}
+          onPress={() => navigation.navigate("ticket")}
+        >
+          Continue
+        </Text>
       </TouchableRipple>
     </View>
   );
@@ -224,14 +224,11 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     marginTop: "10%",
-    // backgroundColor: "#F5FCFF",
-    // top: "-100%",
   },
   Frame: {
     width: 36,
     height: 38,
     marginRight: 19,
-    // backgroundColor:'pink'
   },
   Txt3107: {
     fontSize: 29,
@@ -261,20 +258,11 @@ const styles = StyleSheet.create({
     bottom: "0.2%",
     left: "1.7%",
   },
-  imgCont: {
-    position: "absolute",
-    height: 100,
-    width: 100,
-    top: "74%",
-    left: "60",
-  },
-
   horizontalLine: {
     borderBottomColor: "black",
     borderBottomWidth: 1,
     width: 300,
     alignSelf: "center",
-    // transform: [ {translateY:-110}]
     top: "70%",
   },
   horizontalL: {
@@ -282,19 +270,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: 100,
     alignSelf: "center",
-    // transform: [ {translateY:-110}]
     top: "0%",
   },
   Wrapper: {
     transform: [{ translateY: 160 }, { translateX: -10 }],
   },
   price: {
-    // position: "absolute",
-    // fontSize: 15,
-    // left: "50%",
-    // width: 300,
-    // top: "68%",
-
     fontSize: 15,
     left: "50%",
     width: 300,
@@ -313,13 +294,6 @@ const styles = StyleSheet.create({
   },
 
   enTnd: {
-    // position: "absolute",
-    // fontSize: 15,
-    // left: "20%",
-    // width: 300,
-    // top: "68%",
-
-    // position: "absolute",
     fontSize: 15,
     left: "20%",
     width: 300,
@@ -327,13 +301,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   amountpp: {
-    // position: "absolute",
-    // fontSize: 15,
-    // left: "60%",
-    // width: 300,
-    // top: "74%",
-
-    // position: "absolute",
     fontSize: 15,
     left: "60%",
     width: 300,
@@ -342,13 +309,6 @@ const styles = StyleSheet.create({
     color: "#104685",
   },
   enpp: {
-    // position: "absolute",
-    // fontSize: 15,
-    // left: "20%",
-    // width: 300,
-    // top: "74%",
-
-    // position: "absolute",
     fontSize: 15,
     left: "20%",
     width: 300,
@@ -359,7 +319,6 @@ const styles = StyleSheet.create({
     width: "10%",
     height: "17%",
     resizeMode: "cover",
-    // position: "absolute",
     top: "52%",
     left: "80%",
   },
@@ -370,16 +329,9 @@ const styles = StyleSheet.create({
     left: "8%",
     display: "flex",
     flexDirection: "column",
-    // backgroundColor: "blue",
-  },
-  Group991: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 19,
   },
   Txt089: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 26,
@@ -388,30 +340,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: "50%",
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "700",
     color: "rgba(0,0,0,1)",
   },
-
-  Group991: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 19,
-  },
   Txt115: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 100,
-  },
-  Txt483: {
-    fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    textAlign: "right",
-    justifyContent: "flex-end",
   },
   Txt321: {
     position: "absolute",
@@ -423,64 +359,20 @@ const styles = StyleSheet.create({
     color: "rgba(0,0,0,1)",
     width: 282,
   },
-
-  Group991: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 19,
-  },
   Txt688: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 54,
   },
-  Txt483: {
-    fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    textAlign: "right",
-    justifyContent: "flex-end",
-  },
-
-  Group991: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 19,
-  },
   Txt496: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 115,
   },
   Txt483: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    textAlign: "right",
-    justifyContent: "flex-end",
-  },
-
-  Group991: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 19,
-  },
-  Txt956: {
-    fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
-    fontWeight: "500",
-    color: "rgba(161,161,161,1)",
-    marginRight: 180,
-  },
-  Txt483: {
-    fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     textAlign: "right",
@@ -494,18 +386,9 @@ const styles = StyleSheet.create({
   },
   Txt875: {
     fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 197,
-  },
-  Txt483: {
-    fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    textAlign: "right",
-    justifyContent: "flex-end",
   },
   Frame255: {
     display: "flex",
@@ -526,7 +409,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5FCFF",
     width: "90%",
     height: 70,
-    // top:'0%',
     marginLeft: "20%",
   },
   Group251: {
@@ -541,41 +423,30 @@ const styles = StyleSheet.create({
   imageC: {
     width: "40%",
     height: "120%",
-    // marginRight:58,
-    // marginLeft:'-20%',
     transform: [{ translateX: -30 }],
     top: "-5%",
   },
   imageM: {
     width: "40%",
     height: "120%",
-    // marginRight:58,
-    // marginLeft:'-20%',
     transform: [{ translateX: -30 }],
     top: "-5%",
   },
   Group73: {
     width: "100%",
     height: "100%",
-    // marginRight:-100
   },
   Txt829: {
     // width: '100%',
     // height:'100%',
+    fontSize: 20,
+    // marginRight:-4,
     fontSize: 15,
     transform: [{ translateX: -18 }],
-    // marginRight:-4,
     fontWeight: "800",
     color: "rgba(53,53,53,1)",
-    // top:'147%'
   },
   Ellipse44: {
-    // borderWidth: 2,
-    // borderStyle: "solid",
-    // borderColor: "rgba(188,0,99,1)",
-    // width: 17,
-    // height: 17,
-    // borderRadius: 8.5,
     marginLeft: -75,
     top: "-10%",
   },
@@ -598,28 +469,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5FCFF",
     width: "90%",
     height: 70,
-    // top:'-10%',
     marginLeft: "20%",
-  },
-  Group735: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  Txt115: {
-    fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
-    fontWeight: "500",
-    color: "rgba(161,161,161,1)",
-    marginRight: 100,
-  },
-  Txt483: {
-    fontSize: 16,
-    // fontFamily: "Jost, sans-serif",
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    textAlign: "right",
-    justifyContent: "flex-end",
-  },
+  }, 
   centeredView: {
     flex: 1,
     justifyContent: "center",

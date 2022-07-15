@@ -13,6 +13,8 @@ import SuccessfullyCreated from "./Screens/SuccessfullyCreated";
 import Welcome from "./Screens/Welcome";
 import Map from "./Screens/map/Map";
 
+import ForgetPassword from "./Screens/ForgetPassword.js";
+
 const Stack = createNativeStackNavigator();
 
 const StackNavigation = () => {

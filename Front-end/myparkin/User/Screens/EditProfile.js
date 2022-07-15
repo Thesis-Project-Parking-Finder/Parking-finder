@@ -15,9 +15,13 @@ import {
   ScrollView,
   ImageBackground,
 } from "react-native";
+import {
+  TouchableRipple
+} from "react-native-paper";
 import { TextInput } from "react-native-gesture-handler";
 import { auth } from "../../firebase.config";
 import { updateProfile, updateEmail } from "firebase/auth";
+
 
 export default function EditProfile({ route }) {
   const navigation = useNavigation();
@@ -37,15 +41,18 @@ export default function EditProfile({ route }) {
     updateProfile(auth.currentUser, {
       displayName: userName,
     })
-      .then(() => {})
+
+      .then(() => {
+        console.log("success");
+      })
       .catch((error) => {
-        alert("error profile");
+        console.log("error");
+
       });
-    console.log(email, "before");
 
     updateEmail(auth.currentUser, email)
       .then(() => {
-        console.log(email, "after");
+        console.log("Updated successfully!");
       })
       .catch((error) => {
         console.log(error);
@@ -71,38 +78,41 @@ export default function EditProfile({ route }) {
         }}
       >
         <View style={styles.Iphone13ProMax55}>
-          <TouchableOpacity onPress={handleUpdate} style={styles.Rectangle4}>
-            <Text style={styles.Txt276}>Update</Text>
-          </TouchableOpacity>
-
-          <Text style={styles.Txt439}>E-mail</Text>
-
-          <TextInput
-            style={styles.Rectangle9}
-            placeholder="Email"
-            // value={email}
-            onChangeText={handleEmail}
+        <View style={styles.Frame218}>
+        <TouchableRipple onPress={() => navigation.navigate("Profile")}>
+          <Lottie
+            source={require("./assets/arrow2.json")}
+            autoPlay
+            loop
+            style={styles.Frame}
           />
-          <TextInput
-            style={styles.Rectangle6}
-            placeholder="FullName"
-            // value={route.params.fullName}
-            onChangeText={handleFullName}
-          />
-
-          <Text style={styles.Txt3410}>User Name</Text>
-
-          <TouchableWithoutFeedback onPress={() => navigation.navigate("Map")}>
-            <Lottie
-              source={require("./assets/arrow2.json")}
-              autoPlay
-              loop
-              style={styles.FrameLottie}
-            />
-          </TouchableWithoutFeedback>
-
-          <Text style={styles.Txt267}>Edit Profile</Text>
+        </TouchableRipple>
+        <Text style={styles.Txt3107}>Edit Your Profile</Text>
+      </View>
+          <View style={styles.Frame166}>
+          <View style={styles.Group159}>
+          <Text style={styles.Txt439}>Your Name:</Text>
+                <TextInput
+                  style={styles.Txt448}
+                  placeholder="FullName"
+                  onChangeText={handleFullName}
+                />
+              </View>
+              
+              <View style={styles.Group159}>
+              <Text style={styles.Txt439}>Your E-mail:</Text>
+                <TextInput
+                  style={styles.Txt448}
+                  placeholder="E-mail"
+                  onChangeText={handleEmail}
+                />
+              </View>
+              </View>
+              
         </View>
+        <TouchableRipple style={styles.Frame224} onPress={handleUpdate}>
+        <Text style={styles.Txt351}>Continue</Text>
+      </TouchableRipple>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -120,259 +130,98 @@ const styles = StyleSheet.create({
     paddingLeft: 29,
     paddingRight: 29,
     borderRadius: 50,
-    backgroundColor: "rgba(255, 255, 255, 1)",
+    backgroundColor: "#F5FCFF",
     height: 904,
     width: 419,
   },
-
-  FrameLottie: {
-    width: "20%",
-    height: "20%",
-    top: "10%",
-    marginLeft: "0%",
-    Left: 0,
-    right: 0,
-  },
-
-  Txt276: {
-    position: "absolute",
-    top: "30%",
-    left: 130,
-    fontSize: 16,
-
-    fontWeight: "700",
-    color: "rgba(255, 255, 255, 1)",
-    textAlign: "center",
-    justifyContent: "center",
-    width: 62,
-    height: 20,
-  },
-  Rectangle4: {
-    position: "absolute",
-    top: "72%",
-    left: 41,
-    backgroundColor: "rgba(9, 66, 139, 1)",
-    // backgroundColor: "rgba(188,0,99,1)",
-    width: "85%",
-    height: 53,
-    borderRadius: 50,
-  },
-  Txt263: {
-    position: "absolute",
-    top: 755,
-    left: 181,
-    fontSize: 15,
-
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    width: 57,
-    height: 23,
-  },
-  Rectangle11: {
-    position: "absolute",
-    top: 701,
-    left: 26,
-    backgroundColor: "rgba(217,217,217,0.5)",
-    borderWidth: 1,
-    borderStyle: "solid",
-    borderColor: "rgba(0,0,0,1)",
-    width: 368,
-    height: 56,
-    borderRadius: 15,
+  Frame218: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginTop: "1%",
+    left:'-4%'
   },
   Frame: {
-    position: "absolute",
-    top: 695,
-    left: 205,
-    width: 10,
-    height: 7.33,
+    width: 36,
+    height: 38,
+    marginRight: 19,
   },
-  Frame1: {
-    position: "absolute",
-    top: 678,
-    left: 196,
-    width: 27,
-    height: 18,
-  },
-  Group322: {
-    position: "absolute",
-    top: 624,
-    none: "0px",
-    paddingTop: 1,
-    paddingBottom: 42,
-    paddingLeft: 177,
-    paddingRight: 183,
-    borderRadius: 15,
-    backgroundColor: "rgba(217,217,217,0.5)",
-    borderWidth: 1,
-    borderStyle: "solid",
-    borderColor: "rgba(0,0,0,1)",
-    width: 368,
-    height: 56,
-  },
-  Frame2: {
-    width: 6,
-    height: 10.79,
-  },
-
-  Txt915: {
-    position: "absolute",
-    top: "52%",
-    left: 147,
-    fontSize: 15,
-
+  Txt3107: {
+    fontSize: 29,
     fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    width: 126,
-    height: 23,
+    lineHeight: 34,
+    color: "#104685",
+    width: 282,
   },
-  Frame3: {
-    position: "absolute",
-    top: 588,
-    left: 202,
-    width: 16,
-    height: 11.9,
+  Frame166: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    paddingTop: 0,
+    paddingBottom: 26,
+    paddingLeft: 0,
+    paddingRight: 0,
+    marginBottom: 17,
+    width: "100%",
+    height: "50%",
+    top:'-20%',
+    marginLeft: "22%",
+  },
+  Group159: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingTop: 17,
+    paddingBottom: 17,
+    backgroundColor: "rgba(71, 192, 192, 0.08)",
+    marginBottom: 54,
+    borderRadius: 15,
+    width: "70%",
+    height: "17%",
+  },
+  Txt448: {
+    fontSize: 15,
+    fontWeight: "500",
+    color: "rgba(169,169,169,1)",
+    width: "100%",
+    height: 56,
+    marginLeft: "8%",
+    marginRight: "7%",
   },
   Txt439: {
     position: "absolute",
-    top: "38%",
-    left: 140,
+    top: "-85%",
+    left: 85,
     fontSize: 15,
-
+    marginTop:'-4%',
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     width: 217,
     height: 23,
   },
-  Rectangle9: {
+  Frame224: {
     position: "absolute",
-    top: "43%",
-    left: 26,
-    backgroundColor: "rgba(217,217,217,0.5)",
-    borderWidth: 1,
-    borderStyle: "solid",
-    borderColor: "rgba(0,0,0,1)",
-    width: "90%",
-    height: 56,
-    borderRadius: 15,
+    paddingTop: 20,
+    paddingBottom: 15,
+    paddingLeft: 100,
+    paddingRight: 100,
+    borderRadius: 50,
+    backgroundColor: "rgba(9, 66, 139, 1)",
+    bottom: "0.2%",
+    left: "17%",
+    top:'120%',
+    width:'70%',
+    height:'20%',
+    marginTop:'-100%',
+    // marginStart:'40%'
   },
-  Frame4: {
-    position: "absolute",
-    top: 497,
-    left: 202,
-    width: 16,
-    height: 16.52,
-  },
-  Rectangle8: {
-    position: "absolute",
-    top: 442,
-    left: 26,
-    backgroundColor: "rgba(217,217,217,0.5)",
-    borderWidth: 1,
-    borderStyle: "solid",
-    borderColor: "rgba(0,0,0,1)",
-    width: 368,
-    height: 56,
-    borderRadius: 15,
-  },
-  Txt449: {
-    position: "absolute",
-    top: 421,
-    left: 170,
-    fontSize: 15,
-
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    width: 80,
-    height: 23,
-  },
-  Rectangle7: {
-    position: "absolute",
-    top: "57%",
-    left: 26,
-    backgroundColor: "rgba(217,217,217,0.5)",
-    borderWidth: 1,
-    borderStyle: "solid",
-    borderColor: "rgba(0,0,0,1)",
-    width: "90%",
-    height: 56,
-    borderRadius: 15,
-  },
-  Txt723: {
-    position: "absolute",
-    top: "28%",
-    left: 193,
-    fontSize: 15,
-
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    width: 34,
-    height: 23,
-  },
-  Rectangle6: {
-    position: "absolute",
-    top: "29%",
-    left: 26,
-    backgroundColor: "rgba(217,217,217,0.5)",
-    borderWidth: 1,
-    borderStyle: "solid",
-    borderColor: "rgba(0,0,0,1)",
-    width: "90%",
-    height: 56,
-    borderRadius: 15,
-    mixBlendMode: "normal",
-  },
-  Txt3410: {
-    position: "absolute",
-    top: "24%",
-    left: 140,
-    fontSize: 15,
-
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    width: "50%",
-    height: "15%",
-  },
-  Rectangle14: {
-    position: "absolute",
-    top: 246,
-    left: 197,
-    backgroundColor: "rgba(188,0,99,1)",
-    width: 25,
-    height: 25,
-    borderRadius: 5,
-  },
-  Frame5: {
-    position: "absolute",
-    top: 235,
-    left: 204,
-    width: 12,
-    height: 12,
-  },
-  Ellipse1: {
-    position: "absolute",
-    top: 105,
-    left: 144,
-    width: 132,
-    height: 132,
-  },
-  Frame6: {
-    position: "absolute",
-    top: "13%",
-    left: "12%",
-    width: 24,
-    height: 18,
-  },
-  Txt267: {
-    position: "absolute",
-    top: "12%",
-    left: 69,
-    fontSize: 29,
-
-    fontWeight: "600",
-    lineHeight: 34,
-    color: "rgba(0,0,0,1)",
-    width: 282,
-    height: 34,
+  Txt351: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: "rgba(255, 255, 255, 1)",
+    textAlign: "center",
+    justifyContent: "center",
   },
 });

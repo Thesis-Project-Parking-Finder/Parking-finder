@@ -15,7 +15,7 @@ import MyParkings from "./Screens/MyParkings.js";
 import BookingReview from "./Screens/BookingReview.js";
 import EditProfile from "./Screens/EditProfile.js";
 import SelectVec from "./Screens/SelectVec";
-import test from "./Screens/test.js";
+
 import FillCarInformation from "./Screens/FillCarInformation.js";
 import ParkingSpot_1 from "./Screens/ParkingSpot_1.js";
 import ParkingSpot_2 from "./Screens/ParkingSpot_2";
@@ -32,14 +32,16 @@ const StackNav = () => {
   return (
     <Provider store={store}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Map" component={Map} />
         {/* <Stack.Screen name="test" component={test} /> */}
-        
+
         {/* <Stack.Screen name="ProfileFill" component={ProfileFill} /> */}
-      
+
         <Stack.Screen name="Map" component={Map} />
         <Stack.Screen name="MyBookMark" component={MyBookMark} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="SelectVec" component={SelectVec} />
+
         <Stack.Screen
           name="FillCarInformation"
           component={FillCarInformation}

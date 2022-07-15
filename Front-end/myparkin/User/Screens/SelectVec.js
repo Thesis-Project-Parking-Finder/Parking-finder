@@ -15,6 +15,8 @@ import {
 import { Footer } from "./Footer";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useState, useEffect } from "react";
+import Lottie from "lottie-react-native";
+import { TouchableRipple } from "react-native-paper";
 
 export default function ({ route, navigation }) {
   const data = useSelector((state) => state.bookplace.value);
@@ -34,9 +36,17 @@ export default function ({ route, navigation }) {
   return (
     <View style={styles.Iphone13ProMax30}>
       <View style={styles.Group046}>
-        <View style={styles.Group6107}>
-          <Text style={styles.Txt321}>Select The Vehicle Type </Text>
-        </View>
+        <View style={styles.Frame218}>
+        <TouchableRipple onPress={() => {navigation.goBack()}}>
+          <Lottie
+            source={require("./assets/arrow2.json")}
+            autoPlay
+            loop
+            style={styles.Frame}
+          />
+        </TouchableRipple>
+        <Text style={styles.Txt3107}>Select The Vehicle Type</Text>
+      </View>
 
         <View style={styles.Group440}>
           <View style={styles.Group286}>
@@ -60,7 +70,7 @@ export default function ({ route, navigation }) {
               styles.KisspngToyotaLandCruiserPradoCarToyota86SportUtilToyotaLandCruiserWhiteCar5a755aed9f9d351
             }
             source={{
-              uri: "https://cdn.xxl.thumbs.canstockphoto.com/a-big-delivery-truck-isolated-on-white-stock-images_csp2474535.jpg",
+              uri: "https://p.kindpng.com/picc/s/126-1269870_semi-truck-png-semi-truck-transparent-background-png.png",
             }}
           />
         </View>
@@ -69,7 +79,6 @@ export default function ({ route, navigation }) {
             <View style={styles.Group34}>
               <Text style={styles.Txt447}>Medium Size</Text>
             </View>
-            {/* <View style={styles.Group70}></View> */}
             <BouncyCheckbox
               onPress={() => {
                 setbookingReview((prevState) => ({
@@ -86,7 +95,7 @@ export default function ({ route, navigation }) {
               styles.KisspngToyotaLandCruiserPradoCarToyota86SportUtilToyotaLandCruiserWhiteCar5a755aed9f9d351
             }
             source={{
-              uri: "https://catalogue.automobile.tn/big/2021/01/46499.jpg?t=1655500815",
+              uri: "https://i.pinimg.com/originals/49/5c/b9/495cb9bd6f5611300d890037cb51d729.png"
             }}
           />
         </View>
@@ -137,28 +146,16 @@ export default function ({ route, navigation }) {
               styles.KisspngToyotaLandCruiserPradoCarToyota86SportUtilToyotaLandCruiserWhiteCar5a755aed9f9d351
             }
             source={{
-              uri: "https://upload.wikimedia.org/wikipedia/commons/7/74/Megelli_Sports_motorcycle.jpg",
+              uri: "https://www.pngplay.com/wp-content/uploads/8/Yamaha-Sports-Bike-Background-PNG-Image.png",
             }}
           />
         </View>
-        {/* <View style={styles.Group459}>
-          <Text style={styles.Txt469}>Continue</Text>
-        </View> */}
       </View>
-      <View style={styles.btncontainer}>
-        <Button
-          title="go back"
-          onPress={() => {
-            navigation.goBack();
-          }}
-        ></Button>
-        <Button
-          title="Continue"
-          onPress={() => {
-            dispatch(ParkingNameAndAdress(bookingReview));
-            navigation.navigate("FillCarInformation");
-          }}
-        ></Button>
+      <View style={styles.btncontainter}>
+        <TouchableRipple style={styles.Frame178} onPress={() => {dispatch(ParkingNameAndAdress(bookingReview));
+            navigation.navigate("FillCarInformation")}}>
+        <Text style={styles.Txt191}>Continue</Text>
+        </TouchableRipple>
       </View>
     </View>
   );
@@ -171,12 +168,33 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start",
     position: "relative",
-    borderRadius: 50,
     bottom: 30,
-    backgroundColor: "rgba(255, 255, 255, 1)",
+    backgroundColor: "#F5FCFF",
     width: "100%",
     height: "100%",
+    top:'1%'
     // backgroundColor: "yellow",
+  },
+  Frame218: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    top: "-19%",
+    left:'4%'
+  },
+  Frame: {
+    width: 36,
+    height: 38,
+    marginRight: 14,
+    left: '-17%'
+  },
+  Txt3107: {
+    fontSize: 29,
+    fontWeight: "600",
+    lineHeight: 34,
+    color: "#104685",
+    width: 282,
   },
   _5a3620812343531: {
     position: "absolute",
@@ -188,51 +206,9 @@ const styles = StyleSheet.create({
   Group046: {
     display: "flex",
     flexDirection: "column",
-    // position: "absolute",
-    // top: 73,
-    // none: "0px",
     width: "100%",
     height: "90%",
-    // backgroundColor: "pink",
-    top: "10%",
-  },
-  Group6107: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 31,
-    left: 30,
-  },
-  Frame: {
-    width: 26,
-    height: 18,
-    marginRight: 19,
-  },
-  Txt321: {
-    fontSize: 29,
-    fontWeight: "600",
-    lineHeight: 34,
-    color: "rgba(0,0,0,1)",
-    width: 282,
-  },
-
-  Group616: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    paddingTop: 26,
-    paddingBottom: 25,
-    paddingLeft: 138,
-    paddingRight: 32,
-    marginBottom: 22,
-    borderRadius: 23,
-    backgroundColor: "rgba(244,244,244,1)",
-  },
-  Group33: {
-    position: "relative",
-    marginRight: 111,
-    width: 73,
-    height: 40,
+    top: "15%",
   },
   Txt376: {
     position: "absolute",
@@ -244,38 +220,19 @@ const styles = StyleSheet.create({
     width: 58,
     height: 17,
   },
-  Txt957: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(53,53,53,1)",
-    width: 73,
-    height: 23,
-  },
-
-  Ellipse40: {
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
-    width: 17,
-    height: 17,
-    borderRadius: 8.5,
-  },
-
   Group440: {
     position: "relative",
     bottom: 26,
     marginBottom: 22,
     borderRadius: 23,
-    backgroundColor: "rgba(4,134,135,0.08)",
+    backgroundColor: "#EDFAFA",
     borderWidth: 2,
     borderStyle: "solid",
     borderColor: "rgba(58, 107, 204, 1)",
     width: "95%",
     height: 93,
     left: "3%",
+    top:'-2%'
   },
   Group286: {
     display: "flex",
@@ -293,16 +250,6 @@ const styles = StyleSheet.create({
     width: 149,
     height: 40,
   },
-  Txt987: {
-    position: "absolute",
-    top: 23,
-    left: 0,
-    fontSize: 12,
-    fontWeight: "500",
-    color: "rgba(53,53,53,0.5)",
-    width: 55,
-    height: 17,
-  },
   Txt447: {
     position: "absolute",
     top: 0,
@@ -313,27 +260,14 @@ const styles = StyleSheet.create({
     width: 149,
     height: 23,
   },
-
-  //   Group70: {
-  //     // borderRadius: 8.5,
-  //     // backgroundColor: "rgba(188,0,99,1)",
-  //     // borderWidth: 1.5,
-  //     // borderStyle: "solid",
-  //     // borderColor: "rgba(188,0,99,1)",
-  //     width: 17,
-  //     height: 17,
-  //   },
-
-  KisspngToyotaLandCruiserPradoCarToyota86SportUtilToyotaLandCruiserWhiteCar5a755aed9f9d351:
-    {
+  KisspngToyotaLandCruiserPradoCarToyota86SportUtilToyotaLandCruiserWhiteCar5a755aed9f9d351:{
       position: "absolute",
       top: 14,
       left: 220,
       width: 107,
       height: 65,
     },
-
-  Group262: {
+    Group262: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -345,157 +279,30 @@ const styles = StyleSheet.create({
     borderRadius: 23,
     backgroundColor: "rgba(244,244,244,1)",
   },
-  KisspngCarClipArtAudiQ3Car5a74c1dadf5c361: {
-    width: 111,
-    height: 53,
-    marginRight: 14,
-  },
-  Group35: {
-    position: "relative",
-    marginRight: 96,
-    width: 88,
-    height: 40,
-  },
-  Txt376: {
-    position: "absolute",
-    top: 23,
-    left: 0,
-    fontSize: 12,
-    fontWeight: "500",
-    color: "rgba(53,53,53,0.5)",
-    width: 58,
-    height: 17,
-  },
-  Txt339: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(53,53,53,1)",
-    width: 88,
-    height: 23,
-  },
-
-  Ellipse41: {
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
-    width: 17,
-    height: 17,
-    borderRadius: 8.5,
-  },
-
-  Group869: {
-    position: "relative",
-    marginBottom: 32,
-    borderRadius: 23,
-    backgroundColor: "rgba(244,244,244,1)",
-    width: 373,
-    height: 93,
-  },
-  Group967: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    position: "absolute",
-    top: 27,
-    none: "0px",
-    width: 200,
-    height: 40,
-  },
-  Group36: {
-    position: "relative",
-    marginRight: 101,
-    width: 82,
-    height: 40,
-  },
-  Txt368: {
-    position: "absolute",
-    top: 23,
-    left: 0,
-    fontSize: 12,
-    fontWeight: "500",
-    color: "rgba(53,53,53,0.5)",
-    width: 56,
-    height: 17,
-  },
-  Txt605: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(53,53,53,1)",
-    width: 82,
-    height: 23,
-  },
-
-  Ellipse42: {
-    borderWidth: 2,
-    borderStyle: "solid",
-    borderColor: "rgba(188,0,99,1)",
-    width: 17,
-    height: 17,
-    borderRadius: 8.5,
-  },
-
-  Kisspng2017TeslaModelXTeslaModelSTeslaMotorsSporTeslaModelXWhiteCar5a751d40cd80f71:
-    {
-      position: "absolute",
-      top: 21,
-      left: 124,
-      width: 116,
-      height: 46,
-    },
-
-  Group2105: {
-    paddingTop: 16,
-    paddingBottom: 14,
-    paddingLeft: 115,
-    paddingRight: 112,
-    marginBottom: 163,
-    borderRadius: 50,
-    backgroundColor: "rgba(188,0,99,0.1)",
-    width: 373,
-    height: 53,
-  },
-  Txt654: {
-    fontSize: 16,
-    fontWeight: "700",
-    color: "rgba(188,0,99,1)",
-    textAlign: "center",
-    justifyContent: "center",
-  },
-
-  Group459: {
-    postion: "relative",
-    // paddingTop: 16,
-    // paddingBottom: 14,
-    // paddingLeft: 130,
-    // paddingRight: 127,
-    borderRadius: 50,
-    backgroundColor: "rgba(188,0,99,1)",
+  btncontainter: {
+    bottom: 10,
+    height: "20%",
     width: "60%",
-    height: 53,
-    alignItems: "center",
-    left: "20%",
-    top: "10%",
+    left:'20%',
+    top:'4%'
   },
-  Txt469: {
-    fontSize: 16,
-    fontWeight: "700",
-    color: "rgba(255, 255, 255, 1)",
-    textAlign: "center",
-    justifyContent: "center",
-    top: "26%",
-  },
-  btncontainer: {
+  Frame178: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-evenly",
-
-    width: Dimensions.get("window").width,
-    bottom: -40,
+    justifyContent: "center",
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingLeft: -100,
+    paddingRight: 100,
+    borderRadius: 50,
+    backgroundColor: "#106EE0",
+    top:'-7%',
+  },
+  Txt191: {
+    fontSize: 16,
+    width:'100%',
+    fontWeight: "700",
+    color: "white",
+    left:'380%'
   },
 });

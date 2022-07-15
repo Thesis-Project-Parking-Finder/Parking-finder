@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
   },
   Txt482: {
     fontSize: 32,
-    // fontFamily: "Jost, sans-serif",
     fontWeight: "600",
     color: "rgba(8,44,89,1)",
     width: "100%",
@@ -106,7 +105,6 @@ const styles = StyleSheet.create({
   },
   Txt812: {
     fontSize: 14,
-    // fontFamily: "Montserrat, sans-serif",
     fontWeight: "700",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",
