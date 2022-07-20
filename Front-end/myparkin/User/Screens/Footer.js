@@ -3,8 +3,9 @@ import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase.config";
+
 import HistoryParking from "./hirtoryParking";
-import {Colors} from 'react-native-paper'
+
 export const Footer = () => {
   const navigation = useNavigation();
   const [userId, setUserId] = useState("");
@@ -100,7 +101,9 @@ const styles = StyleSheet.create({
     width: 24,
     height: 26.67,
     marginRight: 76,
-    backgroundColor: Colors.grey300,
+
+    // backgroundColor: "rgba(16, 181, 241, 0.8)",
+
   },
   Group18: {
     paddingTop: 5,
@@ -108,7 +111,9 @@ const styles = StyleSheet.create({
     paddingLeft: 4,
     paddingRight: 4.22,
     marginRight: 77,
-    backgroundColor: Colors.grey400,
+
+    backgroundColor: "rgba(122, 119, 121, 0.18)",
+
     /* url(https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pabo7awh17-79%3A914?alt=media&token=7b249d29-c6da-4d0f-a30d-3574b5e08b4f) */
     width: 18.22,
     height: 27,
@@ -127,7 +132,9 @@ const styles = StyleSheet.create({
     paddingLeft: 1,
     paddingRight: 1,
     marginRight: 77,
-    backgroundColor: Colors.grey400,
+
+    backgroundColor: "rgba(122, 119, 121, 0.18)",
+
     width: 19,
     height: 24,
   },

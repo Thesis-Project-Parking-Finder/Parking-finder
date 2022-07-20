@@ -33,7 +33,7 @@ export default function Profile({ route }) {
   const logOut = () => {
     signOut(auth)
       .then(() => {
-        navigation.navigate("Login");
+        // navigation.navigate("Login");
       })
       .catch((err) => {
         alert(err.message);
@@ -85,8 +85,18 @@ export default function Profile({ route }) {
                   }}
                 />
                 <Text style={styles.Txt1078}>
-                  Parki Points: {userObject.currencyPoints}
+                  Parki Points:
+                  <Text style={styles.Txt107}>
+                    {"   "}
+                    {userObject.currencyPoints}
+                  </Text>
                 </Text>
+                <Image
+                  source={{
+                    uri: "https://img.icons8.com/ultraviolet/344/ruble.png",
+                  }}
+                  style={styles.image}
+                />
               </View>
               <View style={styles.Group136}>
                 <Image
@@ -152,7 +162,7 @@ export default function Profile({ route }) {
             <Text style={styles.Txt458}>{userObject.fullName}</Text>
             <BouncyCheckbox
               style={styles.Vector5}
-              fillColor='rgba(16, 181, 241, 0.8)'
+              fillColor="rgba(16, 181, 241, 0.8)"
             />
           </View>
         </ScrollView>
@@ -176,6 +186,14 @@ const styles = StyleSheet.create({
     height: "100%",
     // backgroundColor: "red",
   },
+  image: {
+    position: "absolute",
+    width: "10%",
+    height: "150%",
+    resizeMode: "cover",
+    top: "-19%",
+    left: "60%",
+  },
   Txt853: {
     position: "absolute",
     top: "35%",
@@ -187,6 +205,7 @@ const styles = StyleSheet.create({
     height: 21,
     // justifyContent:"center",
     // alignItems:"center"
+    width: "70%",
   },
   Vector: {
     position: "absolute",
@@ -296,6 +315,11 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "rgba(0,0,0,1)",
   },
+  Txt107: {
+    fontSize: 18,
+    fontWeight: "500",
+    color: "rgba(74, 158, 246, 0.8)",
+  },
 
   Group134: {
     display: "flex",
@@ -308,11 +332,6 @@ const styles = StyleSheet.create({
     height: 14.55,
     marginRight: 25,
   },
-  Txt1078: {
-    fontSize: 18,
-    fontWeight: "500",
-    color: "rgba(0,0,0,1)",
-  },
 
   Group136: {
     display: "flex",
@@ -324,11 +343,6 @@ const styles = StyleSheet.create({
     height: 22.22,
     marginRight: 25,
   },
-  Txt1078: {
-    fontSize: 18,
-    fontWeight: "500",
-    color: "rgba(0,0,0,1)",
-  },
 
   Group136: {
     display: "flex",
@@ -339,11 +353,6 @@ const styles = StyleSheet.create({
     width: 18,
     height: 22.5,
     marginRight: 26,
-  },
-  Txt1078: {
-    fontSize: 18,
-    fontWeight: "500",
-    color: "rgba(0,0,0,1)",
   },
 
   Group136: {
@@ -372,12 +381,6 @@ const styles = StyleSheet.create({
     height: 18,
   },
 
-  Txt1078: {
-    fontSize: 18,
-    fontWeight: "500",
-    color: "rgba(0,0,0,1)",
-  },
-
   Group134: {
     display: "flex",
     flexDirection: "row",
@@ -388,11 +391,6 @@ const styles = StyleSheet.create({
     width: 22,
     height: 16,
     marginRight: 23,
-  },
-  Txt1078: {
-    fontSize: 18,
-    fontWeight: "500",
-    color: "rgba(0,0,0,1)",
   },
 
   Group646: {

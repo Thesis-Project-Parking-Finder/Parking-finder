@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import Lottie from "lottie-react-native";
 import { child, ref, set } from "firebase/database";
-import { database } from "../../firebase.config";
+import { database, db } from "../../firebase.config";
 import {
   StyleSheet,
   Image,
@@ -15,18 +15,16 @@ import {
   ScrollView,
   ImageBackground,
 } from "react-native";
-import {
-  TouchableRipple
-} from "react-native-paper";
+import { TouchableRipple } from "react-native-paper";
 import { TextInput } from "react-native-gesture-handler";
 import { auth } from "../../firebase.config";
 import { updateProfile, updateEmail } from "firebase/auth";
-
+import { doc, updateDoc } from "firebase/firestore";
 
 export default function EditProfile({ route }) {
   const navigation = useNavigation();
   const [userId, setuserId] = useState(auth.currentUser.uid);
-  const [userName, setUserName] = useState(auth.currentUser.displayName);
+  const [userName, setUserName] = useState();
   const [email, setEmail] = useState(auth.currentUser.email);
 
   const handleFullName = (text) => {
@@ -41,13 +39,11 @@ export default function EditProfile({ route }) {
     updateProfile(auth.currentUser, {
       displayName: userName,
     })
-
       .then(() => {
         console.log("success");
       })
       .catch((error) => {
         console.log("error");
-
       });
 
     updateEmail(auth.currentUser, email)
@@ -57,7 +53,10 @@ export default function EditProfile({ route }) {
       .catch((error) => {
         console.log(error);
       });
-    set(ref(database, "users/" + userId), { fullNAme: userName });
+    // set(ref(database, "users/" + userId), { fullNAme: userName });
+    const spotRef = doc(db, "users", `${auth.currentUser.uid}`);
+    updateDoc(spotRef, { fullName: userName });
+    navigation.navigate("Profile");
   };
   // const edit = () => {
   //   if (obj.fullName === "") {
@@ -78,41 +77,40 @@ export default function EditProfile({ route }) {
         }}
       >
         <View style={styles.Iphone13ProMax55}>
-        <View style={styles.Frame218}>
-        <TouchableRipple onPress={() => navigation.navigate("Profile")}>
-          <Lottie
-            source={require("./assets/arrow2.json")}
-            autoPlay
-            loop
-            style={styles.Frame}
-          />
-        </TouchableRipple>
-        <Text style={styles.Txt3107}>Edit Your Profile</Text>
-      </View>
+          <View style={styles.Frame218}>
+            <TouchableRipple onPress={() => navigation.navigate("Profile")}>
+              <Lottie
+                source={require("./assets/arrow2.json")}
+                autoPlay
+                loop
+                style={styles.Frame}
+              />
+            </TouchableRipple>
+            <Text style={styles.Txt3107}>Edit Your Profile</Text>
+          </View>
           <View style={styles.Frame166}>
-          <View style={styles.Group159}>
-          <Text style={styles.Txt439}>Your Name:</Text>
-                <TextInput
-                  style={styles.Txt448}
-                  placeholder="FullName"
-                  onChangeText={handleFullName}
-                />
-              </View>
-              
-              <View style={styles.Group159}>
+            <View style={styles.Group159}>
+              <Text style={styles.Txt439}>Your Name:</Text>
+              <TextInput
+                style={styles.Txt448}
+                placeholder="FullName"
+                onChangeText={handleFullName}
+              />
+            </View>
+
+            <View style={styles.Group159}>
               <Text style={styles.Txt439}>Your E-mail:</Text>
-                <TextInput
-                  style={styles.Txt448}
-                  placeholder="E-mail"
-                  onChangeText={handleEmail}
-                />
-              </View>
-              </View>
-              
+              <TextInput
+                style={styles.Txt448}
+                placeholder="E-mail"
+                onChangeText={handleEmail}
+              />
+            </View>
+          </View>
         </View>
         <TouchableRipple style={styles.Frame224} onPress={handleUpdate}>
-        <Text style={styles.Txt351}>Continue</Text>
-      </TouchableRipple>
+          <Text style={styles.Txt351}>Continue</Text>
+        </TouchableRipple>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -140,7 +138,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     marginTop: "1%",
-    left:'-4%'
+    left: "-4%",
   },
   Frame: {
     width: 36,
@@ -166,7 +164,7 @@ const styles = StyleSheet.create({
     marginBottom: 17,
     width: "100%",
     height: "50%",
-    top:'-20%',
+    top: "-20%",
     marginLeft: "22%",
   },
   Group159: {
@@ -195,7 +193,7 @@ const styles = StyleSheet.create({
     top: "-85%",
     left: 85,
     fontSize: 15,
-    marginTop:'-4%',
+    marginTop: "-4%",
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
     width: 217,
@@ -211,10 +209,10 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(9, 66, 139, 1)",
     bottom: "0.2%",
     left: "17%",
-    top:'120%',
-    width:'70%',
-    height:'20%',
-    marginTop:'-100%',
+    top: "120%",
+    width: "70%",
+    height: "20%",
+    marginTop: "-100%",
     // marginStart:'40%'
   },
   Txt351: {

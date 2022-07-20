@@ -32,10 +32,8 @@ const StackNav = () => {
   return (
     <Provider store={store}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Map" component={Map} />
         {/* <Stack.Screen name="test" component={test} /> */}
-
-        {/* <Stack.Screen name="ProfileFill" component={ProfileFill} /> */}
+        <Stack.Screen name="ProfileFill" component={ProfileFill} />
 
         <Stack.Screen name="Map" component={Map} />
         <Stack.Screen name="MyBookMark" component={MyBookMark} />

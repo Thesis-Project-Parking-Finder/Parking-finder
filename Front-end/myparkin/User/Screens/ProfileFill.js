@@ -89,7 +89,8 @@ export default function ProfileFill() {
       // const newKey = push(child(ref(database), "users")).key;
       setDoc(doc(db, "users", `${auth.currentUser.uid}`), obj);
     }
-    navigation.navigate("Map");
+    // navigation.navigate("Map");
+    navigation.replace("Map", { screen: "Map" });
   };
   function handleChange(text, eventName) {
     setObj((prev) => {

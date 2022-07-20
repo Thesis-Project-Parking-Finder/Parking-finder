@@ -1,41 +1,48 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Image,
-  Text,
-  View,
-  Pressable,
-  ImageBackground,
-} from "react-native";
-import {
-  TouchableRipple,
-  Colors,
-  Checkbox
-} from "react-native-paper";
+
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Image, Text, View, Pressable } from "react-native";
+import { TouchableRipple, Colors, Checkbox } from "react-native-paper";
+
 import Lottie from "lottie-react-native";
 import Modal from "react-native-modal";
 import { useSelector } from "react-redux";
 import { child, push, ref } from "firebase/database";
-import { doc, setDoc } from "firebase/firestore";
-import { database, db } from "../../firebase.config";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { auth, database, db } from "../../firebase.config";
 
 const BookingReview = ({ navigation }) => {
   let data = useSelector((state) => state.bookplace.value);
   const [globalState, setglobalState] = useState(data);
   let TotalPrice = globalState.Price * globalState.Duration;
-  let totalcoins = TotalPrice * 100;
+  let totalcoins = globalState.Duration * 100;
 
   const [checkedCustom, setCheckedCustom] = React.useState(false);
   const [checkedCustom2, setCheckedCustom2] = React.useState(false);
   const [show, setShow] = React.useState(false);
+  const [userObject, setUserObject] = useState({});
+  useEffect(() => {
+    (async () => {
+      const docRef = doc(db, "users", `${auth.currentUser.uid}`);
+      const docSnap = await getDoc(docRef);
+      setUserObject(docSnap.data());
+      // console.log("Document data:", docSnap.data());
+    })();
+  }, []);
 
   function postBookings() {
-    const newKey = push(child(ref(database), "bookings")).key;
-    setDoc(doc(db, "bookings", `${newKey}`), globalState);
-    navigation.navigate("ticket");
+    if(userObject.currencyPoints>totalcoins){
+      const newKey = push(child(ref(database), "bookings")).key;
+      setDoc(doc(db, "bookings", `${newKey}`), globalState);
+      navigation.navigate("ticket");
+      const spotRef = doc(db, "users", `${auth.currentUser.uid}`);
+      updateDoc(spotRef, {
+        currencyPoints: userObject.currencyPoints - globalState.Duration * 100,
+      });
+    }else{ navigation.navigate('CantBookings')}
+   
   }
   // function facture()
-  var facture = 1400 - totalcoins;
+  var facture = userObject.currencyPoints - totalcoins;
   return (
     <View style={styles.Group97}>
       {console.log(globalState)}
@@ -135,10 +142,6 @@ const BookingReview = ({ navigation }) => {
         </TouchableRipple>
       </View>
       <View style={styles.Frame256}>
-        {/* <View style={styles.Txt1002}>
-            <Text style={styles.Txt3109}>Choose Payment Methods:</Text>
-        </View> */}
-
         <TouchableRipple
           style={[styles.Group252, Colors.green500]}
           onPress={() => {
@@ -184,24 +187,29 @@ const BookingReview = ({ navigation }) => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText1}>Parky Coin:</Text>
-            <Text style={styles.modalText2}>1400</Text>
+
+            <Text style={styles.modalText2}>{userObject.currencyPoints}</Text>
             <Text style={styles.modalText1}>Parking Fee:</Text>
             <Text style={styles.modalText3}>{totalcoins}</Text>
-            <Text style={styles.modalText3}>Total: 1400 - {totalcoins}</Text>
+            <Text style={styles.modalText3}>
+              Total: {userObject.currencyPoints} - {totalcoins}
+            </Text>
             <View style={styles.horizontalL}></View>
             <Text style={styles.modalText4}>= {facture}</Text>
-
-            {/* <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setShow(!show)}
+            <TouchableRipple
+              style={styles.button}
+              onPress={() => {
+                setShow(!show);
+              }}
             >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable> */}
-            <TouchableRipple style={styles.button} onPress={() => {setShow(!show)}}>
-              <Image source={require('./images/X.png')} />
+              <Image source={require("./images/X.png")} />
             </TouchableRipple>
             <TouchableRipple style={styles.button1} onPress={postBookings}>
-              <Image style={styles.textStyle} source={require('./images/done.png')} />
+              <Image
+                style={styles.textStyle}
+                source={require("./images/done.png")}
+              />
+
             </TouchableRipple>
           </View>
         </View>
@@ -210,6 +218,9 @@ const BookingReview = ({ navigation }) => {
       {/* <TouchableRipple style={styles.Frame224} onPress={() => {checkedCustom2 && setShow(!show)}}>
         <Text
           style={styles.Txt351}
+
+          onPress={() => checkedCustom2 && setShow(!show)}
+
         >
           Continue
         </Text>
@@ -484,7 +495,7 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 70,
     marginLeft: "20%",
-  }, 
+  },
   centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -507,19 +518,19 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    width:'5%',
-    height:'5%',
-    top:'20%',
-    right:'34%'
-    // left:'30'
 
-    
+    width: "5%",
+    height: "5%",
+    top: "20%",
+    right: "34%",
+    // left:'30'
   },
   button1: {
-    left:'34%',
-    width:'5%',
-    height:'5%',
-    top:'12%'
+    left: "34%",
+    width: "5%",
+    height: "5%",
+    top: "12%",
+
   },
   buttonClose: {
     backgroundColor: "#2196F3",
@@ -543,26 +554,34 @@ const styles = StyleSheet.create({
   modalText1: {
     marginBottom: 15,
     textAlign: "center",
-    fontSize:20,
-    color:'#0260D1',
-    fontWeight:'bold'
+
+    fontSize: 20,
+    color: "#0260D1",
+    fontWeight: "bold",
+
   },
   modalText2: {
     marginBottom: 15,
     textAlign: "center",
-    fontWeight:'bold',
-    color: Colors.blue900
+
+    fontWeight: "bold",
+    color: Colors.blue900,
+
   },
   modalText3: {
     marginBottom: 15,
     textAlign: "center",
-    fontWeight:'bold',
+
+    fontWeight: "bold",
+
   },
   modalText4: {
     marginBottom: 15,
     textAlign: "center",
-    fontWeight:'bold',
-    color:Colors.red800
+
+    fontWeight: "bold",
+    color: Colors.red800,
+
   },
 });
 export default BookingReview;

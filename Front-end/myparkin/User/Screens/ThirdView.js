@@ -1,6 +1,14 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, Image, Text, View, ImageBackground, Button, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  ImageBackground,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 
 export default function ThirdView() {
   const navigation = useNavigation();
@@ -9,42 +17,39 @@ export default function ThirdView() {
       <View style={styles.Android}>
         <View style={styles.Group135}>
           <View style={styles.imgcontainer}>
-          <Image
-          style={styles.Undraw_tourist_map_re_293e1}
-          source={require("./images/flame-14.png")}
-        />
+
+            <Image
+              style={styles.Undraw_tourist_map_re_293e1}
+              source={require("./images/flame-14.png")}
+            />
+
           </View>
           {/* pargagraphe */}
-          <View style={styles.Group137}>    
-          <View style={styles.Group134}>
-            <View style={styles.Frame137}>
-              <Text style={styles.Txt411}>
-              Extend Parking Time As You Need
+          <View style={styles.Group137}>
+            <View style={styles.Group134}>
+              <View style={styles.Frame137}>
+                <Text style={styles.Txt411}>
+                  Extend Parking Time As You Need
+                </Text>
+              </View>
+              <Text style={styles.Txt9109}>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry.{" "}
               </Text>
             </View>
-            <Text style={styles.Txt9109}>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.{" "}
-            </Text>
           </View>
-          </View> 
-
-          {/* small rectangle */}
-          {/* <View style={styles.Frame138}>
-            <View style={styles.Group138}>
-              <View style={styles.Rectangle3} />
-              <View style={styles.Rectangle1} />
-              <View style={styles.Rectangle2} />
-              </View>
-            </View> */}
-             
-          {/* buttons container */}
           <View style={styles.Group131}>
-            <TouchableOpacity style={styles.Group295} onPress={()=> navigation.navigate("Let_s_In")}>
-            <Text style={styles.Txt1074}>Next</Text>
+            <TouchableOpacity
+              style={styles.Group295}
+              onPress={() => navigation.navigate("Let_s_In")}
+            >
+              <Text style={styles.Txt1074}>Next</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.Group532} onPress={()=> navigation.navigate("Let_s_In")}>
-            <Text style={styles.Txt3610}>Skip</Text>
+            <TouchableOpacity
+              style={styles.Group532}
+              onPress={() => navigation.navigate("Let_s_In")}
+            >
+              <Text style={styles.Txt3610}>Skip</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -95,16 +100,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   Undraw_tourist_map_re_293e1: {
-    top: '20%',
+
+    top: "20%",
+
     width: "80%",
     height: "75%",
     resizeMode: "cover",
   },
-  Group137:{
+  Group137: {
     // backgroundColor:"blue",
-    top:40,
-    height:"35%",
-    
+    top: 40,
+    height: "35%",
   },
 
   Group134: {
@@ -149,14 +155,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 48,
-    height:"10%",
+    height: "10%",
     // backgroundColor: "black",
   },
-  Group138:{
+  Group138: {
     // backgroundColor:"blue",
-    top:40,
-    height:"35%",
-    
+    top: 40,
+    height: "35%",
   },
   Rectangle3: {
     backgroundColor: "rgba(188,0,99,1)",
