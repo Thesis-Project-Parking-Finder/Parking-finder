@@ -17,10 +17,12 @@ export default function ThirdView() {
       <View style={styles.Android}>
         <View style={styles.Group135}>
           <View style={styles.imgcontainer}>
+
             <Image
               style={styles.Undraw_tourist_map_re_293e1}
               source={require("./images/flame-14.png")}
             />
+
           </View>
           {/* pargagraphe */}
           <View style={styles.Group137}>
@@ -98,7 +100,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   Undraw_tourist_map_re_293e1: {
+
     top: "20%",
+
     width: "80%",
     height: "75%",
     resizeMode: "cover",

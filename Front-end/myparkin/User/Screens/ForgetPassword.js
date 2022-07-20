@@ -52,7 +52,9 @@ export default function Iphone13ProMax16() {
         <View style={styles.Iphone13ProMax16}>
           <Image
             style={styles.Undraw_forgot_password_re_hxwm1}
+
             source={require("./images/forget.png")}
+
           />
           <View style={styles.Group1086}>
             <View style={styles.Group116}>
@@ -71,6 +73,7 @@ export default function Iphone13ProMax16() {
             <Text style={styles.Txt758}>
               Please enter your e-mail we should use to reset your password
             </Text>
+
             <TouchableOpacity style={styles.Group160}>
               <TextInput
                 style={styles.Txt448}
@@ -79,6 +82,7 @@ export default function Iphone13ProMax16() {
                 onChangeText={handleEmail}
               />
             </TouchableOpacity>
+
             <TouchableOpacity
               onPress={forgotPassword}
               style={styles.Rectangle4}
@@ -166,7 +170,9 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "rgba(53,53,53,1)",
     marginBottom: 27,
+
     top: "-6%",
+
   },
   Group662: {
     display: "flex",
@@ -244,7 +250,9 @@ const styles = StyleSheet.create({
     width: 84,
     height: 84,
     marginRight: 11,
+
     right: "14%",
+
   },
   Group5: {
     position: "relative",
@@ -342,8 +350,10 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     width: "70%",
     height: "10%",
+
     top: "-5%",
     left: "4%",
+
   },
   Txt448: {
     fontSize: 15,

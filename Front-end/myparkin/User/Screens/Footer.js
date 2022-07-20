@@ -3,6 +3,9 @@ import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase.config";
+
+import HistoryParking from "./hirtoryParking";
+
 export const Footer = () => {
   const navigation = useNavigation();
   const [userId, setUserId] = useState("");
@@ -68,21 +71,21 @@ export const Footer = () => {
 };
 const styles = StyleSheet.create({
   Group41010: {
-    position: "absolute",
+    position: "relative",
     backgroundColor: "rgba(255, 255, 255, 1)",
     width: "100%",
     height: "12%",
     bottom: 0,
+    // margin:'-4%',
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
-
     bottom: 4.2,
   },
   Group1301: {
     display: "flex",
     flexDirection: "column",
     position: "absolute",
-    top: "15%",
+    top: "30%",
     // none: "0px",
     width: "90%",
     height: "16%",
@@ -98,7 +101,9 @@ const styles = StyleSheet.create({
     width: 24,
     height: 26.67,
     marginRight: 76,
+
     // backgroundColor: "rgba(16, 181, 241, 0.8)",
+
   },
   Group18: {
     paddingTop: 5,
@@ -106,7 +111,9 @@ const styles = StyleSheet.create({
     paddingLeft: 4,
     paddingRight: 4.22,
     marginRight: 77,
+
     backgroundColor: "rgba(122, 119, 121, 0.18)",
+
     /* url(https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/pabo7awh17-79%3A914?alt=media&token=7b249d29-c6da-4d0f-a30d-3574b5e08b4f) */
     width: 18.22,
     height: 27,
@@ -125,7 +132,9 @@ const styles = StyleSheet.create({
     paddingLeft: 1,
     paddingRight: 1,
     marginRight: 77,
+
     backgroundColor: "rgba(122, 119, 121, 0.18)",
+
     width: 19,
     height: 24,
   },
@@ -146,25 +155,25 @@ const styles = StyleSheet.create({
   Txt747: {
     fontSize: 10,
     fontWeight: "600",
-    color: "blue",
+    color: Colors.blue600,
     marginRight: 67,
   },
   Txt413: {
     fontSize: 10,
     fontWeight: "600",
-    color: "blue",
+    color: Colors.blue600,
     marginRight: 62,
   },
   Txt994: {
     fontSize: 10,
     fontWeight: "600",
-    color: "blue",
+    color: Colors.blue600,
     marginRight: 64,
   },
   Txt1072: {
     fontSize: 10,
     fontWeight: "600",
-    color: "blue",
+    color: Colors.blue600,
   },
 
   Vector2: {

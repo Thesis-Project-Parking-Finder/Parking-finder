@@ -1,6 +1,8 @@
+
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Image, Text, View, Pressable } from "react-native";
 import { TouchableRipple, Colors, Checkbox } from "react-native-paper";
+
 import Lottie from "lottie-react-native";
 import Modal from "react-native-modal";
 import { useSelector } from "react-redux";
@@ -116,7 +118,7 @@ const BookingReview = ({ navigation }) => {
                 style={styles.imageM}
               />
               <View style={styles.Group73}>
-                <Text style={styles.Txt829}>Parking Coin</Text>
+                <Text style={styles.Txt829}>Parky Coin</Text>
               </View>
             </View>
             {/* <View style={styles.Ellipse44} /> */}
@@ -185,6 +187,7 @@ const BookingReview = ({ navigation }) => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText1}>Parky Coin:</Text>
+
             <Text style={styles.modalText2}>{userObject.currencyPoints}</Text>
             <Text style={styles.modalText1}>Parking Fee:</Text>
             <Text style={styles.modalText3}>{totalcoins}</Text>
@@ -206,16 +209,27 @@ const BookingReview = ({ navigation }) => {
                 style={styles.textStyle}
                 source={require("./images/done.png")}
               />
+
             </TouchableRipple>
           </View>
         </View>
       </Modal>
 
-      <TouchableRipple style={styles.Frame224} onPress={() => setShow(!show)}>
+      {/* <TouchableRipple style={styles.Frame224} onPress={() => {checkedCustom2 && setShow(!show)}}>
         <Text
           style={styles.Txt351}
+
           onPress={() => checkedCustom2 && setShow(!show)}
+
         >
+          Continue
+        </Text>
+      </TouchableRipple> */}
+      <TouchableRipple style={styles.Frame224} onPress={() => {
+                  checkedCustom2 && setShow(!show)
+                }}>
+        <Text
+          style={styles.Txt351}>
           Continue
         </Text>
       </TouchableRipple>
@@ -504,6 +518,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
+
     width: "5%",
     height: "5%",
     top: "20%",
@@ -515,6 +530,7 @@ const styles = StyleSheet.create({
     width: "5%",
     height: "5%",
     top: "12%",
+
   },
   buttonClose: {
     backgroundColor: "#2196F3",
@@ -538,26 +554,34 @@ const styles = StyleSheet.create({
   modalText1: {
     marginBottom: 15,
     textAlign: "center",
+
     fontSize: 20,
     color: "#0260D1",
     fontWeight: "bold",
+
   },
   modalText2: {
     marginBottom: 15,
     textAlign: "center",
+
     fontWeight: "bold",
     color: Colors.blue900,
+
   },
   modalText3: {
     marginBottom: 15,
     textAlign: "center",
+
     fontWeight: "bold",
+
   },
   modalText4: {
     marginBottom: 15,
     textAlign: "center",
+
     fontWeight: "bold",
     color: Colors.red800,
+
   },
 });
 export default BookingReview;
