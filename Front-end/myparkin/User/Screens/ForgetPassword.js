@@ -17,7 +17,7 @@ import {
   ImageBackground,
 } from "react-native";
 import Lottie from "lottie-react-native";
-
+import { TouchableRipple } from "react-native-paper";
 export default function Iphone13ProMax16() {
   const navigation = useNavigation();
 
@@ -52,48 +52,33 @@ export default function Iphone13ProMax16() {
         <View style={styles.Iphone13ProMax16}>
           <Image
             style={styles.Undraw_forgot_password_re_hxwm1}
-            source={{
-              uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/6tzzc03l69q-42%3A55?alt=media&token=1d8fa8d3-074e-4c3d-b247-c1947d9a73e9",
-            }}
+            source={require("./images/forget.png")}
           />
           <View style={styles.Group1086}>
             <View style={styles.Group116}>
-              <Text style={styles.Txt292}>Forgot Password</Text>
-              <TouchableWithoutFeedback
-                onPress={() => navigation.navigate("Login")}
-              >
-                <Lottie
-                  source={require("./assets/arrow2.json")}
-                  autoPlay
-                  loop
-                  style={styles.FrameLottie}
-                />
-              </TouchableWithoutFeedback>
+              <View style={styles.Frame218}>
+                <TouchableRipple onPress={() => navigation.navigate("Login")}>
+                  <Lottie
+                    source={require("./assets/arrow2.json")}
+                    autoPlay
+                    loop
+                    style={styles.Frame}
+                  />
+                </TouchableRipple>
+                <Text style={styles.Txt3107}>Forgot Password</Text>
+              </View>
             </View>
             <Text style={styles.Txt758}>
               Please enter your e-mail we should use to reset your password
             </Text>
-
-            <View style={styles.Group365}>
-              <View style={styles.Group1050}>
-                <Image
-                  style={styles.Email}
-                  source={{
-                    uri: "https://firebasestorage.googleapis.com/v0/b/unify-bc2ad.appspot.com/o/6tzzc03l69q-44%3A10?alt=media&token=a0daac46-8fee-4d84-8f95-471371b5eea5",
-                  }}
-                />
-                <View style={styles.Group5}>
-                  <Text style={styles.Txt593}> Email</Text>
-                  <TextInput
-                    style={styles.Group5}
-                    placeholder="e-mail"
-                    value={email}
-                    onChangeText={handleEmail}
-                  />
-                </View>
-              </View>
-            </View>
-
+            <TouchableOpacity style={styles.Group160}>
+              <TextInput
+                style={styles.Txt448}
+                placeholder="e-mail"
+                value={email}
+                onChangeText={handleEmail}
+              />
+            </TouchableOpacity>
             <TouchableOpacity
               onPress={forgotPassword}
               style={styles.Rectangle4}
@@ -126,7 +111,7 @@ const styles = StyleSheet.create({
   },
   Undraw_forgot_password_re_hxwm1: {
     position: "absolute",
-    top: 200,
+    top: "20%",
     left: 70,
     width: "70%",
     height: "30%",
@@ -146,10 +131,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 315,
   },
+  Frame218: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginTop: "10%",
+    top: "-70%",
+    right: "4%",
+  },
   Frame: {
-    width: 26,
-    height: 18,
+    width: 36,
+    height: 38,
     marginRight: 19,
+  },
+  Txt3107: {
+    fontSize: 29,
+    fontWeight: "600",
+    lineHeight: 34,
+    color: "#104685",
+    width: 282,
   },
   Txt292: {
     fontSize: 29,
@@ -165,6 +166,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "rgba(53,53,53,1)",
     marginBottom: 27,
+    top: "-6%",
   },
   Group662: {
     display: "flex",
@@ -242,6 +244,7 @@ const styles = StyleSheet.create({
     width: 84,
     height: 84,
     marginRight: 11,
+    right: "14%",
   },
   Group5: {
     position: "relative",
@@ -308,7 +311,7 @@ const styles = StyleSheet.create({
   },
   Rectangle4: {
     position: "absolute",
-    top: "75%",
+    top: "79%",
     left: 41,
     backgroundColor: "rgba(9, 66, 139, 1)",
 
@@ -325,5 +328,30 @@ const styles = StyleSheet.create({
     width: "85%",
     height: 53,
     borderRadius: 50,
+  },
+  Group160: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingTop: 17,
+    paddingBottom: 17,
+    backgroundColor: "rgba(71, 192, 192, 0.08)",
+    marginLeft: "3%",
+
+    marginBottom: 28,
+    borderRadius: 15,
+    width: "70%",
+    height: "10%",
+    top: "-5%",
+    left: "4%",
+  },
+  Txt448: {
+    fontSize: 15,
+    fontWeight: "500",
+    color: "rgba(169,169,169,1)",
+    width: "100%",
+    height: "100%",
+    marginLeft: "8%",
+    marginRight: "7%",
   },
 });

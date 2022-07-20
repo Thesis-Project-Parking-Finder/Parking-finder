@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Image, Text, View, ImageBackground } from "react-native";
 import { useSelector } from "react-redux";
 import { auth } from "../../firebase.config";
-export default function Frame2551() {
+export default function Frame2551({ navigation }) {
   let data = useSelector((state) => state.bookplace.value);
   const [globalState, setglobalState] = useState(data);
 
@@ -46,7 +46,9 @@ export default function Frame2551() {
         </View>
       </View>
       <View style={styles.Group267}>
-        <Text style={styles.Txt667}>Navigate to Parking Lot</Text>
+        <Text onPress={() => navigation.navigate("Map")} style={styles.Txt667}>
+          Navigate to Parking Lot
+        </Text>
       </View>
     </View>
   );

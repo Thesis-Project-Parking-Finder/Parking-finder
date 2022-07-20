@@ -13,7 +13,7 @@ export default function Slide_2() {
           <View style={styles.imgcontainer}>
           <Image
           style={styles.Undraw_tourist_map_re_293e1}
-          source={require("./images/Second.png")}
+          source={require("./images/phone.png")}
         />
           </View>
           {/* pargagraphe */}
@@ -229,19 +229,6 @@ const styles = StyleSheet.create({
     height: 20,
   },
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

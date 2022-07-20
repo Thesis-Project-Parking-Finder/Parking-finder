@@ -32,7 +32,7 @@ export default function Login() {
         if (auth.currentUser.emailVerified) {
           console.log(auth);
           // const user = userCredential.user;
-          navigation.navigate("ProfileFill");
+          // navigation.navigate("Map");
         } else {
           Alert.alert("unverified email");
         }
@@ -108,6 +108,7 @@ export default function Login() {
                   }}
                 />
                 <TextInput
+                  secureTextEntry={true}
                   style={styles.Txt1077}
                   placeholder="Password"
                   onChangeText={(text) => handleChange(text, "password")}
