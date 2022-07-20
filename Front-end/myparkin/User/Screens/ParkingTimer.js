@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Text, View, StyleSheet, SafeAreaView } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  DevSettings,
+} from "react-native";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import Lottie from "lottie-react-native";
@@ -14,15 +20,13 @@ import Icon from "@expo/vector-icons/build/FontAwesome5";
 import moment from "moment";
 
 export default function ParkingTimer({ route }) {
+  // DevSettings.reload();
   const [isPlaying, setIsPlaying] = React.useState(true);
   const [as, setAs] = useState(0);
   const navigation = useNavigation();
   const [toggleTimer, settoggleTimer] = useState(false);
   // const [durationSec, setdurationSec] = useState(null)
 
-  // useEffect(()=>{
-  //   if()
-  // },[])
   var currentTime = moment().format();
   function update() {
     const docRef = doc(db, "bookings", route.params.objBook.id);
@@ -138,14 +142,16 @@ export default function ParkingTimer({ route }) {
             </Text>
           </View>
           <View style={styles.Group247}>
-            <Text style={styles.Txt766}>Hours</Text>
-            <Text style={styles.Txt635}>09:00 AM - 13:00 PM</Text>
+            {/* <Text style={styles.Txt766}>Hours</Text> */}
+            {/* <Text style={styles.Txt635}>09:00 AM - 13:00 PM</Text> */}
           </View>
         </View>
       </View>
       <TouchableRipple
         style={styles.Frame224}
-        onPress={() => navigation.navigate("ExtendTime")}
+        onPress={() =>
+          navigation.navigate("ExtendTime", { extend: route.params.objBook })
+        }
       >
         <Text style={styles.Txt351}>Extend Parking Timer</Text>
       </TouchableRipple>
@@ -252,14 +258,6 @@ const styles = StyleSheet.create({
     marginRight: 100,
   },
 
-  Txt635: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    textAlign: "right",
-    justifyContent: "flex-end",
-  },
-
   Group241: {
     display: "flex",
     flexDirection: "row",
@@ -292,13 +290,6 @@ const styles = StyleSheet.create({
     color: "rgba(161,161,161,1)",
     marginRight: 115,
   },
-  Txt635: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    textAlign: "right",
-    justifyContent: "flex-end",
-  },
 
   Group241: {
     display: "flex",
@@ -310,13 +301,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "rgba(161,161,161,1)",
     marginRight: 180,
-  },
-  Txt635: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    textAlign: "right",
-    justifyContent: "flex-end",
   },
 
   Group241: {
@@ -330,13 +314,6 @@ const styles = StyleSheet.create({
     color: "rgba(161,161,161,1)",
     marginRight: 197,
   },
-  Txt635: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    textAlign: "right",
-    justifyContent: "flex-end",
-  },
 
   Group247: {
     display: "flex",
@@ -348,13 +325,7 @@ const styles = StyleSheet.create({
     color: "rgba(161,161,161,1)",
     marginRight: 100,
   },
-  Txt635: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "rgba(0,0,0,1)",
-    textAlign: "right",
-    justifyContent: "flex-end",
-  },
+
   Frame224: {
     position: "absolute",
     display: "flex",
@@ -373,12 +344,11 @@ const styles = StyleSheet.create({
 
     bottom: 0,
 
-
     fontWeight: "700",
     color: "rgba(255, 255, 255, 1)",
     textAlign: "center",
     justifyContent: "center",
 
-    top: "-1%",
+    top: "5%",
   },
 });

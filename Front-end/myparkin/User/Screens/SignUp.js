@@ -105,6 +105,7 @@ export default function SignUp() {
                 />
                 <TextInput
                   style={styles.Txt1077}
+                  secureTextEntry={true}
                   placeholder="Password"
                   onChangeText={(text) => handleChange(text, "password")}
                 />
@@ -117,6 +118,7 @@ export default function SignUp() {
                   }}
                 />
                 <TextInput
+                  secureTextEntry={true}
                   onChangeText={(text) => handleChange(text, "confirm")}
                   style={styles.Txt1077}
                   placeholder="Confirm"

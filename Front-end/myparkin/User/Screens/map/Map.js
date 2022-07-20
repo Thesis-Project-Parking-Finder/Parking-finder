@@ -54,17 +54,17 @@ function Map({ navigation }) {
     });
   };
 
-  const ParkingToDisplay = (latitudee, longitudee) => {
+  const ParkingToDisplay = async (latitudee, longitudee) => {
     let oneParking = MarkersInformation.filter((parking) => {
       return parking.coordinate.latitude === latitudee;
     });
 
-    setoneParking(oneParking);
-    setparkingname(oneparking[0].parkingName);
-    setprice(oneParking[0].price);
-    setnumber(oneParking[0].number);
-    setadress(oneparking[0].adress);
-    setparkingImage(oneparking[0].image);
+    await setoneParking(oneParking);
+    await setparkingname(oneparking[0].parkingName);
+    await setprice(oneParking[0].price);
+    await setnumber(oneParking[0].number);
+    await setadress(oneparking[0].adress);
+    await setparkingImage(oneparking[0].image);
     let Distance = getDistance(
       { latitude: latitudee, longitude: longitudee },
       { latitude: latitude, longitude: longitude }
@@ -98,7 +98,6 @@ function Map({ navigation }) {
       });
     })();
   }, []);
-
   return (
     <View style={styles.container}>
       <MapView
@@ -171,13 +170,17 @@ function Map({ navigation }) {
           <Text style={styles.cardDescription}>{adress}</Text>
 
           <View style={styles.btncontainter}>
-          <TouchableRipple style={styles.button2} onPress={() => {
+            <TouchableRipple
+              style={styles.button2}
+              onPress={() => {
                 cancel();
-              }}>
-            <Text
-              style={styles.TxtB}>Cancel</Text>
+              }}
+            >
+              <Text style={styles.TxtB}>Cancel</Text>
             </TouchableRipple>
-            <TouchableRipple style={styles.button} onPress={() =>
+            <TouchableRipple
+              style={styles.button}
+              onPress={() =>
                 navigation.navigate("ParkingDetail", {
                   parkingname: parkingname,
                   parkingImage: parkingImage,
@@ -186,8 +189,9 @@ function Map({ navigation }) {
                   number: number,
                   distance: distance,
                 })
-              }>
-            <Text style={styles.TxtB}>Details</Text>
+              }
+            >
+              <Text style={styles.TxtB}>Details</Text>
             </TouchableRipple>
           </View>
         </View>
@@ -362,9 +366,9 @@ const styles = StyleSheet.create({
     left: "60%",
   },
 
-  TxtB:{
-    color:'white',
-    fontWeight:'700',
+  TxtB: {
+    color: "white",
+    fontWeight: "700",
   },
 
   button2: {
@@ -397,7 +401,7 @@ const styles = StyleSheet.create({
     height: "37%",
     width: "100%",
     overflow: "hidden",
-    backgroundColor:'#EDFAFA'
+    backgroundColor: "#EDFAFA",
   },
   cardImage: {
     width: "100%",
@@ -406,11 +410,11 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   cardtitle: {
-    margin:4,
+    margin: 4,
     fontSize: 20,
     // marginTop: 5,
     fontWeight: "bold",
-    color:'#0260D1'
+    color: "#0260D1",
   },
   Group41010: {
     position: "absolute",
@@ -422,7 +426,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
   },
   cardDescription: {
-    marginLeft:10,
+    marginLeft: 10,
     fontSize: 15,
     color: "#444",
   },

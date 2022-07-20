@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Image,
-  Text,
-  View
-} from "react-native";
+import { StyleSheet, Image, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { ParkingNameAndAdress } from "../../redux/Features/BookPlace";
-import { auth } from "../../../firebase.config";
+import { auth, db } from "../../../firebase.config";
 
 import { getDatabase, ref, child, get } from "firebase/database";
 
 import Lottie from "lottie-react-native";
 import { TouchableRipple } from "react-native-paper";
-
+import { doc, getDoc } from "firebase/firestore";
 
 export default function ParkingDetail({ route, navigation }) {
   const [parkingName, setParkingName] = useState(route.params.parkingname);
@@ -26,12 +21,12 @@ export default function ParkingDetail({ route, navigation }) {
   const [userObj, setUserObject] = useState({});
   const dispatch = useDispatch();
   useEffect(() => {
-    const dbRef = ref(getDatabase());
-    get(child(dbRef, `users/${uid}`)).then((snapshot) => {
-      console.log(snapshot);
-      const user = snapshot.val();
-      setUserObject(user);
-    });
+    (async () => {
+      const docRef = doc(db, "users", `${auth.currentUser.uid}`);
+      const docSnap = await getDoc(docRef);
+      setUserObject(docSnap.data());
+      console.log("Document data:", docSnap.data());
+    })();
   }, []);
 
   let updateStateAndNavigate = () => {
@@ -59,21 +54,24 @@ export default function ParkingDetail({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-
       {console.log(route.params)}
 
       <View style={styles.innercontainer}>
         <View style={styles.Frame218}>
-        <TouchableRipple onPress={() => {navigation.goBack()}}>
-          <Lottie
-            source={require("../assets/arrow2.json")}
-            autoPlay
-            loop
-            style={styles.Frame}
-          />
-        </TouchableRipple>
-        <Text style={styles.Txt3107}>Parking Detail</Text>
-      </View>
+          <TouchableRipple
+            onPress={() => {
+              navigation.goBack();
+            }}
+          >
+            <Lottie
+              source={require("../assets/arrow2.json")}
+              autoPlay
+              loop
+              style={styles.Frame}
+            />
+          </TouchableRipple>
+          <Text style={styles.Txt3107}>Parking Detail</Text>
+        </View>
         <View style={styles.imagecontainer}>
           <Image
             style={styles.image}
@@ -83,19 +81,35 @@ export default function ParkingDetail({ route, navigation }) {
           />
         </View>
         <View style={styles.details}>
-          <Image style={styles.adress} source={require('../images/contacts.png')}  />
+          <Image
+            style={styles.adress}
+            source={require("../images/contacts.png")}
+          />
           <Text style={styles.Txt1064}>{route.params.adress}</Text>
-          <Image style={styles.phone} source={require('../images/tel.png')} />
+          <Image style={styles.phone} source={require("../images/tel.png")} />
           <Text style={styles.Txt999}> +216 {route.params.number}</Text>
           <Text style={styles.textmoney}> {route.params.price} Dt/hour</Text>
-          <Image style={styles.money} source={require('../images/billets.png')} />
-          <Image style={styles.distance} source={require('../images/hover-car.png')} />
-          <Text style={styles.distance1}>{route.params.distance / 1000} Km away from you </Text>
+          <Image
+            style={styles.money}
+            source={require("../images/billets.png")}
+          />
+          <Image
+            style={styles.distance}
+            source={require("../images/hover-car.png")}
+          />
+          <Text style={styles.distance1}>
+            {route.params.distance / 1000} Km away from you{" "}
+          </Text>
         </View>
       </View>
       <View style={styles.btncontainter}>
-        <TouchableRipple style={styles.Frame178} onPress={() => {updateStateAndNavigate()}}>
-        <Text style={styles.Txt191}>Book Now</Text>
+        <TouchableRipple
+          style={styles.Frame178}
+          onPress={() => {
+            updateStateAndNavigate();
+          }}
+        >
+          <Text style={styles.Txt191}>Book Now</Text>
         </TouchableRipple>
       </View>
     </View>
@@ -112,7 +126,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     backgroundColor: "#F5FCFF",
-    marginTop:'-4%'
+    marginTop: "-4%",
   },
   Frame218: {
     display: "flex",
@@ -137,38 +151,36 @@ const styles = StyleSheet.create({
     bottom: 10,
     height: "20%",
     width: "60%",
-    left:'20%',
-    top:'6.5%'
+    left: "20%",
+    top: "6.5%",
   },
   distance: {
     bottom: 50,
     left: 10,
     width: "10%",
     height: "15%",
-    left:'-2%',
-    top:'-40%'
- 
+    left: "-2%",
+    top: "-40%",
   },
 
   adress: {
-    width:'10%',
-    height:'15%',
-    left: '-3%',
-    top: '-9%',
+    width: "10%",
+    height: "15%",
+    left: "-3%",
+    top: "-9%",
   },
   phone: {
-    width:'10%',
-    height:'15%',
-    top:'-1%',
-    left:'-2%'
+    width: "10%",
+    height: "15%",
+    top: "-1%",
+    left: "-2%",
   },
   textmoney: {
     position: "relative",
     bottom: 30,
-    left: '20%',
-    top:'-40%',
-    fontWeight:'500'
-
+    left: "20%",
+    top: "-40%",
+    fontWeight: "500",
   },
   details: {
     position: "relative",
@@ -179,11 +191,10 @@ const styles = StyleSheet.create({
   distance1: {
     position: "absolute",
     bottom: 20,
-    left: '20%',
-    fontWeight:'500',
+    left: "20%",
+    fontWeight: "500",
     fontSize: 15,
-    top:'64%'
-
+    top: "64%",
   },
   imagecontainer: {
     position: "absolute",
@@ -196,19 +207,19 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     resizeMode: "cover",
-    top:'7%'
+    top: "7%",
   },
   innercontainer: {
     width: "90%",
     height: "90%",
     // backgroundColor: "grey",
     left: 20,
-    top:'10%'
+    top: "10%",
   },
   Txt1064: {
     position: "absolute",
-    top: '-6%',
-    left: '20%',
+    top: "-6%",
+    left: "20%",
     fontSize: 15,
     fontWeight: "500",
     color: "rgba(0,0,0,1)",
@@ -217,8 +228,8 @@ const styles = StyleSheet.create({
   },
   Txt999: {
     position: "relative",
-    top: '-14%',
-    left: '20%',
+    top: "-14%",
+    left: "20%",
     fontSize: 15,
     fontWeight: "600",
     color: "rgba(0,0,0,1)",
@@ -230,8 +241,8 @@ const styles = StyleSheet.create({
     left: 10,
     width: "10%",
     height: "15%",
-    left:'-2%',
-    top:'-50%'
+    left: "-2%",
+    top: "-50%",
   },
   price: {
     position: "relative",
@@ -254,13 +265,13 @@ const styles = StyleSheet.create({
     paddingRight: 100,
     borderRadius: 50,
     backgroundColor: "#106EE0",
-    top:'-2%',
+    top: "-2%",
   },
   Txt191: {
     fontSize: 16,
-    width:'100%',
+    width: "100%",
     fontWeight: "700",
     color: "white",
-    left:'380%'
+    left: "380%",
   },
 });
